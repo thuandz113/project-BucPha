@@ -13,10 +13,8 @@ private:
     char ngayNhap[20];
 
 public:
-    // Hàm kh?i t?o
     SanPham() {}
 
-    // Phuong th?c thêm s?n ph?m
     void themSanPham() {
         cout << "Nhap thong tin san pham moi: " << endl;
         cout << "Ma san pham: "; cin >> maSanPham;
@@ -26,7 +24,7 @@ public:
         cout << "Mo ta san pham: "; cin >> moTaSanPham;
         cout << "Ngay nhap: "; cin >> ngayNhap;
 
-        // Luu thông tin vào file
+
         FILE *file = fopen("sanpham.txt", "a");
         if (file != NULL) {
             fprintf(file, "%s %s %d %.2f %s %s\n", maSanPham, tenSanPham, soLuong, gia, moTaSanPham, ngayNhap);
@@ -37,7 +35,6 @@ public:
         }
     }
 
-    // Phuong th?c xóa s?n ph?m
     void xoaSanPham(const char* ma) {
         FILE *fileIn = fopen("sanpham.txt", "r");
         FILE *fileOut = fopen("sanpham_temp.txt", "w");
