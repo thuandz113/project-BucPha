@@ -2,6 +2,9 @@
 #include <fstream>
 #include <string>
 #include <conio.h> // Dùng cho _getch() trên Windows
+
+#include "chucnangnguoidung.h"
+
 using namespace std;
 
 class UserAccount
@@ -91,11 +94,12 @@ void login() {
         else 
         {
             switch(roles)
-            {
+            {  
                 case 0:// khách hàng
                 {
                     cout<<"Chao mung khach hang da quay tro lai <3"<<endl;
                     //thêm menu
+                    ShowMainMenu();
                     break;
                 }
                 case 1:// nhân viên

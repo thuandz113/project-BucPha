@@ -572,7 +572,7 @@ void muaSanPham(LoaiSanPham loai) {
     }
 };
 
-int main() {
+int ShowMainMenu() {
     QuanLyChucNang qlcn;
     qlcn.docSanPhamTuFile("sanpham.txt"); // Đọc danh sách sản phẩm từ file
 
