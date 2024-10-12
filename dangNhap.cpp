@@ -4,6 +4,16 @@
 #include <conio.h> // Dùng cho _getch() trên Windows
 using namespace std;
 
+class UserAccount
+{
+    private:
+        int roles;//0 : khách hàng bth, 1: nhân viên , 2: quản lý
+        string password, username;
+    public:
+        
+};
+
+
 void printInBox(const string& content, int width) {
     int padding = (width - 4 - content.size()) / 2;
     cout << "|" << string(padding, ' ') << content << string(width - 4 - padding - content.size(), ' ') << "  |" << endl;
@@ -37,64 +47,123 @@ bool checkPass(const string &password) {
     return password.size() >= 8;
 }
 
-void login(const string& role, const string& filename) {
+void login() {
     system("cls");
-    cout << "=== Moi ban dang nhap voi tu cach " << role << " ===" << endl;
-    ifstream file(filename);
+
+    ifstream file("Account.txt");
     
     string userName, password;
     string userTemp, passTemp;
-
+    int roles;
     if (!file.is_open()) {
         cout << "Khong the mo file tai khoan!" << endl;
         return;
     }
-
-    file >> userTemp >> passTemp;
-    file.close();
-
-    for (int count = 0; count < 3; ++count) {
+    bool isLoggedIn = false;
+    for (int count = 0; count < 3; ++count) 
+    {
         cout << "UserName: ";
         if (count == 0) cin.ignore(); // Chỉ ignore ở lần nhập đầu tiên để xóa '\n' còn sót lại
         getline(cin, userName);
 
-        if (userName != userTemp) {
+        file.clear();
+        file.seekg(0);
+        string line;
+        while (getline(file, line)) 
+        {
+            file >> userTemp >> passTemp >> roles;
+            if (userName == userTemp) {
+                inputPass(password);
+                if (password == passTemp) {
+                    cout << "\nDang nhap thanh cong\n";
+                    isLoggedIn = true; // Đánh dấu là đã đăng nhập thành công
+                    break;
+                } else {
+                    cout << "\nPassword khong chinh xac, vui long nhap lai\n\n";
+                    break; // Thoát vòng lặp nếu password không khớp
+                }
+            }
+        }
+        if (!isLoggedIn) {
             cout << "\nUserName khong chinh xac, vui long nhap lai\n\n";
-            continue;
         }
 
-        inputPass(password);
-
-        if (password != passTemp) {
-            cout << "\nPassword khong chinh xac, vui long nhap lai\n\n";
-            continue;
+        else 
+        {
+            switch(roles)
+            {
+                case 0:// khách hàng
+                {
+                    cout<<"Chao mung khach hang da quay tro lai <3"<<endl;
+                    //thêm menu
+                    break;
+                }
+                case 1:// nhân viên
+                {
+                    cout<<"Chao mung nhan vien da quay tro lai <3"<<endl;
+                    //thêm menu
+                    break;                    
+                }
+                case 2:// quản lý
+                {
+                    cout<<"Chao mung quan ly da quay tro lai <3"<<endl;
+                    //thêm menu
+                    break;
+                }
+            }
+            break;
         }
-        
-        cout << "\nDang nhap thanh cong\n";
-        return;
     }
 
-    cout << "\n\nDa nhap qua 3 lan. Vui long cho mot chut va thu lai\n";
+    if (!isLoggedIn) {
+        cout << "\n\nDa nhap qua 3 lan. Vui long cho mot chut va thu lai\n";
+    }
+
+    file.close(); // Đóng file sau khi đọc xong
 }
 
-void registerAccount(const string& filename) {
-    ofstream file(filename, ios::app);
+void registerAccount() {
+    ofstream file("Account.txt", ios::app);
     if (!file.is_open()) {
         cout << "Khong the mo file tai khoan!" << endl;
         return;
     }
 
     string userName, password;
-    cout << "Nhap ten tai khoan moi: ";
-    cin.ignore(); // Ignore để xóa ký tự '\n' còn sót lại
-    getline(cin, userName);
 
+    ifstream fileCheck("Account.txt");
+    if (!fileCheck.is_open()) {
+        cout << "Khong the mo file tai khoan!" << endl;
+        return;
+    }
+    string userTemp, passTemp;
+    while(1)
+    {
+        bool checkAccount = true;
+        cout << "Nhap ten tai khoan moi: ";
+        cin.ignore();
+        getline(cin, userName);
+        file.clear();
+        file.seekp(0);
+        string line;
+        while (getline(fileCheck, line))
+        {
+            fileCheck >> userTemp >> passTemp;
+            if(userName == userTemp)
+            {
+                checkAccount = false;
+            }
+        }
+        if(checkAccount == true) break;
+        else cout<<"Ten tai khoan bi trung, vui long nhap lai."<<endl;
+    }
+    fileCheck.close();
     while (true) {
         cout << "Nhap mat khau moi (it nhat 8 ky tu): ";
         inputPass(password);
 
         if (checkPass(password)) {
-            file << userName << " " << password << endl;
+            file << userName << " " << password << " "<<0 << endl;
             cout << "Dang ky tai khoan thanh cong!" << endl;
             break;
         } else {
@@ -105,19 +174,6 @@ void registerAccount(const string& filename) {
     file.close();
 }
 
-void handlePurchase() {
-    cout << "\nChao mung den voi chuc nang mua hang!\n";
-    cout << "Ban da co tai khoan khach hang chua? (y/n): ";
-    char hasAccount;
-    cin >> hasAccount;
-
-    if (hasAccount == 'y' || hasAccount == 'Y') {
-        login("khach hang", "customerAccount.txt");
-    } else {
-        cout << "Ban chua co tai khoan. Vui long dang ky tai khoan.\n";
-        registerAccount("customerAccount.txt");
-    }
-}
 
 void displayMenu(int width) {
     system("cls");
@@ -130,22 +186,20 @@ void displayMenu(int width) {
     printInBox(message, width);
     printBorder(width);
 
-    string option1 = "1. Dang nhap voi tu cach la quan li";
-    string option2 = "2. Dang nhap voi tu cach la nhan vien";
-    string option3 = "3. Mua hang";
+    string option1 = "Dang nhap";
+    string option2 = "Dang ky";
     
     printInBox(option1, width);
     printInBox(option2, width);
-    printInBox(option3, width);
     printBorder(width);
     
     int choice;
-    cout << " Vui long nhap trong (1-3): "; 
+    cout << " Vui long nhap trong (1-2): "; 
     cout.flush(); 
     cin >> choice;
 
-    while (choice < 1 || choice > 3) {
-        cout << " Vui long nhap lai trong (1-3): "; 
+    while (choice < 1 || choice > 2) {
+        cout << " Vui long nhap lai trong (1-2): "; 
         cout.flush(); 
         cin >> choice;
     }
@@ -154,12 +208,11 @@ void displayMenu(int width) {
 
     printBorder(width);
     system("cls");
-    if (choice == 3) {
-        handlePurchase(); // Gọi chức năng mua hàng
-    } else if (choice == 1) {
-        login("quan li", "managerAccount.txt");
+    if (choice == 1) 
+    {
+        login();
     } else if (choice == 2) {
-        login("nhan vien", "employeeAccount.txt");
+        registerAccount();
     }
 }
 

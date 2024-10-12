@@ -443,12 +443,10 @@ void muaSanPham(LoaiSanPham loai) {
 
         if (luaChonTiep == 1) {
             cout << "Dang di toi quay thanh toan...\n";
-            this_thread::sleep_for(chrono::milliseconds(1000));
             system("cls");
             thanhToan(cart, quantities); // Gọi hàm thanh toán
         } else if (luaChonTiep == 2) {
             cout << "Dang di toi quay khac...\n";
-            this_thread::sleep_for(chrono::milliseconds(1000));
             system("cls");
             chonQuayKhac();
         } else {
@@ -591,12 +589,10 @@ int main() {
 
         switch (luaChon) {
             case 1:
-            	this_thread::sleep_for(chrono::milliseconds(1000));
                 system("cls");
                 qlcn.chonQuayKhac();
                 break;
             case 2:
-                this_thread::sleep_for(chrono::milliseconds(1000));
                 system("cls");
                 qlcn.luuSanPhamVaoFile("sanpham.txt"); // Lưu danh sách sản phẩm vào file
                 break;
