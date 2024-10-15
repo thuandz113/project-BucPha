@@ -94,7 +94,7 @@ void login() {
             if (roles == 0) {
                 cout << "Chao mung khach hang da quay tro lai <3" << endl;
                 ShowMainMenu(user);
-            } 
+            }
             else if (roles == 1) 
             {
                 cout << "Chao mung nhan vien da quay tro lai <3" << endl;
@@ -185,7 +185,7 @@ bool updateAccount(UserAccount user) {
         return false;
     }
 
-    ofstream fileOut("temp.txt");
+    ofstream fileOut("database/temp.txt");
     if (!fileOut) {
         cout << "Khong the tao file tam!" << endl;
         return false; 
@@ -213,7 +213,7 @@ bool updateAccount(UserAccount user) {
         cout << "Khong the xoa file Account.txt!" << endl;
         return false;
     }
-    if (rename("temp.txt", "database/account.txt") != 0) {
+    if (rename("database/temp.txt", "database/account.txt") != 0) {
         cout << "Khong the doi ten file tam!" << endl;
         return false;
     }
