@@ -1,3 +1,7 @@
 Username/Password/Roles/Credits
 Thuancho 123123123 1 420336
+<<<<<<< HEAD
 Thuanpp 123123123 0 0
+=======
+Thuandz113 123123123 0 323
+>>>>>>> 17aeabf6b1cdb18f690287d83ae8f716d97a485d
