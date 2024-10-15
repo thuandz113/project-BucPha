@@ -1,5 +1,3 @@
-#pragma once
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -8,11 +6,8 @@
 #include <chrono>
 #include <thread>
 #include <iomanip>
-
-#include "doiTuong.h"
-
-//============================Account==========================//
 using namespace std;
+
 class SanPham {
 protected:
     string ten;         // Tên sản phẩm
@@ -195,7 +190,7 @@ public:
         DO_DIEN_TU
     };
 
-    void chonQuayKhac(UserAccount &user) {
+    void chonQuayKhac() {
         cout << "Chon loai san pham muon mua:\n";
         cout << "1. Thuc pham\n";
         cout << "2. Do uong\n";
@@ -212,11 +207,11 @@ public:
         }
 
         switch (luaChonLoai) {
-            case 1: muaSanPham(THUC_PHAM, user); break;
-            case 2: muaSanPham(DO_UONG, user); break;
-            case 3: muaSanPham(THOI_TRANG, user); break;
-            case 4: muaSanPham(DO_GIA_DUNG, user); break;
-            case 5: muaSanPham(DO_DIEN_TU, user); break;
+            case 1: muaSanPham(THUC_PHAM); break;
+            case 2: muaSanPham(DO_UONG); break;
+            case 3: muaSanPham(THOI_TRANG); break;
+            case 4: muaSanPham(DO_GIA_DUNG); break;
+            case 5: muaSanPham(DO_DIEN_TU); break;
         }
     }
 //     void thanhToan(vector<int>& luaChonSanPham, vector<int>& soLuongMua) {
@@ -238,7 +233,7 @@ public:
         
 //         if (luaChon == 'y' || luaChon == 'Y') {
 //             cout << "Thanh toan thanh cong! Cam on ban!\n";
-//                 luuSanPhamVaoFile("database/product.txt");
+//                 luuSanPhamVaoFile("sanpham.txt");
 //         } else {
 //             cout << "Huy thanh toan!\n";
 //         }
@@ -331,7 +326,7 @@ public:
 //         cout << "Ban chua mua san pham nao.\n";
 //     }
 // }
-    void thanhToan(vector<int>& luaChonSanPham, vector<int>& soLuongMua, UserAccount &user) {
+    void thanhToan(vector<int>& luaChonSanPham, vector<int>& soLuongMua) {
     double tongTien = 0.0;
 
     // Tiêu đề hóa đơn
@@ -364,32 +359,23 @@ public:
     cout << "Ban co muon thanh toan khong? (y/n): ";
     cin >> luaChon;
     
-    if (luaChon == 'y' || luaChon == 'Y') 
-    {
-        if(user.getCredits() >= tongTien)
-        {
-            cout << "Thanh toan thanh cong! Cam on ban!\n";
-            user.accountDeposit(-tongTien);
-            luuSanPhamVaoFile("database/product.txt"); // Cập nhật file sản phẩm
-            cart.clear(); // Xóa giỏ hàng
-            quantities.clear(); // Xóa số lượng
-        }
-        else {
-            cout<<"Ban khong du "<<tongTien<<"$ de thanh toan, tong tien cua ban: "<<user.getCredits() <<"$."<< endl;
-            cart.clear(); // Xóa giỏ hàng
-            quantities.clear(); // Xóa số lượng       
-        }
+    if (luaChon == 'y' || luaChon == 'Y') {
+        cout << "Thanh toan thanh cong! Cam on ban!\n";
+        luuSanPhamVaoFile("sanpham.txt"); // Cập nhật file sản phẩm
+        cart.clear(); // Xóa giỏ hàng
+        quantities.clear(); // Xóa số lượng
     } else {
         cout << "Huy thanh toan!\n";
     }
 }
 
 
+
 // Khai báo giỏ hàng
 vector<int> cart; // Giỏ hàng tạm thời lưu các chỉ mục sản phẩm đã chọn
 vector<int> quantities; // Số lượng tương ứng với từng sản phẩm trong giỏ hàng
 
-void muaSanPham(LoaiSanPham loai, UserAccount &user) {
+void muaSanPham(LoaiSanPham loai) {
     cout << "Danh sach san pham hien co:\n";
     vector<int> danhSachHienThi; // Lưu các chỉ mục của sản phẩm hợp lệ được hiển thị
     bool found = false;
@@ -458,11 +444,11 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
         if (luaChonTiep == 1) {
             cout << "Dang di toi quay thanh toan...\n";
             system("cls");
-            thanhToan(cart, quantities, user); // Gọi hàm thanh toán
+            thanhToan(cart, quantities); // Gọi hàm thanh toán
         } else if (luaChonTiep == 2) {
             cout << "Dang di toi quay khac...\n";
             system("cls");
-            chonQuayKhac(user);
+            chonQuayKhac();
         } else {
             cout << "Lua chon khong hop le.\n";
         }
@@ -551,10 +537,15 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
             delete sp; // Giải phóng bộ nhớ
         }
     }
-    void veSieuThi(UserAccount user) {
+    void veSieuThi() {
+    cout << "*****************************************************\n";
+    cout << "*                SIEU THI                           *\n";
+    cout << "*****************************************************\n";
+    cout << "*                                                   *\n";
+    cout << "*   [QUAY THU NGAN]                                 *\n";
     cout << "*   +----------------------+                        *                    Thong tin khach hang:\n";
-    cout << "*   |   KHACH HANG         |                        *                    Ten: "<<user.getUsername()<<"\n";
-    cout << "*   |   TINH TIEN          |                        *                    So du: "<<user.getCredits()<<"\n";
+    cout << "*   |   KHACH HANG         |                        *                    Ten: Nguyen Van A\n";
+    cout << "*   |   TINH TIEN          |                        *                    So du: 1.000.000\n";
     cout << "*   +----------------------+                        *\n";
     cout << "*                                                   *\n";
     cout << "*   +----------------------+   +---------------+    *\n";
@@ -572,7 +563,50 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
     cout << "*   |  - Ca dong lanh      |   |  - Do dien tu  |   *\n";
     cout << "*   |  - Rau cu tuoi       |   |                |   *\n";
     cout << "*   +----------------------+   +----------------+   *\n";
+    cout << "*                                                   *\n";
     cout << "*                   [CUA RA]                        *\n";
     cout << "*****************************************************\n";
     }   
+    void giohangtamthoi(){
+
+    }
 };
+
+int ShowMainMenu() {
+    QuanLyChucNang qlcn;
+    qlcn.docSanPhamTuFile("sanpham.txt"); // Đọc danh sách sản phẩm từ file
+
+    char tiepTuc;
+    do {
+        qlcn.veSieuThi();
+        cout << "Chao mung den he thong quan ly sieu thi.\n";
+        cout << "1. Chon quay san pham: \n";
+        cout << "2. Nap tien vao tai khoan\n";
+        cout << "3. Thoat\n";
+        int luaChon;
+        cout << "Vui long nhap lua chon: ";
+        cin >> luaChon;
+
+        switch (luaChon) {
+            case 1:
+                system("cls");
+                qlcn.chonQuayKhac();
+                break;
+            case 2:
+                system("cls");
+                qlcn.luuSanPhamVaoFile("sanpham.txt"); // Lưu danh sách sản phẩm vào file
+                break;
+            case 3:
+                cout << "Cam on ban da su dung he thong!\n";
+                return 0;
+            default:
+                cout << "Lua chon khong hop le. Vui long nhap lai.\n";
+        }
+        cout << "Ban co muon tiep tuc? (y/n): ";
+        cin >> tiepTuc;
+        system("cls");
+
+    } while (tiepTuc == 'y' || tiepTuc == 'Y');
+
+    return 0;
+}
