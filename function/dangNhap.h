@@ -93,6 +93,8 @@ void login() {
             UserAccount user(userName, password, roles , credits);
             if (roles == 0) {
                 cout << "Chao mung khach hang da quay tro lai <3" << endl;
+                this_thread::sleep_for(chrono::milliseconds(2000));
+                system("cls");
                 ShowMainMenu(user);
             }
             else if (roles == 1) 
@@ -264,7 +266,7 @@ void displayMenu(int width) {
 }
 int ShowMainMenu(UserAccount user) {
     QuanLyChucNang qlcn;
-    qlcn.docSanPhamTuFile("sanpham.txt"); // Đọc danh sách sản phẩm từ file
+    qlcn.docSanPhamTuFile("database/product.txt"); // Đọc danh sách sản phẩm từ file
 
     char tiepTuc;
     do {

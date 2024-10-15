@@ -441,6 +441,12 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
         }
     }
     void veSieuThi(UserAccount user) {
+    system("cls");
+    cout << "*****************************************************\n";
+    cout << "*                SIEU THI                           *\n";
+    cout << "*****************************************************\n";
+    cout << "*                                                   *\n";
+    cout << "*   [QUAY THU NGAN]                                 *\n";
     cout << "*   +----------------------+                        *                    Thong tin khach hang:\n";
     cout << "*   |   KHACH HANG         |                        *                    Ten: "<<user.getUsername()<<"\n";
     cout << "*   |   TINH TIEN          |                        *                    So du: "<<user.getCredits()<<"\n";
