@@ -1,5 +1,8 @@
 ThuanDepTrai 12312312345asd
 ThuanCho 123 0
 ThuanCho 123123123
+<<<<<<< HEAD
 baodeptrai 123123123 0
 baodeptrai 123123123 0
+=======
+>>>>>>> parent of d38b342 (bigUpdate)
