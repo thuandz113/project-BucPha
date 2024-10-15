@@ -264,7 +264,7 @@ void displayMenu(int width) {
 }
 int ShowMainMenu(UserAccount user) {
     QuanLyChucNang qlcn;
-    qlcn.docSanPhamTuFile("sanpham.txt"); // Đọc danh sách sản phẩm từ file
+    qlcn.docSanPhamTuFile("database/product.txt"); // Đọc danh sách sản phẩm từ file
 
     char tiepTuc;
     do {
