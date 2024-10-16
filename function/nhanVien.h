@@ -5,6 +5,51 @@
 
 using namespace std;
 
+const int max_account=100;
+struct Account{
+    string username;
+    string password
+    int roles;
+    int credits;
+    int sex; //1:Male, 0:Female
+    string number;
+    string address;
+}
+void viewAndEditCustomer() {
+    Account accounts[MAX_ACCOUNTS];
+    
+    if (numAccounts == 0) {
+        cout << "Khong co tai khoan nao trong file!" << endl;
+        return;
+    }
+
+    cout << "Danh sach khach hang:" << endl;
+    for (int i = 0; i < numAccounts; ++i) {
+        cout << i + 1 << ". " << accounts[i].username << " | Credits: " << accounts[i].credits << endl;
+    }
+
+    int choice;
+    cout << "Vui long chon khach hang de chinh sua (0 de thoat): ";
+    cin >> choice;
+
+    if (choice == 0) return;
+    if (choice > 0 && choice <= numAccounts) {
+        cout << "Ban muon thay doi thong tin gi cho tai khoan nay?" << endl;
+        cout << "Nhap credits moi: ";
+        cin >> accounts[choice - 1].credits;
+        // Sau khi chỉnh sửa, ghi lại vào file
+        ofstream file("database/account.txt");
+        file << "username password roles credits sex number address\n";  // Tiêu đề
+        for (int i = 0; i < numAccounts; ++i) {
+            file << accounts[i].username << " " << accounts[i].password << " " << accounts[i].roles << " "
+                 << accounts[i].credits << " " << accounts[i].sex << " " << accounts[i].number << " " << accounts[i].address << endl;
+        }
+        file.close();
+        cout << "Da cap nhat thong tin khach hang!" << endl;
+    } else {
+        cout << "Lua chon khong hop le!" << endl;
+    }
+}
 int ShowStaffMenu(UserAccount user)
 {
     int choice;
