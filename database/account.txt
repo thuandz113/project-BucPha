@@ -1,11 +1,3 @@
-Username/Password/Roles/Credits
-Thuancho 123123123 1 420336
-<<<<<<< HEAD
-<<<<<<< HEAD
-Thuanpp 123123123 0 0
-=======
-Thuandz113 123123123 0 323
->>>>>>> 17aeabf6b1cdb18f690287d83ae8f716d97a485d
-=======
-Thuandz113 123123123 0 1000323
->>>>>>> 98ac33dc00589a58b1f8101674a6cd63140c99bf
+Username/Password/Roles/Credits/Sex/Number/Address
+thuan_z 123123123 0 8 2 2 2
+thuan_p 123123123 1 0 2 0915566 aasdasd

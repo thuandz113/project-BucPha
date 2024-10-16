@@ -6,7 +6,7 @@
 
 #include "nguoiDung.h"
 #include "nhanVien.h"
-
+#include "quanLy.h"
 using namespace std;
 int ShowMainMenu(UserAccount user);
 void displayMenu(int width);
@@ -38,14 +38,32 @@ void inputPass(string &password) {
     }
     cout << endl;
 }
-
+string replaceSpace(const string& s) {
+    string result = s;
+    for (char& c : result) {
+        if (c == ' ') {
+            c = '_';
+        }
+    }
+    return result;
+}
+string replaceUnderscore(const string& s) {
+    string result = s;
+    for (char& c : result) {
+        if (c == '_') {
+            c = ' ';
+        }
+    }
+    return result;
+}
 bool checkPass(const string &password) {
     return password.size() >= 8;
 }
-bool checkLogin(ifstream& file, const string& userName, string& password, int& roles, int& credits) {
+bool checkLogin(ifstream& file, const string& userName, string& password, int& roles, int& credits, int sex, string number, string address) {
     string userTemp, passTemp;
-    while (file >> userTemp >> passTemp >> roles >> credits) {
-        if (userName == userTemp) 
+    while(file>>userTemp>>passTemp>>roles>>credits>>sex>>number>>address)
+    {
+        if (userName == replaceUnderscore(userTemp)) 
         {
             inputPass(password);
             if (password == passTemp) {
@@ -59,13 +77,14 @@ bool checkLogin(ifstream& file, const string& userName, string& password, int& r
     }
     return false; // Tài khoản không tồn tại
 }
+
 void login() {
     system("cls");
 
     ifstream file("database/account.txt");
     
-    string userName, password;
-    int roles, credits;
+    string userName, password, number,address;
+    int roles, credits,sex;
     if (!file.is_open()) {
         cout << "Khong the mo file tai khoan!" << endl;
         return;
@@ -81,7 +100,7 @@ void login() {
         file.seekg(0);
         string line;
         getline(file, line);
-        if (checkLogin(file, userName, password, roles, credits)) 
+        if (checkLogin(file, userName, password, roles, credits, sex, number, address)) 
             isLoggedIn = true;
         
         if (!isLoggedIn) {
@@ -103,7 +122,7 @@ void login() {
             else if (roles == 2) 
             {
                 cout << "Chao mung quan ly da quay tro lai <3" << endl;
-                //ShowManageMenu(user);
+                ShowManageMenu(user);
             } 
             else 
             {
@@ -118,7 +137,6 @@ void login() {
         file.close();
     }
 }
-
 void registerAccount() {
     ofstream file("database/account.txt", ios::app);
     if (!file.is_open()) {
@@ -166,8 +184,22 @@ void registerAccount() {
         cout << "Nhap mat khau moi (it nhat 8 ky tu): ";
         inputPass(password);
 
-        if (checkPass(password)) {
-            file << userName << " " << password << " "<< 0 <<" "<< 0<<endl;
+        if (checkPass(password)) 
+        {
+            int sex;
+            string number, address;
+            cout<<"Vui long chon gioi tinh: 1-Nam, 2-Nu."<<endl;
+            do{
+                cout<<"Lua chon cua ban:";
+                cin>>sex;
+            }
+            while(sex != 1 && sex != 2);
+            cin.ignore();
+            cout<<"Vui long nhap so dien thoai cua ban:";
+            getline(cin, number);
+            cout<<"Vui long them dia chi cua ban:";
+            getline(cin, address);
+            file << replaceSpace(userName) << " " << password << " "<< 0 <<" "<< 0<<" "<< sex <<" "<< replaceSpace(number) << " "<< replaceSpace(address)<<endl;
             cout << "Dang ky tai khoan thanh cong!" << endl;
             displayMenu(120);
             break;
@@ -191,18 +223,19 @@ bool updateAccount(UserAccount user) {
         return false; 
     }
 
-    string userTemp, passTemp, line;
-    int roles, credits;
+    string userTemp, passTemp, line, number, address;
+    int roles, credits, sex;
     bool found = false;
-    fileOut<<"Username/Password/Roles/Credits"<<endl;
+    fileOut<<"Username/Password/Roles/Credits/Sex/Number/Address"<<endl;
     getline(fileIn, line);
     
-    while (fileIn >> userTemp >> passTemp >> roles >> credits) {
-        if (userTemp == user.getUsername()) {
-            fileOut << userTemp << " " << passTemp << " " << roles << " " << user.getCredits() << endl;
+    while (fileIn >> userTemp >> passTemp >> roles >> credits>>sex>>number>>address) {
+        if (replaceUnderscore(userTemp) == user.getUsername()) 
+        {
+            fileOut << replaceSpace(userTemp) << " " << passTemp << " " << roles << " " << user.getCredits()<<" " <<sex<<" " << number<<" "<< address<< endl;
             found = true;
         } else {
-            fileOut << userTemp << " " << passTemp << " " << roles << " " << credits << endl;
+            fileOut << replaceSpace(userTemp) << " " << passTemp << " " << roles << " " << credits <<" "<<sex<<" " << number<<" "<< address << endl;
         }
     }
 

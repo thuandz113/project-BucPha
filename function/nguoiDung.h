@@ -568,7 +568,7 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
     cout << "*   +----------------------+   +----------------+   *\n";
     cout << "*   |   KHU THUC PHAM      |   | KHU TONG HOP   |   *\n";
     cout << "*   +----------------------+   +----------------+   *\n";
-    cout << "*   |  - Thi tuoi          |   |  - Do gia dung |   *\n";
+    cout << "*   |  - Thit tuoi         |   |  - Do gia dung |   *\n";
     cout << "*   |  - Ca dong lanh      |   |  - Do dien tu  |   *\n";
     cout << "*   |  - Rau cu tuoi       |   |                |   *\n";
     cout << "*   +----------------------+   +----------------+   *\n";
