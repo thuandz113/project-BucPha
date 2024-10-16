@@ -30,6 +30,12 @@ public:
     double getGia() const { return gia; } // Lấy giá sản phẩm
 
     virtual ~SanPham() {} // Destructor ảo
+    void setGia(double giaSanPham) {
+        gia = giaSanPham;
+    }
+    void setTen(const string& tenSanPham) {
+        ten = tenSanPham;
+    }
 };
 
 class ThucPham : public SanPham {
@@ -41,24 +47,22 @@ public:
 
     void nhapThongTin() override {
         cout << "Nhap ten thuc pham: ";
-        cin >> ten;
+        cin.ignore();
+        getline(cin,ten);
         cout << "Nhap gia: ";
         cin >> gia;
         cout << "Nhap so luong: ";
         cin >> soLuong;
-        cout << "Nhap han su dung: ";
-        cin >> hanSuDung;
     }
 
     void luuThongTinVaoFile(ofstream& file) override {
-        file << "thucpham," << ten << "," << gia << "," << soLuong << "," << hanSuDung << endl;
+        file << "ThucPham," << ten << "," << gia << "," << soLuong << endl;
     }
 
-    void khoiTaoTuFile(const string& ten, double gia, int soLuong, const string& hanSuDung) {
+    void khoiTaoTuFile(const string& ten, double gia, int soLuong) {
         this->ten = ten;
         this->gia = gia;
         this->soLuong = soLuong;
-        this->hanSuDung = hanSuDung;
     }
 };
 
@@ -71,24 +75,24 @@ public:
 
     void nhapThongTin() override {
         cout << "Nhap ten do uong: ";
-        cin >> ten;
+        cin.ignore();
+        getline(cin,ten);
         cout << "Nhap gia: ";
         cin >> gia;
         cout << "Nhap so luong: ";
         cin >> soLuong;
-        cout << "Co con (1: yes, 0: no): ";
-        cin >> coCon;
+
     }
 
     void luuThongTinVaoFile(ofstream& file) override {
-        file << "douong," << ten << "," << gia << "," << soLuong << "," << coCon << endl;
+        file << "DoUong," << ten << "," << gia << "," << soLuong << endl;
     }
 
-    void khoiTaoTuFile(const string& ten, double gia, int soLuong, bool coCon) {
+    void khoiTaoTuFile(const string& ten, double gia, int soLuong) {
         this->ten = ten;
         this->gia = gia;
         this->soLuong = soLuong;
-        this->coCon = coCon;
+
     }
 };
 
@@ -101,24 +105,24 @@ public:
 
     void nhapThongTin() override {
         cout << "Nhap ten thoi trang: ";
-        cin >> ten;
+        cin.ignore();
+        getline(cin,ten);
         cout << "Nhap gia: ";
         cin >> gia;
         cout << "Nhap so luong: ";
         cin >> soLuong;
-        cout << "Nhap size: ";
-        cin >> size;
+
     }
 
     void luuThongTinVaoFile(ofstream& file) override {
-        file << "thoitrang," << ten << "," << gia << "," << soLuong << "," << size << endl;
+        file << "ThoiTrang," << ten << "," << gia << "," << soLuong << endl;
     }
 
-    void khoiTaoTuFile(const string& ten, double gia, int soLuong, const string& size) {
+    void khoiTaoTuFile(const string& ten, double gia, int soLuong) {
         this->ten = ten;
         this->gia = gia;
         this->soLuong = soLuong;
-        this->size = size;
+
     }
 };
 
@@ -131,24 +135,23 @@ public:
 
     void nhapThongTin() override {
         cout << "Nhap ten do gia dung: ";
-        cin >> ten;
+        cin.ignore();
+        getline(cin,ten);
         cout << "Nhap gia: ";
         cin >> gia;
         cout << "Nhap so luong: ";
         cin >> soLuong;
-        cout << "Nhap chat lieu: ";
-        cin >> chatLieu;
+
     }
 
     void luuThongTinVaoFile(ofstream& file) override {
-        file << "dogiadung," << ten << "," << gia << "," << soLuong << "," << chatLieu << endl;
+        file << "DoGiaDung," << ten << "," << gia << "," << soLuong << endl;
     }
 
-    void khoiTaoTuFile(const string& ten, double gia, int soLuong, const string& chatLieu) {
+    void khoiTaoTuFile(const string& ten, double gia, int soLuong) {
         this->ten = ten;
         this->gia = gia;
         this->soLuong = soLuong;
-        this->chatLieu = chatLieu;
     }
 };
 
@@ -161,24 +164,23 @@ public:
 
     void nhapThongTin() override {
         cout << "Nhap ten do dien tu: ";
-        cin >> ten;
+        cin.ignore();
+        getline(cin,ten);
         cout << "Nhap gia: ";
         cin >> gia;
         cout << "Nhap so luong: ";
         cin >> soLuong;
-        cout << "Nhap hang san xuat: ";
-        cin >> hangSX;
+
     }
 
     void luuThongTinVaoFile(ofstream& file) override {
-        file << "dodientu," << ten << "," << gia << "," << soLuong << "," << hangSX << endl;
+        file << "DoDienTu," << ten << "," << gia << "," << soLuong << endl;
     }
 
-    void khoiTaoTuFile(const string& ten, double gia, int soLuong, const string& hangSX) {
+    void khoiTaoTuFile(const string& ten, double gia, int soLuong) {
         this->ten = ten;
         this->gia = gia;
         this->soLuong = soLuong;
-        this->hangSX = hangSX;
     }
 };
 class QuanLyChucNang {
@@ -272,6 +274,174 @@ public:
         cout << "Huy thanh toan!\n";
     }
 }
+
+
+void nhapHang() {
+    // Đọc danh sách sản phẩm từ file trước
+    docSanPhamTuFile("database/product.txt");
+
+    while(true){
+    cout << "Chon loai san pham muon nhap:\n";
+    cout << "1. Thuc pham\n";
+    cout << "2. Do uong\n";
+    cout << "3. Thoi trang\n";
+    cout << "4. Do gia dung\n";
+    cout << "5. Do dien tu\n";
+    cout << "6. thoat\n";
+    int luaChonLoai;
+    cin >> luaChonLoai;
+     if (luaChonLoai == 6) { // Nếu người dùng chọn thoát
+            cout << "Da thoat khoi chuc nang nhap hang.\n";
+            break; // Thoát khỏi vòng lặp
+        }
+    // Kiểm tra lựa chọn đầu vào
+    while (luaChonLoai < 1 || luaChonLoai > 6) {
+        cout << "Lua chon khong hop le. Vui long nhap tu 1 den 6: ";
+        cin >> luaChonLoai;
+    }
+
+    SanPham* sanPhamMoi = nullptr; // Con trỏ sản phẩm mới
+
+    switch (luaChonLoai) {
+        case 1:
+            sanPhamMoi = new ThucPham();
+            break;
+        case 2:
+            sanPhamMoi = new DoUong();
+            break;
+        case 3:
+            sanPhamMoi = new ThoiTrang();
+            break;
+        case 4:
+            sanPhamMoi = new DoGiaDung();
+            break;
+        case 5:
+            sanPhamMoi = new DoDienTu();
+            break;
+        default:
+            cout << "Khong the tao san pham moi.\n";
+            return; // Không cần tiếp tục nếu lựa chọn không hợp lệ
+    }
+
+    // Nhập thông tin cho sản phẩm mới
+    if (sanPhamMoi) {
+        sanPhamMoi->nhapThongTin(); // Nhập thông tin cho sản phẩm mới
+
+        // Kiểm tra xem sản phẩm đã tồn tại trong danh sách chưa
+        bool tonTai = false;
+        for (auto& sp : danhSachSanPham) {
+            if (sp->getTen() == sanPhamMoi->getTen()) { // So sánh tên sản phẩm
+                sp->setSoLuong(sp->getSoLuong() + sanPhamMoi->getSoLuong()); // Cập nhật số lượng
+                sp->setGia(sanPhamMoi->getGia()); // Cập nhật lại giá
+                tonTai = true;
+                cout << "San pham da ton tai, da cap nhat so luong va gia!\n";
+                break;
+            }
+        }
+
+        // Nếu sản phẩm không tồn tại, thêm sản phẩm mới vào danh sách
+        if (!tonTai) {
+            danhSachSanPham.push_back(sanPhamMoi);
+            cout << "Da nhap hang thanh cong!\n";
+        } else {
+            delete sanPhamMoi; // Giải phóng bộ nhớ nếu sản phẩm đã tồn tại
+        }
+
+        // Cập nhật file sản phẩm
+        luuSanPhamVaoFile("database/product.txt");
+        }
+    }
+}
+void xoaHang(){
+    docSanPhamTuFile("database/product.txt");
+
+    while(true){
+    cout << "Chon loai san pham muon xoa:\n";
+    cout << "1. Thuc pham\n";
+    cout << "2. Do uong\n";
+    cout << "3. Thoi trang\n";
+    cout << "4. Do gia dung\n";
+    cout << "5. Do dien tu\n";
+    cout << "6. thoat\n";
+    int luaChonLoai;
+    cin >> luaChonLoai;
+     if (luaChonLoai == 6) { // Nếu người dùng chọn thoát
+            cout << "Da thoat khoi chuc nang xoa hang.\n";
+            break; // Thoát khỏi vòng lặp
+        }
+    // Kiểm tra lựa chọn đầu vào
+    while (luaChonLoai < 1 || luaChonLoai > 6) {
+        cout << "Lua chon khong hop le. Vui long nhap tu 1 den 6: ";
+        cin >> luaChonLoai;
+    }
+    switch (luaChonLoai) {
+            case 1: xoaSanPham(THUC_PHAM); break;
+            case 2: xoaSanPham(DO_UONG); break;
+            case 3: xoaSanPham(THOI_TRANG); break;
+            case 4: xoaSanPham(DO_GIA_DUNG); break;
+            case 5: xoaSanPham(DO_DIEN_TU); break;
+        }
+    }
+}
+
+void xoaSanPham(LoaiSanPham loai) {
+    cout << "Danh sach san pham hien co:\n";
+    vector<int> danhSachHienThi; // Lưu các chỉ mục của sản phẩm hợp lệ được hiển thị
+    bool found = false;
+
+    // Hiển thị các sản phẩm thuộc loại được chọn
+    for (size_t i = 0; i < danhSachSanPham.size(); ++i) {
+        if (((loai == THUC_PHAM && dynamic_cast<ThucPham*>(danhSachSanPham[i])) ||
+            (loai == DO_UONG && dynamic_cast<DoUong*>(danhSachSanPham[i])) ||
+            (loai == THOI_TRANG && dynamic_cast<ThoiTrang*>(danhSachSanPham[i])) ||
+            (loai == DO_GIA_DUNG && dynamic_cast<DoGiaDung*>(danhSachSanPham[i])) ||
+            (loai == DO_DIEN_TU && dynamic_cast<DoDienTu*>(danhSachSanPham[i]))) && danhSachSanPham[i]->getSoLuong() != 0) {
+            
+            cout << danhSachHienThi.size() + 1 << ". " << danhSachSanPham[i]->getTen() 
+                 << " (So luong: " << danhSachSanPham[i]->getSoLuong() << ") " << danhSachSanPham[i]->getGia() << " vnd" << endl;
+            danhSachHienThi.push_back(i); // Lưu chỉ mục của sản phẩm hợp lệ
+            found = true;
+        }
+    }
+
+    if (!found) {
+        cout << "Khong co san pham nao trong kho.\n";
+        return; // Nếu không có sản phẩm nào, thoát hàm
+    }
+
+    // Lặp để người dùng chọn sản phẩm cần xóa
+    while (true) {
+        int luaChon;
+        cout << "\nChon san pham muon xoa (nhap so tuong ung, hoac 0 de dung): ";
+        cin >> luaChon;
+
+        if (luaChon == 0) break; // Kết thúc nếu người dùng nhập 0
+
+        if (luaChon > 0 && luaChon <= danhSachHienThi.size()) {
+            int indexSanPham = danhSachHienThi[luaChon - 1]; // Lấy chỉ mục thực của sản phẩm từ danhSachHienThi
+
+            // Xóa sản phẩm này khỏi danh sách (chuyển số lượng về 0)
+            danhSachSanPham[indexSanPham]->setSoLuong(0);
+            cout << "San pham " << danhSachSanPham[indexSanPham]->getTen() << " da duoc xoa.\n";
+            
+            // Loại bỏ sản phẩm khỏi danh sách hiển thị
+            danhSachHienThi.erase(danhSachHienThi.begin() + luaChon - 1);
+
+            // Cập nhật lại file sau khi xóa sản phẩm
+            luuSanPhamVaoFile("database/product.txt");
+
+            // Nếu không còn sản phẩm nào trong danh sách hiển thị, dừng lại
+            if (danhSachHienThi.empty()) {
+                cout << "Tat ca san pham da duoc xoa.\n";
+                break;
+            }
+        } else {
+            cout << "Lua chon khong hop le.\n";
+        }
+    }
+}
+
+
 
 
 // Khai báo giỏ hàng
@@ -378,62 +548,54 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
         file.close();
     }
 
-    void docSanPhamTuFile(const string& tenFile) {
-        ifstream file(tenFile);
-        if (!file.is_open()) {
-            cout << "Khong the mo file de doc.\n";
-            return;
-        }
 
-        string line;
-        while (getline(file, line)) {
-            istringstream iss(line);
-            string loai, ten;
-            double gia;
-            int soLuong;
 
-            if (getline(iss, loai, ',') && getline(iss, ten, ',') &&
-                iss >> gia && iss.ignore() && iss >> soLuong) {
-                if (loai == "ThucPham") {
-                    ThucPham* tp = new ThucPham();
-                    tp->khoiTaoTuFile(ten, gia, soLuong, ""); // Bạn cần sửa đổi để đưa thông tin hết hạn vào
-                    danhSachSanPham.push_back(tp);
-                } else if (loai == "DoUong") {
-                    bool coCon;
-                    iss.ignore(); // Bỏ qua dấu phẩy
-                    iss >> coCon; // Đọc thông tin coCon
-                    DoUong* du = new DoUong();
-                    du->khoiTaoTuFile(ten, gia, soLuong, coCon);
-                    danhSachSanPham.push_back(du);
-                } else if (loai == "ThoiTrang") {
-                    string size;
-                    iss.ignore(); // Bỏ qua dấu phẩy
-                    getline(iss, size);
-                    ThoiTrang* tt = new ThoiTrang();
-                    tt->khoiTaoTuFile(ten, gia, soLuong, size);
-                    danhSachSanPham.push_back(tt);
-                } else if (loai == "DoGiaDung") {
-                    string thuongHieu;
-                    iss.ignore(); // Bỏ qua dấu phẩy
-                    getline(iss, thuongHieu); 
-                    DoGiaDung* dg = new DoGiaDung();
-                    dg->khoiTaoTuFile(ten, gia, soLuong, thuongHieu);
-                    danhSachSanPham.push_back(dg);
-                } else if (loai == "DoDienTu") {
-                    string congSuat;
-                    iss.ignore(); // Bỏ qua dấu phẩy
-                    getline(iss, congSuat);
-                    DoDienTu* dt = new DoDienTu();
-                    dt->khoiTaoTuFile(ten, gia, soLuong, congSuat);
-                    danhSachSanPham.push_back(dt);
-                }
-            }
-        }
 
-        file.close();
-        cout << "Da doc danh sach san pham tu file " << tenFile << " thanh cong.\n";
-        system("cls");
+void docSanPhamTuFile(const string& tenFile) {
+    ifstream file(tenFile);
+    if (!file.is_open()) {
+        cout << "Khong the mo file de doc.\n";
+        return;
     }
+
+    string loai, ten;
+    double gia;
+    int soLuong;
+
+    while (file.good()) {
+        getline(file, loai, ',');
+        getline(file, ten, ',');
+        file >> gia;
+        file.ignore(); // Bỏ qua dấu phẩy
+        file >> soLuong;
+        file.ignore(); // Bỏ qua ký tự newline
+
+        // Tạo đối tượng sản phẩm tương ứng dựa vào loại
+        SanPham* sanPham = nullptr;
+
+        if (loai == "ThucPham") {
+            sanPham = new ThucPham();
+        } else if (loai == "DoUong") {
+            sanPham = new DoUong();
+        } else if (loai == "ThoiTrang") {
+            sanPham = new ThoiTrang();
+        } else if (loai == "DoGiaDung") {
+            sanPham = new DoGiaDung();
+        } else if (loai == "DoDienTu") {
+            sanPham = new DoDienTu();
+        }
+
+        if (sanPham) {
+            sanPham->setTen(ten);
+            sanPham->setGia(gia);
+            sanPham->setSoLuong(soLuong);
+            danhSachSanPham.push_back(sanPham);
+        }
+    }
+
+    file.close();
+}
+
 
     ~QuanLyChucNang() {
         for (auto sp : danhSachSanPham) {

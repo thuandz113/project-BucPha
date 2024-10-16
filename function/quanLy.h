@@ -2,11 +2,13 @@
 
 #include <iostream>
 #include "doiTuong.h"
-
+#include "nguoiDung.h"
 using namespace std;
+
 
 int ShowManageMenu(UserAccount user)
 {
+    QuanLyChucNang qlcn;
     int choice;
 
     cout << "==================== Menu Quan Ly ====================" << endl;
@@ -19,5 +21,30 @@ int ShowManageMenu(UserAccount user)
     cout << "Nhap lua chon cua ban: ";
     cin >> choice;
 
+    switch (choice) {
+        case 1:
+            qlcn.nhapHang();
+            break;
+        case 2:
+            qlcn.xoaHang();
+            break;
+        // case 3:
+        //     qlcn.xoaNhanVien();
+        //     break;
+        // case 4:
+        //     qlcn.xoaKhachHang();
+        //     break;
+        // case 5:
+        //     qlcn.phanCaTrucOnline();
+        //     break;
+        // case 6:
+        //     cout << "Thoat khoi chuong trinh." << endl;
+        //     break;
+        // default:
+        //     cout << "Lua chon khong hop le! Vui long chon lai." << endl;
+        //     break;
+    }
+
     return choice;
 }
+

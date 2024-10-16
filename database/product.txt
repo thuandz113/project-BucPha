@@ -1,1 +1,3 @@
-ThucPham,Ga,10000,766
+ThucPham,ga,10,0
+DoUong,coca,10,20
+ThoiTrang,nike,20,10

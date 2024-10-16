@@ -1,2 +1,3 @@
 Username/Password/Roles/Credits/Sex/Number/Address
 thuan_p 123123123 1 1000000 2 0915566 aasdasd
+baodeptrai 123123123 2 1000000 2 2766  aasdasd
