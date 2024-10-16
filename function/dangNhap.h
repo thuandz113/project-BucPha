@@ -112,7 +112,6 @@ void login() {
             UserAccount user(userName, password, roles , credits);
             if (roles == 0) {
                 cout << "Chao mung khach hang da quay tro lai <3" << endl;
-                this_thread::sleep_for(chrono::milliseconds(2000));
                 system("cls");
                 ShowMainMenu(user);
             }
