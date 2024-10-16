@@ -10,7 +10,7 @@
 #include <iomanip>
 
 #include "doiTuong.h"
-
+#include "ham.h"
 //============================Account==========================//
 using namespace std;
 class SanPham {

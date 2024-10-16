@@ -7,55 +7,11 @@
 #include "nguoiDung.h"
 #include "nhanVien.h"
 #include "quanLy.h"
+#include "ham.h"
 using namespace std;
 int ShowMainMenu(UserAccount user);
 void displayMenu(int width);
-void printInBox(const string& content, int width) {
-    int padding = (width - 4 - content.size()) / 2;
-    cout << "|" << string(padding, ' ') << content << string(width - 4 - padding - content.size(), ' ') << "  |" << endl;
-}
 
-void printBorder(int width) {
-    cout << "+" << string(width - 2, '-') << "+" << endl;
-}
-void inputPass(string &password) {
-    char ch;
-    password = "";
-    cout << "Password: ";
-    while (true) {
-        ch = _getch();  // Đọc ký tự không hiện trên màn hình
-        if (ch == '\r') { // Dừng khi nhấn Enter
-            break;
-        } else if (ch == '\b') { // Xóa ký tự cuối khi nhấn Backspace
-            if (!password.empty()) {
-                password.pop_back();
-                cout << "\b \b"; // Xóa ký tự * trên màn hình
-            }
-        } else {
-            password += ch; // Thêm ký tự vào chuỗi mật khẩu
-            cout << '*'; // In dấu * thay cho ký tự đã nhập
-        }
-    }
-    cout << endl;
-}
-string replaceSpace(const string& s) {
-    string result = s;
-    for (char& c : result) {
-        if (c == ' ') {
-            c = '_';
-        }
-    }
-    return result;
-}
-string replaceUnderscore(const string& s) {
-    string result = s;
-    for (char& c : result) {
-        if (c == '_') {
-            c = ' ';
-        }
-    }
-    return result;
-}
 bool checkPass(const string &password) {
     return password.size() >= 8;
 }
@@ -109,7 +65,7 @@ void login() {
         else 
         {
             file.close();
-            UserAccount user(userName, password, roles , credits);
+            UserAccount user(userName, password, roles , credits, sex, number, address);
             if (roles == 0) {
                 cout << "Chao mung khach hang da quay tro lai <3" << endl;
                 system("cls");
@@ -153,6 +109,8 @@ void registerAccount() {
         return;
     }
     string userTemp, passTemp;
+        int sex, credits, roles;
+        string number,address;
     bool first = false;
     while(1)
     {
@@ -168,7 +126,7 @@ void registerAccount() {
         fileCheck.seekg(0);
         string line;
         getline(fileCheck, line);
-        while (fileCheck >> userTemp >> passTemp)
+        while (fileCheck >> userTemp >> passTemp >> roles >> credits >> sex >> number >> address)
         {
             if(userName == userTemp)
             {
@@ -211,49 +169,7 @@ void registerAccount() {
     
     file.close();
 }
-bool updateAccount(UserAccount user) {
-    ifstream fileIn("database/account.txt");
-    if (!fileIn) {
-        cout << "Khong the mo file Account.txt!" << endl;
-        return false;
-    }
 
-    ofstream fileOut("database/temp.txt");
-    if (!fileOut) {
-        cout << "Khong the tao file tam!" << endl;
-        return false; 
-    }
-
-    string userTemp, passTemp, line, number, address;
-    int roles, credits, sex;
-    bool found = false;
-    fileOut<<"Username/Password/Roles/Credits/Sex/Number/Address"<<endl;
-    getline(fileIn, line);
-    
-    while (fileIn >> userTemp >> passTemp >> roles >> credits>>sex>>number>>address) {
-        if (replaceUnderscore(userTemp) == user.getUsername()) 
-        {
-            fileOut << replaceSpace(userTemp) << " " << passTemp << " " << roles << " " << user.getCredits()<<" " <<sex<<" " << number<<" "<< address<< endl;
-            found = true;
-        } else {
-            fileOut << replaceSpace(userTemp) << " " << passTemp << " " << roles << " " << credits <<" "<<sex<<" " << number<<" "<< address << endl;
-        }
-    }
-
-    fileIn.close();
-    fileOut.close();
-
-    if (remove("database/account.txt") != 0) {
-        cout << "Khong the xoa file Account.txt!" << endl;
-        return false;
-    }
-    if (rename("database/temp.txt", "database/account.txt") != 0) {
-        cout << "Khong the doi ten file tam!" << endl;
-        return false;
-    }
-
-    return found;
-}
 
 //output function//
 void displayMenu(int width) {

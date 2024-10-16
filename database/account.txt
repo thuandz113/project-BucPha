@@ -1,3 +1,2 @@
 Username/Password/Roles/Credits/Sex/Number/Address
-thuan_z 123123123 0 8 2 2 2
-thuan_p 123123123 1 0 2 0915566 aasdasd
+thuan_p 123123123 1 1000000 2 0915566 aasdasd
