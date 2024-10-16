@@ -8,6 +8,7 @@
 #include "nhanVien.h"
 #include "quanLy.h"
 #include "ham.h"
+#include "QLNVien.h"
 using namespace std;
 int ShowMainMenu(UserAccount user);
 void displayMenu(int width);
@@ -49,7 +50,7 @@ void login() {
     for (int count = 0; count < 3; ++count) 
     {
         cout << "UserName: ";
-        if (count == 0) cin.ignore(); // Chỉ ignore ở lần nhập đầu tiên để xóa '\n' còn sót lại
+        if (count == 0) cin.ignore(); 
         getline(cin, userName);
 
         file.clear();
@@ -94,6 +95,7 @@ void login() {
         file.close();
     }
 }
+
 void registerAccount() {
     ofstream file("database/account.txt", ios::app);
     if (!file.is_open()) {

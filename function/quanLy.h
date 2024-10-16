@@ -3,6 +3,8 @@
 #include <iostream>
 #include "doiTuong.h"
 #include "nguoiDung.h"
+#include "nhanVien.h"
+#include "QLNVien.h"
 using namespace std;
 
 
@@ -14,10 +16,9 @@ int ShowManageMenu(UserAccount user)
     cout << "==================== Menu Quan Ly ====================" << endl;
     cout << "1. Nhap hang" << endl;
     cout << "2. Xoa hang" << endl;
-    cout << "3. Xoa nhan vien" << endl;
+    cout << "3. Cap nhat danh sach nhan vien" << endl;
     cout << "4. Xoa khach hang" << endl;
-    cout << "5. Phan ca truc online" << endl;
-    cout << "6. Thoat" << endl;
+    cout << "5. Thoat" << endl;
     cout << "Nhap lua chon cua ban: ";
     cin >> choice;
 
@@ -28,14 +29,11 @@ int ShowManageMenu(UserAccount user)
         case 2:
             qlcn.xoaHang();
             break;
-        // case 3:
-        //     qlcn.xoaNhanVien();
-        //     break;
+        case 3:
+            menuEmployeeManagement();
+            break;
         // case 4:
         //     qlcn.xoaKhachHang();
-        //     break;
-        // case 5:
-        //     qlcn.phanCaTrucOnline();
         //     break;
         // case 6:
         //     cout << "Thoat khoi chuong trinh." << endl;
