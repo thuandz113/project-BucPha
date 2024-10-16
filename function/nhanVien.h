@@ -4,18 +4,18 @@
 #include "doiTuong.h"
 
 using namespace std;
-bool searchUsername(ifstream file, string s)
-{
-    int sex, credits, roles;
-    string line, username, password, number, address;
-    getline(file, line);
-    while (file >> username >> password >> roles >> credits >> sex >> number >> address)
-    {
-        if(replaceUnderscore(username) == s)
-            return true;
-    }
-    return false;
-}
+// bool searchUsername(ifstream file, string s)
+// {
+//     int sex, credits, roles;
+//     string line, username, password, number, address;
+//     getline(file, line);
+//     while (file >> username >> password >> roles >> credits >> sex >> number >> address)
+//     {
+//         if(replaceUnderscore(username) == s)
+//             return true;
+//     }
+//     return false;
+// }
 int ShowStaffMenu(UserAccount user)
 {
     char tiepTuc;
@@ -44,85 +44,85 @@ int ShowStaffMenu(UserAccount user)
         cout << "9. Thoat" << endl;
         cout << "Nhap lua chon cua ban: ";
         cin >> choice;
-        switch(choice)
-        {
-            case 1:
-            {
-                ifstream file("database/account.txt");
-                if (!file.is_open()) {
-                    cout << "Khong the mo file tai khoan!" << endl;
-                    return 0;
-                }
+        // switch(choice)
+        // {
+        //     case 1:
+        //     {
+        //         ifstream file("database/account.txt");
+        //         if (!file.is_open()) {
+        //             cout << "Khong the mo file tai khoan!" << endl;
+        //             return 0;
+        //         }
 
-                int sex, credits, roles;
-                string line, username, password, number, address;
-                getline(file, line);
-                string option;
-                int count = 0, value;
-                while (file >> username >> password >> roles >> credits >> sex >> number >> address) {
-                    cout << "Username: " << username 
-                        << ", Password: " << password 
-                        << ", Roles: " << roles 
-                        << ", Credits: " << credits 
-                        << ", Sex: " << sex 
-                        << ", Number: " << number 
-                        << ", Address: " << address 
-                        << endl;
-                        count++;
-                }
-                file.clear();
-                file.seekg(0);
-                do
-                {
-                    cout<<"Nhap ten tai khoan ban muon chinh sua thong tin:";
-                    getline(cin, option);
-                }while (searchUsername(option) == false);
+        //         int sex, credits, roles;
+        //         string line, username, password, number, address;
+        //         getline(file, line);
+        //         string option;
+        //         int count = 0, value;
+        //         while (file >> username >> password >> roles >> credits >> sex >> number >> address) {
+        //             cout << "Username: " << username 
+        //                 << ", Password: " << password 
+        //                 << ", Roles: " << roles 
+        //                 << ", Credits: " << credits 
+        //                 << ", Sex: " << sex 
+        //                 << ", Number: " << number 
+        //                 << ", Address: " << address 
+        //                 << endl;
+        //                 count++;
+        //         }
+        //         file.clear();
+        //         file.seekg(0);
+        //         do
+        //         {
+        //             cout<<"Nhap ten tai khoan ban muon chinh sua thong tin:";
+        //             getline(cin, option);
+        //         }while (searchUsername(option) == false);
                 
-                int editChoice;
-                do 
-                {
-                    cout << "Chinh sua thong tin cho " << option << endl;
-                    cout << "1. Sua Credits" << endl;
-                    cout << "2. Sua Username" << endl;
-                    cout << "3. Sua Password" << endl;
-                    cout << "4. Sua Gioi tinh" << endl;
-                    cout << "5. Sua dia chi" << endl;
-                    cout << "6. Luu" << endl;
-                    cout << "Nhap lua chon cua ban: ";
-                    cin >> editChoice;
+        //         int editChoice;
+        //         do 
+        //         {
+        //             cout << "Chinh sua thong tin cho " << option << endl;
+        //             cout << "1. Sua Credits" << endl;
+        //             cout << "2. Sua Username" << endl;
+        //             cout << "3. Sua Password" << endl;
+        //             cout << "4. Sua Gioi tinh" << endl;
+        //             cout << "5. Sua dia chi" << endl;
+        //             cout << "6. Luu" << endl;
+        //             cout << "Nhap lua chon cua ban: ";
+        //             cin >> editChoice;
 
-                    switch (editChoice) 
-                    {
-                        bool edit = false;
-                        case 1: {
-                            int newCredits;
-                            cout << "Nhap so Credits moi: ";
-                            cin >> newCredits;
-                            selectedAccount.credits = newCredits;
-                            cout << "Credits da duoc cap nhat." << endl;
-                            edit = true;
-                            break;
-                        }
-                        case 6:
-                        {
-                            getline(file, line);         
-                            while (file >> username >> password >> roles >> credits >> sex >> number >> address) 
-                            {
-                                if(username == option)
-                                {
+        //             switch (editChoice) 
+        //             {
+        //                 bool edit = false;
+        //                 case 1: {
+        //                     int newCredits;
+        //                     cout << "Nhap so Credits moi: ";
+        //                     cin >> newCredits;
+        //                     selectedAccount.credits = newCredits;
+        //                     cout << "Credits da duoc cap nhat." << endl;
+        //                     edit = true;
+        //                     break;
+        //                 }
+        //                 case 6:
+        //                 {
+        //                     getline(file, line);         
+        //                     while (file >> username >> password >> roles >> credits >> sex >> number >> address) 
+        //                     {
+        //                         if(username == option)
+        //                         {
                                     
-                                }
-                            }
-                            break;
-                        }
-                    }
-                } 
-                while (editChoice != 4);      
+        //                         }
+        //                     }
+        //                     break;
+        //                 }
+        //             }
+        //         } 
+        //         while (editChoice != 4);      
 
-                file.close();
-                break;
-            }
-        }
+        //         file.close();
+        //         break;
+        //     }
+        // }
         cout << "Ban co muon tiep tuc? (y/n): ";
         cin >> tiepTuc;
         system("cls");
