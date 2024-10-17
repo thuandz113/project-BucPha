@@ -4,7 +4,12 @@
 #include "doiTuong.h"
 #include "ham.h"
 using namespace std;
-bool searchUsername(ifstream& file, const string& s, UserAccount &user) {
+void displayMenu(int width);
+bool searchUsername(const string& s, UserAccount &user) 
+{
+    ifstream file("database/account.txt");
+    file.clear();
+    file.seekg(0);
     int sex, credits, roles;
     string line, username, password, number, address;
 
@@ -19,9 +24,33 @@ bool searchUsername(ifstream& file, const string& s, UserAccount &user) {
             return true;
         }
     }
+    file.close();
     return false;
 }
+void showList()
+{
+    ifstream file("database/account.txt");
+    if (!file.is_open()) {
+        cout << "Khong the mo file tai khoan!" << endl;
+        return;
+    }
 
+    int sex, credits, roles;
+    string line, username, password, number, address;
+    getline(file, line);
+    int count = 0, value;
+    while (file >> username >> password >> roles >> credits >> sex >> number >> address) {
+        cout << "Username: " << username 
+            << ", Password: " << password 
+            << ", Roles: " << roles 
+            << ", Credits: " << credits 
+            << ", Sex: " << sex 
+            << ", Number: " << number 
+            << ", Address: " << address 
+            << endl;
+    }
+    file.close();
+}
 void logDeletion(string line, const string& staffName) 
 {
     ofstream logFile("database/deletion_log.txt", ios::app);
@@ -115,44 +144,21 @@ int ShowStaffMenu(UserAccount user)
         {
             case 1:
             {
-                ifstream file("database/account.txt");
-                if (!file.is_open()) {
-                    cout << "Khong the mo file tai khoan!" << endl;
-                    return 0;
-                }
-
-                int sex, credits, roles;
-                string line, username, password, number, address;
-                getline(file, line);
-                string option;
-                int count = 0, value;
-                while (file >> username >> password >> roles >> credits >> sex >> number >> address) {
-                    cout << "Username: " << username 
-                        << ", Password: " << password 
-                        << ", Roles: " << roles 
-                        << ", Credits: " << credits 
-                        << ", Sex: " << sex 
-                        << ", Number: " << number 
-                        << ", Address: " << address 
-                        << endl;
-                        count++;
-                }
+                showList();
                 char luaChon;
+                string option;
                 cout<<"Ban co muon chinh sua khach hang khong?"<<endl;
                 cout<<"Lua chon cua ban(Y/N):";
                 cin>>luaChon;
                 if(luaChon != 'y' && luaChon != 'Y') break;
 
-                file.clear();
-                file.seekg(0);
                 cin.ignore();
                 UserAccount editUser("Null","Null",0,0,0,"Null","Null");
                 do
                 {
                     cout<<"Nhap ten tai khoan ban muon chinh sua thong tin:";
                     getline(cin, option);
-                }while (searchUsername(file, option, editUser) == false);
-                file.close();
+                }while (searchUsername(option, editUser) == false);
                 int editChoice;
                 do 
                 {
@@ -227,10 +233,12 @@ int ShowStaffMenu(UserAccount user)
                 break;
             }
             case 2: {
+                showList();
                 string userDelete;
-                cout << "Nhap ten tai khoan khach hang muon xoa: ";
+                cout << "Nhap ten tai khoan khach hang muon xoa(bo trong de huy): ";
                 cin.ignore();
                 getline(cin, userDelete);
+                if(userDelete == "") break;
                 if (deleteAccount(userDelete, user.getUsername())) {
                     cout << "Tai khoan da duoc xoa thanh cong." << endl;
                 } 
@@ -243,10 +251,12 @@ int ShowStaffMenu(UserAccount user)
             }
             case 3:
             {
+                showList();
                 string userName;
-                cout << "Nhap ten tai khoan khach hang muon xem hoa don: ";
+                cout << "Nhap ten tai khoan khach hang muon xem hoa don(bo trong de huy): ";
                 cin.ignore();
                 getline(cin, userName);
+                if(userName == "") break;
                 if(searchAccount(userName))
                 {
                     string fileName = "database/history/"+userName+".txt", line;
@@ -268,6 +278,12 @@ int ShowStaffMenu(UserAccount user)
                     cout << "Khong tim thay tai khoan!" << endl;
                 }
                 break;
+            }
+            case 4:
+            {
+                system("cls");
+                updateAccount(user);
+                displayMenu(120);        
             }
         }
         cout << "Ban co muon tiep tuc? (y/n): ";

@@ -1,7 +1,7 @@
 DoUong,coca,10,13
 ThoiTrang,nike,20,10
 ThucPham,GaRan,10000,53
-ThucPham,Ca,10000,35
+ThucPham,Ca,10000,25
 DoUong,pepsi,15,9
 DoUong,traSua,25,0
 DoUong,nuocCam,12,8
@@ -14,7 +14,7 @@ ThucPham,Pizza,8000,70
 ThucPham,Hamburger,9000,75
 ThucPham,XoiGa,5000,60
 ThucPham,BanhMi,6000,65
-DoGiaDung,MayGiat,3000,20
+DoGiaDung,MayGiat,3000,10
 DoGiaDung,TuLanh,5000,25
 DoGiaDung,QuatDien,1000,15
 DoGiaDung,MaySayToc,800,10

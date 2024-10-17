@@ -218,7 +218,8 @@ int ShowMainMenu(UserAccount user) {
         cout << "Chao mung den he thong quan ly sieu thi.\n";
         cout << "1. Chon quay san pham.\n";
         cout << "2. Nap tien vao tai khoan.\n";
-        cout << "3. Dang xuat.\n";
+        cout << "3. Lich su mua hang.\n";
+        cout << "4. Dang xuat.\n";
         int luaChon;
         cout << "Vui long nhap lua chon: ";
         cin >> luaChon;
@@ -240,6 +241,37 @@ int ShowMainMenu(UserAccount user) {
                 cout<<"Ban vua nap "<<credits<< "$ vao tai khoan."<<endl;
                 break;
             case 3:
+            {
+                string fileName = "database/history/" + user.getUsername() + ".txt";
+                ifstream file(fileName);
+                bool check = false;
+
+                if (!file.is_open()) {
+                    cout << "Khong co thong tin!" << endl;
+                    break;
+                }
+
+                string line;
+                while (getline(file, line)) {
+                    if (line.empty()) {
+                        cout << "Trang thong tin!" << endl;
+                        file.close();
+                        if (remove(fileName.c_str()) != 0) {
+                            cout << "Xoa tep that bai!" << endl;
+                        }
+                        check = true;
+                        break;
+                    }
+                    cout << line << endl;
+                }
+
+                if (!check) {
+                    file.close();
+                }
+                break;
+
+            }
+            case 4:
                 system("cls");
                 updateAccount(user);
                 displayMenu(120);
