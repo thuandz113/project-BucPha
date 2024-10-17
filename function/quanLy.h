@@ -35,12 +35,12 @@ int ShowManageMenu(UserAccount user)
         // case 4:
         //     qlcn.xoaKhachHang();
         //     break;
-        // case 6:
-        //     cout << "Thoat khoi chuong trinh." << endl;
-        //     break;
-        // default:
-        //     cout << "Lua chon khong hop le! Vui long chon lai." << endl;
-        //     break;
+        case 5:
+            cout << "Thoat khoi chuong trinh." << endl;
+            break;
+        default:
+            cout << "Lua chon khong hop le! Vui long chon lai." << endl;
+            break;
     }
 
     return choice;
