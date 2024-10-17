@@ -2,6 +2,9 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <unordered_set>
+#include <thread>
+#include <chrono>
 #include <conio.h> // Dùng cho _getch() trên Windows
 
 #include "nguoiDung.h"
@@ -9,6 +12,8 @@
 #include "quanLy.h"
 #include "ham.h"
 #include "QLNVien.h"
+
+
 using namespace std;
 int ShowMainMenu(UserAccount user);
 void displayMenu(int width);
@@ -40,59 +45,50 @@ void login() {
 
     ifstream file("database/account.txt");
     
-    string userName, password, number,address;
-    int roles, credits,sex;
+    string userName, password, number, address;
+    int roles, credits, sex;
     if (!file.is_open()) {
         cout << "Khong the mo file tai khoan!" << endl;
         return;
     }
+
     bool isLoggedIn = false;
-    for (int count = 0; count < 3; ++count) 
-    {
+    for (int count = 0; count < 3; ++count) {
         cout << "UserName: ";
-        if (count == 0) cin.ignore(); 
+        if (count == 0) cin.ignore();
         getline(cin, userName);
 
         file.clear();
         file.seekg(0);
         string line;
         getline(file, line);
-        if (checkLogin(file, userName, password, roles, credits, sex, number, address)) 
+
+        if (checkLogin(file, userName, password, roles, credits, sex, number, address)) {
             isLoggedIn = true;
-        
-        if (!isLoggedIn) {
+            break;
+        } else {
             cout << "\nCo loi xay ra, vui long nhap lai\n\n";
         }
-        else 
-        {
-            file.close();
-            UserAccount user(userName, password, roles , credits, sex, number, address);
-            if (roles == 0) {
-                cout << "Chao mung khach hang da quay tro lai <3" << endl;
-                system("cls");
-                ShowMainMenu(user);
-            }
-            else if (roles == 1) 
-            {
-                cout << "Chao mung nhan vien da quay tro lai <3" << endl;
-                ShowStaffMenu(user);
-            } 
-            else if (roles == 2) 
-            {
-                cout << "Chao mung quan ly da quay tro lai <3" << endl;
-                ShowManageMenu(user);
-            } 
-            else 
-            {
-                cout << "Role khong hop le!" << endl;
-            }
-            break;
-        }
     }
+    file.close();
 
-    if (!isLoggedIn) {
+    if (isLoggedIn) {
+        UserAccount user(userName, password, roles, credits, sex, number, address);
+        if (roles == 0) {
+            cout << "Chao mung khach hang da quay tro lai <3" << endl;
+            system("cls");
+            ShowMainMenu(user);
+        } else if (roles == 1) {
+            cout << "Chao mung nhan vien da quay tro lai <3" << endl;
+            ShowStaffMenu(user);
+        } else if (roles == 2) {
+            cout << "Chao mung quan ly da quay tro lai <3" << endl;
+            ShowManageMenu(user);
+        } else {
+            cout << "Role khong hop le!" << endl;
+        }
+    } else {
         cout << "\n\nDa nhap qua 3 lan. Chuong trinh thoat\n";
-        file.close();
     }
 }
 
@@ -160,18 +156,16 @@ void registerAccount() {
             getline(cin, number);
             cout<<"Vui long them dia chi cua ban:";
             getline(cin, address);
-            file << replaceSpace(userName) << " " << password << " "<< 0 <<" "<< 0 <<" "<< sex <<" "<< replaceSpace(number) << " "<< replaceSpace(address)<<endl;
+            file << replaceSpace(userName) << " " << password << " "<< 0 <<" "<< 0<<" "<< sex <<" "<< replaceSpace(number) << " "<< replaceSpace(address)<<endl;
             cout << "Dang ky tai khoan thanh cong!" << endl;
+            file.close();
             displayMenu(120);
             break;
         } else {
             cout << "Mat khau khong du manh, vui long thu lai." << endl;
         }
     }
-    
-    file.close();
 }
-
 
 //output function//
 void displayMenu(int width) {

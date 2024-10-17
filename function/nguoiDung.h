@@ -236,7 +236,7 @@ public:
     // Hiển thị danh sách sản phẩm đã mua
     string fileName;
     fileName = "database/history/" + user.getUsername() + ".txt";
-    ofstream fileHoaDon(fileName);
+    ofstream fileHoaDon(fileName, ios::app);
     if(!fileHoaDon.is_open())
     {
         cout<<"Khong the mo file hoa don!"<<endl;

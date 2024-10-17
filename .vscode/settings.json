@@ -110,6 +110,7 @@
     "string_view": "cpp",
     "numbers": "cpp",
     "semaphore": "cpp",
-    "stop_token": "cpp"
+    "stop_token": "cpp",
+    "unordered_set": "cpp"
   }
 }
