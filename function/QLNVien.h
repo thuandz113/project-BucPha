@@ -202,7 +202,7 @@ int n; //sl nhan vien
 			nv.nhap();
 			dsNV[n++]=nv; //Them nv vao mang
 			
-			ofstream outfile("database/nv.txt",ios::app);
+			ofstream outfile("database/listEmployees.txt",ios::app);
 			if(outfile.is_open()){
 				nv.ghiFile(outfile);
 				outfile.close();
@@ -213,7 +213,7 @@ int n; //sl nhan vien
 		}
 		//Ham xoa nv
 		void xoaNV(string maNV){
-			ifstream infile("database/nv.txt");
+			ifstream infile("database/listEmployees.txt");
 			ofstream tempfile("database/t.txt");
 			NhanVien nv;
 			bool found=false;
@@ -230,9 +230,9 @@ int n; //sl nhan vien
 				infile.close();
 				tempfile.close();
 				if(found){
-					if(remove("database/nv.txt")!=0){
+					if(remove("database/listEmployees.txt")!=0){
 						cout<<"Khong the xoa file cu!\n";
-					}else if(rename("database/t.txt","database/nv.txt")!=0){
+					}else if(rename("database/t.txt","database/listEmployees.txt")!=0){
 						cout<<"Khong the doi ten file moi!\n";
 					}else{
 						cout<<"Da xoa nhan vien co ma: "<<maNV<<endl;
@@ -254,7 +254,7 @@ int n; //sl nhan vien
 			cout<<"Nhap ca lam viec moi: ";
 			cin.ignore();
 			getline(cin,caMoi);
-			ifstream infile("database/nv.txt");
+			ifstream infile("database/listEmployees.txt");
 			ofstream tempfile("database/t.txt");
 			NhanVien nv;
 			bool found=false;
@@ -270,8 +270,8 @@ int n; //sl nhan vien
 				}
 				infile.close();
 				tempfile.close();
-				remove("database/nv.txt");
-				rename("database/t.txt","database/nv.txt");
+				remove("database/listEmployees.txt");
+				rename("database/t.txt","database/listEmployees.txt");
 				if(found){
 					cout<<"Da cap nhat ca lam viec cho nhan vien co ma: "<<maNV<<endl;
 				}else{
@@ -289,7 +289,7 @@ int n; //sl nhan vien
 			cin>>maNV;
 			cout<<"Nhap luong moi: ";
 			cin>>luongMoi;
-			ifstream infile("database/nv.txt");
+			ifstream infile("database/listEmployees.txt");
 			ofstream tempfile("database/t.txt");
 			NhanVien nv;
 			bool found=false;
@@ -305,7 +305,7 @@ int n; //sl nhan vien
 				}
 				infile.close();
 				tempfile.close();
-				remove("database/nv.txt");
+				remove("database/listEmployees.txt");
 				rename("database/t.txt","database/nhanvien.txt");
 				if(found){
 					cout<<"Da cap nhat luong cho nhan vien co ma: "<<maNV<<endl;
@@ -318,7 +318,7 @@ int n; //sl nhan vien
 		}
 		//Ham tim kiem nhan vien theo ma
 		void timKiemNV(string maNV){
-	ifstream infile("database/nv.txt");
+	ifstream infile("database/listEmployees.txt");
 			NhanVien nv;
 			bool found=false;
 			if(infile.is_open()){
@@ -345,7 +345,7 @@ int n; //sl nhan vien
 		}
 		// Ham hien thi dsnv
 		void xuatds(){
-			ifstream infile("database/nv.txt");
+			ifstream infile("database/listEmployees.txt");
 			NhanVien nv;
 			if(infile.is_open()){
 				cout << "+-------+---------------+-----------------------------+-------------+-------+---------------+-----------+" << endl;

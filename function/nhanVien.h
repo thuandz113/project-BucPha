@@ -35,6 +35,32 @@ void logDeletion(string line, const string& staffName)
     logFile.close();
 }
 
+bool searchAccount(const string& usernameToSearch) {
+    ifstream inputFile("database/account.txt");
+    
+    if (!inputFile.is_open()) {
+        cout << "Khong the mo file tai khoan!" << endl;
+        return false;
+    }
+
+    string line;
+    bool accountFound = false;
+
+    while (getline(inputFile, line)) {
+        string username;
+        istringstream iss(line);
+        iss >> username;
+
+        if (replaceUnderscore(username) == usernameToSearch) {
+            accountFound = true;
+            cout << "Tai khoan tim thay: " << line << endl;
+            break;
+        }
+    }
+
+    inputFile.close();
+    return accountFound;
+}
 bool deleteAccount(const string& usernameToDelete, const string& staffName) {
     ifstream inputFile("database/account.txt");
     ofstream outputFile("database/temp.txt");
@@ -81,13 +107,8 @@ int ShowStaffMenu(UserAccount user)
         cout << "==================== Menu nhan vien ====================" << endl;
         cout << "1. Xem danh sach va chinh sua thong tin khach hang" << endl;
         cout << "2. Xoa tai khoan khach hang" << endl;
-        cout << "3. Tim kiem khach hang" << endl;
-        cout << "4. Xem hoa don da mua cua khach hang" << endl;
-        cout << "5. Suy nghi" << endl;//suy nghĩ thêm vài cái
-        cout << "6. Suy nghi" << endl;
-        cout << "7. Suy nghi" << endl;
-        cout << "8. Suy nghi" << endl;
-        cout << "9. Thoat" << endl;
+        cout << "3. Xem hoa don khach hang" << endl;
+        cout << "4. Dang xuat" << endl;
         cout << "Nhap lua chon cua ban: ";
         cin >> choice;
         switch(choice)
@@ -116,6 +137,12 @@ int ShowStaffMenu(UserAccount user)
                         << endl;
                         count++;
                 }
+                char luaChon;
+                cout<<"Ban co muon chinh sua khach hang khong?"<<endl;
+                cout<<"Lua chon cua ban(Y/N):";
+                cin>>luaChon;
+                if(luaChon != 'y' && luaChon != 'Y') break;
+
                 file.clear();
                 file.seekg(0);
                 cin.ignore();
@@ -212,6 +239,34 @@ int ShowStaffMenu(UserAccount user)
                     cout << "Khong tim thay tai khoan!" << endl;
                 }
 
+                break;
+            }
+            case 3:
+            {
+                string userName;
+                cout << "Nhap ten tai khoan khach hang muon xem hoa don: ";
+                cin.ignore();
+                getline(cin, userName);
+                if(searchAccount(userName))
+                {
+                    string fileName = "database/history/"+userName+".txt", line;
+                    ifstream file(fileName);
+                    if(!file.is_open())
+                    {
+                        cout<<"Khong co thong tin!";                            
+                        break;
+                    }
+                    while(getline(file,line))
+                    {
+                        if(line.empty()) cout<<"Trang thong tin!";
+                        cout<<line<<endl;
+                    }
+                    file.close();
+                }
+                else 
+                {
+                    cout << "Khong tim thay tai khoan!" << endl;
+                }
                 break;
             }
         }

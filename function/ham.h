@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <ctime>
 #include "doiTuong.h"
 
 void printInBox(const string& content, int width) {
@@ -60,28 +61,39 @@ bool updateAccount(UserAccount user) {
     ofstream fileOut("database/temp.txt");
     if (!fileOut) {
         cout << "Khong the tao file tam!" << endl;
-        return false; 
+        fileIn.close();
+        return false;
     }
 
-    string userTemp, passTemp, line, number, address;
+    string userTemp, passTemp, number, address, line;
     int roles, credits, sex;
     bool found = false;
-    fileOut<<"Username/Password/Roles/Credits/Sex/Number/Address"<<endl;
+
+    fileOut << "Username/Password/Roles/Credits/Sex/Number/Address" << endl;
+    
     getline(fileIn, line);
     
-    while (fileIn >> userTemp >> passTemp >> roles >> credits>>sex>>number>>address) {
-        if (replaceUnderscore(userTemp) == user.getUsername()) 
-        {
-            fileOut << replaceSpace(userTemp) << " " << passTemp << " " << user.getRoles() << " " << user.getCredits()<<" " <<user.getSex()<<" " << user.getNumber()<<" "<< user.getAddress()<< endl;
+    while (fileIn >> userTemp >> passTemp >> roles >> credits >> sex >> number >> address) {
+        if (replaceUnderscore(userTemp) == user.getUsername()) {
+            fileOut << replaceSpace(userTemp) << " " 
+                    << passTemp << " " 
+                    << user.getRoles() << " " 
+                    << user.getCredits() << " " 
+                    << user.getSex() << " " 
+                    << user.getNumber() << " " 
+                    << user.getAddress() << endl;
             found = true;
         } else {
-            fileOut << replaceSpace(userTemp) << " " << passTemp << " " << roles << " " << credits <<" "<<sex<<" " << number<<" "<< address << endl;
+            fileOut << replaceSpace(userTemp) << " " << passTemp << " " 
+                    << roles << " " << credits << " " << sex << " " 
+                    << number << " " << address << endl;
         }
     }
 
     fileIn.close();
     fileOut.close();
 
+    // Kiểm tra và thay thế file cũ
     if (remove("database/account.txt") != 0) {
         cout << "Khong the xoa file Account.txt!" << endl;
         return false;
@@ -92,4 +104,16 @@ bool updateAccount(UserAccount user) {
     }
 
     return found;
+}
+
+string getCurrentDate()
+{
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+
+    int day = ltm->tm_mday;
+    int month = 1 + ltm->tm_mon;
+    int year = 1900 + ltm->tm_year;
+
+    return to_string(day) + "/" + to_string(month) + "/" + to_string(year);
 }

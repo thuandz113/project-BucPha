@@ -16,7 +16,7 @@ void displayMenu(int width);
 bool checkPass(const string &password) {
     return password.size() >= 8;
 }
-bool checkLogin(ifstream& file, const string& userName, string& password, int& roles, int& credits, int sex, string number, string address) {
+bool checkLogin(ifstream& file, const string& userName, string& password, int& roles, int& credits, int& sex, string& number, string& address) {
     string userTemp, passTemp;
     while(file>>userTemp>>passTemp>>roles>>credits>>sex>>number>>address)
     {
@@ -160,7 +160,7 @@ void registerAccount() {
             getline(cin, number);
             cout<<"Vui long them dia chi cua ban:";
             getline(cin, address);
-            file << replaceSpace(userName) << " " << password << " "<< 0 <<" "<< 0<<" "<< sex <<" "<< replaceSpace(number) << " "<< replaceSpace(address)<<endl;
+            file << replaceSpace(userName) << " " << password << " "<< 0 <<" "<< 0 <<" "<< sex <<" "<< replaceSpace(number) << " "<< replaceSpace(address)<<endl;
             cout << "Dang ky tai khoan thanh cong!" << endl;
             displayMenu(120);
             break;

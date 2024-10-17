@@ -234,7 +234,16 @@ public:
     cout << "===========================================================================\n";
 
     // Hiển thị danh sách sản phẩm đã mua
-    for (size_t i = 0; i < luaChonSanPham.size(); ++i) {
+    string fileName;
+    fileName = "database/history/" + user.getUsername() + ".txt";
+    ofstream fileHoaDon(fileName);
+    if(!fileHoaDon.is_open())
+    {
+        cout<<"Khong the mo file hoa don!"<<endl;
+        return;
+    }
+    for (size_t i = 0; i < luaChonSanPham.size(); ++i) 
+    {
         int index = luaChonSanPham[i];
         double giaSanPham = danhSachSanPham[index]->getGia();
         int soLuong = soLuongMua[i];
@@ -246,7 +255,9 @@ public:
              << setw(10) << soLuong 
              << setw(15) << giaSanPham 
              << setw(15) << thanhTien << endl;
+        fileHoaDon<<danhSachSanPham[index]->getTen()<<" "<<giaSanPham<<" "<<soLuong<< " "<<thanhTien<< " "<< getCurrentDate()<<endl;
     }
+    fileHoaDon.close();
 
     cout << "===========================================================================\n";
     cout << "Tong so tien can thanh toan: " << tongTien << " VND" << endl;
