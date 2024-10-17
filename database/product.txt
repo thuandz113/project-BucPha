@@ -1,3 +1,4 @@
-DoUong,coca,10,18
+DoUong,coca,10,13
 ThoiTrang,nike,20,10
-ThucPham,GaRan,10000,80
+ThucPham,GaRan,10000,75
+ThucPham,Ca,10000,40
