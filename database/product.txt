@@ -1,7 +1,7 @@
 DoUong,coca,10,0
 ThoiTrang,nike,20,10
 ThucPham,GaRan,10000,0
-ThucPham,Ca,10000,23
+ThucPham,Ca,10000,18
 DoUong,pepsi,15,9
 DoUong,traSua,25,0
 DoUong,nuocCam,12,3
@@ -10,10 +10,10 @@ ThoiTrang,adidas,18,11
 ThoiTrang,puma,22,12
 ThoiTrang,gucci,35,20
 ThoiTrang,lv,50,25
-ThucPham,Pizza,8000,70
-ThucPham,Hamburger,9000,75
+ThucPham,Pizza,8000,65
+ThucPham,Hamburger,9000,71
 ThucPham,XoiGa,5000,60
-ThucPham,BanhMi,6000,65
+ThucPham,BanhMi,6000,62
 DoGiaDung,MayGiat,3000,10
 DoGiaDung,TuLanh,5000,25
 DoGiaDung,QuatDien,1000,15
@@ -39,8 +39,8 @@ ThoiTrang,puma,22,12
 ThoiTrang,gucci,35,20
 ThoiTrang,lv,50,25
 ThucPham,Pizza,8000,70
-ThucPham,Hamburger,9000,75
-ThucPham,XoiGa,5000,60
+ThucPham,Hamburger,9000,72
+ThucPham,XoiGa,5000,59
 ThucPham,BanhMi,6000,65
 DoGiaDung,MayGiat,3000,10
 DoGiaDung,TuLanh,5000,25

@@ -259,18 +259,50 @@ int ShowStaffMenu(UserAccount user)
                 if(userName == "") break;
                 if(searchAccount(userName))
                 {
-                    string fileName = "database/history/"+userName+".txt", line;
+                    string fileName = "database/history/" + userName + ".txt";
                     ifstream file(fileName);
-                    if(!file.is_open())
-                    {
-                        cout<<"Khong co thong tin!";                            
+
+                    if (!file.is_open()) {
+                        cout << "Khong co thong tin!" << endl;
                         break;
                     }
-                    while(getline(file,line))
+
+                    // Kiểm tra nếu file trống
+                    file.seekg(0, ios::end); // Di chuyển con trỏ đến cuối file
+                    if (file.tellg() == 0) 
                     {
-                        if(line.empty()) cout<<"Trang thong tin!";
-                        cout<<line<<endl;
+                        cout << "Trang thong tin!" << endl;
+                        file.close();
+                        // Xóa file trống
+                        if (remove(fileName.c_str()) != 0) {
+                            cout << "Xoa that bai!" << endl;
+                        }
+                        break;
                     }
+                    file.seekg(0, ios::beg);
+
+                    cout << left << setw(15) << "Ten mon"
+                        << setw(10) << "Gia"
+                        << setw(10) << "So luong"
+                        << setw(15) << "Tong tien"
+                        << "Ngay mua" << endl;
+                    cout << string(60, '-') << endl;
+
+                    string line;
+                    while (getline(file, line)) {
+                        istringstream iss(line);
+                        string itemName, Date;
+                        int price, quantity, total;
+
+                        iss >> itemName >> price >> quantity >> total >> Date;
+
+                        cout << left << setw(15) << itemName
+                            << setw(10) << price
+                            << setw(10) << quantity
+                            << setw(15) << total
+                            << Date << endl;
+                    }
+
                     file.close();
                 }
                 else 

@@ -242,32 +242,52 @@ int ShowMainMenu(UserAccount user) {
                 break;
             case 3:
             {
+                system("cls");
                 string fileName = "database/history/" + user.getUsername() + ".txt";
                 ifstream file(fileName);
-                bool check = false;
 
                 if (!file.is_open()) {
                     cout << "Khong co thong tin!" << endl;
                     break;
                 }
 
+                // Kiểm tra nếu file trống
+                file.seekg(0, ios::end); // Di chuyển con trỏ đến cuối file
+                if (file.tellg() == 0) 
+                {
+                    cout << "Trang thong tin!" << endl;
+                    file.close();
+                    // Xóa file trống
+                    if (remove(fileName.c_str()) != 0) {
+                        cout << "Xoa that bai!" << endl;
+                    }
+                    break;
+                }
+                file.seekg(0, ios::beg);
+
+                cout << left << setw(15) << "Ten mon"
+                    << setw(10) << "Gia"
+                    << setw(10) << "So luong"
+                    << setw(15) << "Tong tien"
+                    << "Ngay mua" << endl;
+                cout << string(60, '-') << endl;
+
                 string line;
                 while (getline(file, line)) {
-                    if (line.empty()) {
-                        cout << "Trang thong tin!" << endl;
-                        file.close();
-                        if (remove(fileName.c_str()) != 0) {
-                            cout << "Xoa tep that bai!" << endl;
-                        }
-                        check = true;
-                        break;
-                    }
-                    cout << line << endl;
+                    istringstream iss(line);
+                    string itemName, Date;
+                    int price, quantity, total;
+
+                    iss >> itemName >> price >> quantity >> total >> Date;
+
+                    cout << left << setw(15) << itemName
+                        << setw(10) << price
+                        << setw(10) << quantity
+                        << setw(15) << total
+                        << Date << endl;
                 }
 
-                if (!check) {
-                    file.close();
-                }
+                file.close();
                 break;
 
             }
