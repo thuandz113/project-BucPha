@@ -234,14 +234,6 @@ public:
     cout << "===========================================================================\n";
 
     // Hiển thị danh sách sản phẩm đã mua
-    string fileName;
-    fileName = "database/history/" + user.getUsername() + ".txt";
-    ofstream fileHoaDon(fileName, ios::app);
-    if(!fileHoaDon.is_open())
-    {
-        cout<<"Khong the mo file hoa don!"<<endl;
-        return;
-    }
     for (size_t i = 0; i < luaChonSanPham.size(); ++i) 
     {
         int index = luaChonSanPham[i];
@@ -255,9 +247,7 @@ public:
              << setw(10) << soLuong 
              << setw(15) << giaSanPham 
              << setw(15) << thanhTien << endl;
-        fileHoaDon<<danhSachSanPham[index]->getTen()<<" "<<giaSanPham<<" "<<soLuong<< " "<<thanhTien<< " "<< getCurrentDate()<<endl;
     }
-    fileHoaDon.close();
 
     cout << "===========================================================================\n";
     cout << "Tong so tien can thanh toan: " << tongTien << " VND" << endl;
@@ -270,6 +260,24 @@ public:
     {
         if(user.getCredits() >= tongTien)
         {
+            string fileName;
+            fileName = "database/history/" + user.getUsername() + ".txt";
+            ofstream fileHoaDon(fileName, ios::app);
+            if(!fileHoaDon.is_open())
+            {
+                cout<<"Khong the mo file hoa don!"<<endl;
+                return;
+            }
+            for (size_t i = 0; i < luaChonSanPham.size(); ++i) 
+            {
+                int index = luaChonSanPham[i];
+                double giaSanPham = danhSachSanPham[index]->getGia();
+                int soLuong = soLuongMua[i];
+                double thanhTien = giaSanPham * soLuong;
+                fileHoaDon<<danhSachSanPham[index]->getTen()<<" "<<giaSanPham<<" "<<soLuong<< " "<<thanhTien<< " "<< getCurrentDate()<<endl;
+            }
+            fileHoaDon.close();
+
             cout << "Thanh toan thanh cong! Cam on ban!\n";
             user.accountDeposit(-tongTien);
             luuSanPhamVaoFile("database/product.txt"); // Cập nhật file sản phẩm
@@ -283,6 +291,8 @@ public:
         }
     } else {
         cout << "Huy thanh toan!\n";
+        cart.clear(); // Xóa giỏ hàng
+        quantities.clear(); // Xóa số lượng    
     }
 }
 
