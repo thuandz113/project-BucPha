@@ -5,9 +5,11 @@
 #include "nguoiDung.h"
 #include "nhanVien.h"
 #include "QLNVien.h"
+#include "dangNhap.h"
+
 using namespace std;
 
-
+int ShowMainMenu(UserAccount user);
 int ShowManageMenu(UserAccount user)
 {
     QuanLyChucNang qlcn;
@@ -34,7 +36,14 @@ int ShowManageMenu(UserAccount user)
             menuEmployeeManagement();
             break;
         case 4:
+            ShowStaffMenu(user);
+            break;
+        case 5:
+            ShowMainMenu(user);
+            break;
+        case 6:
             cout << "Thoat khoi chuong trinh." << endl;
+            return choice;
             break;
         default:
             cout << "Lua chon khong hop le! Vui long chon lai." << endl;
