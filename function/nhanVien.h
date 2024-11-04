@@ -154,7 +154,7 @@ int ShowStaffMenu(UserAccount user)
         cout << "3. Xem hoa don khach hang" << endl;
         cout << "4. Dang xuat" << endl;
         cout << "Nhap lua chon cua ban: ";
-        cin >> choice;
+        cinInt >> choice;
         switch(choice)
         {
             case 1:
@@ -164,7 +164,7 @@ int ShowStaffMenu(UserAccount user)
                 string option;
                 cout<<"Ban co muon chinh sua khach hang khong?"<<endl;
                 cout<<"Lua chon cua ban(Y/N):";
-                cin>>luaChon;
+                cinInt>>luaChon;
                 if(luaChon != 'y' && luaChon != 'Y') break;
 
                 cin.ignore();
@@ -186,7 +186,7 @@ int ShowStaffMenu(UserAccount user)
                     cout << "5. Sua so dien thoai" << endl;
                     cout << "6. Luu" << endl;
                     cout << "Nhap lua chon cua ban: ";
-                    cin >> editChoice;
+                    cinInt >> editChoice;
                     bool edit = false;
                     switch (editChoice) 
                     {
@@ -194,7 +194,7 @@ int ShowStaffMenu(UserAccount user)
                         {
                             int newCredits;
                             cout << "Nhap so Credits moi: ";
-                            cin >> newCredits;
+                            cinInt >> newCredits;
                             editUser.setCredits(newCredits);
                             cout << "Credits da duoc cap nhat." << endl;
                             break;
@@ -212,7 +212,7 @@ int ShowStaffMenu(UserAccount user)
                         {
                             int newSex;
                             cout << "Nhap Gioi tinh (1: Nam, 2: Nu): ";
-                            cin >> newSex;
+                            cinInt >> newSex;
                             editUser.setSex(newSex);
                             cout << "Gioi tinh da duoc cap nhat." << endl;
                             break;

@@ -15,6 +15,8 @@
 
 
 using namespace std;
+
+
 int ShowMainMenu(UserAccount user);
 void displayMenu(int width);
 
@@ -151,7 +153,7 @@ void registerAccount() {
             cout<<"Vui long chon gioi tinh: 1-Nam, 2-Nu."<<endl;
             do{
                 cout<<"Lua chon cua ban:";
-                cin>>sex;
+                cinInt>>sex;
             }
             while(sex != 1 && sex != 2);
             cin.ignore();
@@ -171,7 +173,8 @@ void registerAccount() {
 }
 
 //output function//
-void displayMenu(int width) {
+void displayMenu(int width) 
+{
     system("cls");
     string title = "CHAO MUNG DEN VOI SIEU THI UTC2";
     string message = "BAN CAN GI";
@@ -194,12 +197,12 @@ void displayMenu(int width) {
     int choice;
     cout << " Vui long nhap trong (1-3): "; 
     cout.flush(); 
-    cin >> choice;
-
-    while (choice < 1 || choice > 3) {
-        cout << " Vui long nhap lai trong (1-2): "; 
+    cinInt >> choice;
+    while (choice < 1 || choice > 3) 
+	{
+        cout << " Vui long nhap lai trong (1-3): "; 
         cout.flush(); 
-        cin >> choice;
+        cinInt >> choice;
     }
 
     cout << " Ban da chon: " << choice << "" << endl;
@@ -232,7 +235,7 @@ int ShowMainMenu(UserAccount user) {
         cout << "4. Dang xuat.\n";
         int luaChon;
         cout << "Vui long nhap lua chon: ";
-        cin >> luaChon;
+        cinInt >> luaChon;
 
         switch (luaChon) {
             case 1:
@@ -244,7 +247,7 @@ int ShowMainMenu(UserAccount user) {
                 int credits;
                 do{
                     cout<<"Vui long nhap so tien can nap(lon hon 0 va nho hon 10 trieu): ";
-                    cin>>credits;
+                    cinInt>>credits;
                 }
                 while(credits <= 0 || credits >= 10000000);
                 user.accountDeposit(+credits);

@@ -27,7 +27,7 @@ int ShowManageMenu(UserAccount user)
     cout << "5. Giao dien nhan vien"<<endl;
     cout << "6. Thoat" << endl;
     cout << "Nhap lua chon cua ban: ";
-    cin >> choice;
+    cinInt >> choice;
 
     switch (choice) {
         case 1:

@@ -17,7 +17,7 @@ class SanPham {
 protected:
     string ten;         // Tên sản phẩm
     int soLuong;        // Số lượng sản phẩm
-    double gia;         // Giá sản phẩm
+    int gia;         // Giá sản phẩm
 
 public:
     virtual string getLoai() const = 0; // Trả về loại sản phẩm
@@ -27,10 +27,10 @@ public:
     string getTen() const { return ten; } // Lấy tên sản phẩm
     int getSoLuong() const { return soLuong; } // Lấy số lượng
     void setSoLuong(int sl) { soLuong = sl; } // Cập nhật số lượng
-    double getGia() const { return gia; } // Lấy giá sản phẩm
+    int getGia() const { return gia; } // Lấy giá sản phẩm
 
     virtual ~SanPham() {} // Destructor ảo
-    void setGia(double giaSanPham) {
+    void setGia(int giaSanPham) {
         gia = giaSanPham;
     }
     void setTen(const string& tenSanPham) {
@@ -50,9 +50,9 @@ public:
         cin.ignore();
         getline(cin,ten);
         cout << "Nhap gia: ";
-        cin >> gia;
+        cinInt >> gia;
         cout << "Nhap so luong: ";
-        cin >> soLuong;
+        cinInt >> soLuong;
     }
 
     void luuThongTinVaoFile(ofstream& file) override {
@@ -78,9 +78,9 @@ public:
         cin.ignore();
         getline(cin,ten);
         cout << "Nhap gia: ";
-        cin >> gia;
+        cinInt >> gia;
         cout << "Nhap so luong: ";
-        cin >> soLuong;
+        cinInt >> soLuong;
 
     }
 
@@ -108,9 +108,9 @@ public:
         cin.ignore();
         getline(cin,ten);
         cout << "Nhap gia: ";
-        cin >> gia;
+        cinInt >> gia;
         cout << "Nhap so luong: ";
-        cin >> soLuong;
+        cinInt >> soLuong;
 
     }
 
@@ -138,9 +138,9 @@ public:
         cin.ignore();
         getline(cin,ten);
         cout << "Nhap gia: ";
-        cin >> gia;
+        cinInt >> gia;
         cout << "Nhap so luong: ";
-        cin >> soLuong;
+        cinInt >> soLuong;
 
     }
 
@@ -167,9 +167,9 @@ public:
         cin.ignore();
         getline(cin,ten);
         cout << "Nhap gia: ";
-        cin >> gia;
+        cinInt >> gia;
         cout << "Nhap so luong: ";
-        cin >> soLuong;
+        cinInt >> soLuong;
 
     }
 
@@ -207,11 +207,11 @@ public:
         cout << "5. Do dien tu\n";
         cout << "6. thoat \n";
         int luaChonLoai;
-        cin >> luaChonLoai;
+        cinInt >> luaChonLoai;
 
         while (luaChonLoai < 1 || luaChonLoai > 6) {
             cout << "Lua chon khong hop le. Vui long nhap tu 1 den 6: ";
-            cin >> luaChonLoai;
+            cinInt >> luaChonLoai;
         }
 
         switch (luaChonLoai) {
@@ -312,14 +312,14 @@ void nhapHang() {
     cout << "5. Do dien tu\n";
     cout << "6. thoat\n";
     int luaChonLoai;
-    cin >> luaChonLoai;
+    cinInt >> luaChonLoai;
      if (luaChonLoai == 6) { // Nếu người dùng chọn thoát
             cout << "Da thoat khoi chuc nang nhap hang.\n";
             break; // Thoát khỏi vòng lặp
         }
         while (luaChonLoai < 1 || luaChonLoai > 6) {
         cout << "Lua chon khong hop le. Vui long nhap tu 1 den 6: ";
-        cin >> luaChonLoai;
+        cinInt >> luaChonLoai;
     }
     switch (luaChonLoai) {
             case 1: {
@@ -380,7 +380,7 @@ void nhapSanPham(LoaiSanPham loai) {
     while (true) {
         int luaChon;
         cout << "\nChon san pham muon nhap (nhap so tuong ung, hoac 0 de dung): ";
-        cin >> luaChon;
+        cinInt >> luaChon;
 
         if (luaChon == 0){
 
@@ -395,7 +395,7 @@ void nhapSanPham(LoaiSanPham loai) {
             // Nhập số lượng muốn thêm vào kho
             int soLuongNhap;
             cout << "Nhap so luong muon them: ";
-            cin >> soLuongNhap;
+            cinInt >> soLuongNhap;
 
             if (soLuongNhap > 0) {
                 // Cập nhật số lượng sản phẩm
@@ -428,7 +428,7 @@ void xoaHang(){
     cout << "5. Do dien tu\n";
     cout << "6. thoat\n";
     int luaChonLoai;
-    cin >> luaChonLoai;
+    cinInt >> luaChonLoai;
      if (luaChonLoai == 6) { // Nếu người dùng chọn thoát
             cout << "Da thoat khoi chuc nang xoa hang.\n";
             break; // Thoát khỏi vòng lặp
@@ -436,7 +436,7 @@ void xoaHang(){
     // Kiểm tra lựa chọn đầu vào
     while (luaChonLoai < 1 || luaChonLoai > 6) {
         cout << "Lua chon khong hop le. Vui long nhap tu 1 den 6: ";
-        cin >> luaChonLoai;
+        cinInt >> luaChonLoai;
     }
     switch (luaChonLoai) {
             case 1: {
@@ -497,7 +497,7 @@ void xoaSanPham(LoaiSanPham loai) {
     while (true) {
         int luaChon;
         cout << "\nChon san pham muon xoa (nhap so tuong ung, hoac 0 de dung): ";
-        cin >> luaChon;
+        cinInt >> luaChon;
 
 
         if (luaChon == 0){
@@ -566,14 +566,14 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
     while (true&&count==0) {
         int luaChon;
         cout << "\nChon san pham muon mua (nhap so tuong ung, hoac 0 de dung mua): ";
-        cin >> luaChon;
+        cinInt >> luaChon;
 
         if (luaChon == 0) break; // Kết thúc nếu người dùng nhập 0
 
     if (luaChon > 0 && luaChon <= danhSachHienThi.size()) {
     int soLuong;
     cout << "Nhap so luong muon mua: ";
-    cin >> soLuong;
+    cinInt >> soLuong;
 
     // Kiểm tra nếu số lượng là 0
     if (soLuong <= 0) {
@@ -606,7 +606,7 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
 
         int luaChonTiep;
         cout << "\n1. Toi quay thanh toan\n2. Toi quay khac de tiep tuc mua sam\nLua chon cua ban: ";
-        cin >> luaChonTiep;
+        cinInt >> luaChonTiep;
 
         if (luaChonTiep == 1) {
             cout << "Dang di toi quay thanh toan...\n";

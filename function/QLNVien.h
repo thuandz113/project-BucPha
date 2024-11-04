@@ -65,7 +65,7 @@ void registerEmployeeAccout(){
             cout<<"Vui long chon gioi tinh: 1-Nam, 2-Nu."<<endl;
             do{
                 cout<<"Lua chon cua ban:";
-                cin>>sex;
+                cinInt>>sex;
             }
             while(sex != 1 && sex != 2);
             cin.ignore();
@@ -111,9 +111,9 @@ class NhanVien {
             cout << "Nhap ca lam viec: ";
             getline(cin, caLamViec);
             cout << "Nhap so gio lam viec: ";
-            cin >> soGioLamViec;
+            cinInt >> soGioLamViec;
             cout << "Nhap so gio lam them (neu co): ";
-            cin >> soGioLamThem;
+            cinInt >> soGioLamThem;
             luongTheoGio = getLuongByChucVu(chucVu);
 			cin.ignore();
         	char choice;
@@ -378,7 +378,7 @@ int menuEmployeeManagement(){
 		cout<<"6. Hien thi danh sach nhan vien\n";
 		cout<<"7. Thoat\n";
 		cout<<"Lua chon: ";
-		cin>>choice;
+		cinInt>>choice;
 		switch(choice){
 			case 1:
 				qlnv.themNV();

@@ -4,6 +4,26 @@
 #include <ctime>
 #include "doiTuong.h"
 
+class InputStream {
+public:
+    template <typename T>
+    InputStream& operator>>(T& value) {
+        while (true) {
+            cin >> value;
+            if (cin.fail()) 
+			{
+				cout<<"\nBan vua nhap chu thay vi nhap so, hay nhap lai:";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            } else {
+                break;
+            }
+        }
+        return *this;
+    }
+};
+InputStream cinInt;
+
 void printInBox(const string& content, int width) {
     int padding = (width - 4 - content.size()) / 2;
     cout << "|" << string(padding, ' ') << content << string(width - 4 - padding - content.size(), ' ') << "  |" << endl;
