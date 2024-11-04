@@ -382,33 +382,47 @@ int menuEmployeeManagement(){
 		switch(choice){
 			case 1:
 				qlnv.themNV();
+				this_thread::sleep_for(chrono::milliseconds(1000));
+            	system("cls");
 				break;
 			case 2:{
 				string maNV;
 				cout<<"Nhap ma nhan vien can xoa: ";
 				cin>>maNV;
 				qlnv.xoaNV(maNV);
+				this_thread::sleep_for(chrono::milliseconds(2000));
+            	system("cls");
 				break;
 			}
 			case 3:
 				qlnv.phanCalamviec();
+				this_thread::sleep_for(chrono::milliseconds(1000));
+            	system("cls");
 				break;
 			case 4:
 				qlnv.capnhatLuong();
+				this_thread::sleep_for(chrono::milliseconds(1000));
+            	system("cls");
 				break;
 			case 5:{
 				string maNV;
 				cout<<"Nhap ma nhan vien can tim: ";
 				cin>>maNV;
 				qlnv.timKiemNV(maNV);
+				this_thread::sleep_for(chrono::milliseconds(2000));
+            	system("cls");
 				break;
 			}
 			case 6:
+				this_thread::sleep_for(chrono::milliseconds(1000));
+            	system("cls");
 				cout<<"-------------------------------- DANH SACH NHAN VIEN ----------------------------------\n\n";
 				qlnv.xuatds();
 				break;
 			case 7:
 				cout<<"Thoat chuong trinh."<<endl;
+				this_thread::sleep_for(chrono::milliseconds(500));
+            	system("cls");
 				break;
 			default:
 				cout<<"Lua chon khong hop le. Vui long chon lai."<<endl;

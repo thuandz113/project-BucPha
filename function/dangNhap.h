@@ -76,10 +76,13 @@ void login() {
         UserAccount user(userName, password, roles, credits, sex, number, address);
         if (roles == 0) {
             cout << "Chao mung khach hang da quay tro lai <3" << endl;
+            this_thread::sleep_for(chrono::milliseconds(1000));
             system("cls");
             ShowMainMenu(user);
         } else if (roles == 1) {
             cout << "Chao mung nhan vien da quay tro lai <3" << endl;
+            this_thread::sleep_for(chrono::milliseconds(1000));
+            system("cls");
             ShowStaffMenu(user);
         } else if (roles == 2) {
             cout << "Chao mung quan ly da quay tro lai <3" << endl;
@@ -181,17 +184,19 @@ void displayMenu(int width) {
 
     string option1 = "1.Dang nhap";
     string option2 = "2.Dang ky";
+    string option3 = "3.Thoat chuong trinh";
     
     printInBox(option1, width);
     printInBox(option2, width);
+    printInBox(option3, width);
     printBorder(width);
     
     int choice;
-    cout << " Vui long nhap trong (1-2): "; 
+    cout << " Vui long nhap trong (1-3): "; 
     cout.flush(); 
     cin >> choice;
 
-    while (choice < 1 || choice > 2) {
+    while (choice < 1 || choice > 3) {
         cout << " Vui long nhap lai trong (1-2): "; 
         cout.flush(); 
         cin >> choice;
@@ -206,6 +211,11 @@ void displayMenu(int width) {
         login();
     } else if (choice == 2) {
         registerAccount();
+    }
+    else{
+        cout<<"Cam on ban da su dung chuong trinh !"<<endl;
+        cout<<"Hen gap lai ban <3"<<endl;
+        return;
     }
 }
 int ShowMainMenu(UserAccount user) {

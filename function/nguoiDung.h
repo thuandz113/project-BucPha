@@ -198,18 +198,19 @@ public:
     };
 
     void chonQuayKhac(UserAccount &user) {
+
         cout << "Chon loai san pham muon mua:\n";
         cout << "1. Thuc pham\n";
         cout << "2. Do uong\n";
         cout << "3. Thoi trang\n";
         cout << "4. Do gia dung\n";
         cout << "5. Do dien tu\n";
-        
+        cout << "6. thoat \n";
         int luaChonLoai;
         cin >> luaChonLoai;
 
-        while (luaChonLoai < 1 || luaChonLoai > 5) {
-            cout << "Lua chon khong hop le. Vui long nhap tu 1 den 5: ";
+        while (luaChonLoai < 1 || luaChonLoai > 6) {
+            cout << "Lua chon khong hop le. Vui long nhap tu 1 den 6: ";
             cin >> luaChonLoai;
         }
 
@@ -219,6 +220,7 @@ public:
             case 3: muaSanPham(THOI_TRANG, user); break;
             case 4: muaSanPham(DO_GIA_DUNG, user); break;
             case 5: muaSanPham(DO_DIEN_TU, user); break;
+            case 6: break;
         }
     }
 
@@ -315,61 +317,102 @@ void nhapHang() {
             cout << "Da thoat khoi chuc nang nhap hang.\n";
             break; // Thoát khỏi vòng lặp
         }
-    // Kiểm tra lựa chọn đầu vào
-    while (luaChonLoai < 1 || luaChonLoai > 6) {
+        while (luaChonLoai < 1 || luaChonLoai > 6) {
         cout << "Lua chon khong hop le. Vui long nhap tu 1 den 6: ";
         cin >> luaChonLoai;
     }
-
-    SanPham* sanPhamMoi = nullptr; // Con trỏ sản phẩm mới
-
     switch (luaChonLoai) {
-        case 1:
-            sanPhamMoi = new ThucPham();
-            break;
-        case 2:
-            sanPhamMoi = new DoUong();
-            break;
-        case 3:
-            sanPhamMoi = new ThoiTrang();
-            break;
-        case 4:
-            sanPhamMoi = new DoGiaDung();
-            break;
-        case 5:
-            sanPhamMoi = new DoDienTu();
-            break;
-        default:
-            cout << "Khong the tao san pham moi.\n";
-            return; // Không cần tiếp tục nếu lựa chọn không hợp lệ
-    }
-
-    // Nhập thông tin cho sản phẩm mới
-    if (sanPhamMoi) {
-        sanPhamMoi->nhapThongTin(); // Nhập thông tin cho sản phẩm mới
-
-        // Kiểm tra xem sản phẩm đã tồn tại trong danh sách chưa
-        bool tonTai = false;
-        for (auto& sp : danhSachSanPham) {
-            if (sp->getTen() == sanPhamMoi->getTen()) { // So sánh tên sản phẩm
-                sp->setSoLuong(sp->getSoLuong() + sanPhamMoi->getSoLuong()); // Cập nhật số lượng
-                sp->setGia(sanPhamMoi->getGia()); // Cập nhật lại giá
-                tonTai = true;
-                cout << "San pham da ton tai, da cap nhat so luong va gia!\n";
-                break;
+            case 1: {
+                this_thread::sleep_for(chrono::milliseconds(1000));
+                system("cls");
+                nhapSanPham(THUC_PHAM); break;
+            }
+            case 2: {
+                this_thread::sleep_for(chrono::milliseconds(1000));
+                system("cls");
+            nhapSanPham(DO_UONG); break;
+            }
+            case 3: {
+                this_thread::sleep_for(chrono::milliseconds(1000));
+                system("cls");
+                nhapSanPham(THOI_TRANG); break;
+            }
+            case 4: {
+                this_thread::sleep_for(chrono::milliseconds(1000));
+                system("cls");
+                nhapSanPham(DO_GIA_DUNG); break;
+            }   
+            case 5: {
+                this_thread::sleep_for(chrono::milliseconds(1000));
+                system("cls");
+                nhapSanPham(DO_DIEN_TU); break;
             }
         }
+    }
+}
+void nhapSanPham(LoaiSanPham loai) {
+    cout << "Danh sach san pham hien co:\n";
+    vector<int> danhSachHienThi; // Lưu các chỉ mục của sản phẩm hợp lệ được hiển thị
+    bool found = false;
 
-        // Nếu sản phẩm không tồn tại, thêm sản phẩm mới vào danh sách
-        if (!tonTai) {
-            danhSachSanPham.push_back(sanPhamMoi);
-            cout << "Da nhap hang thanh cong!\n";
-        } else {
-            delete sanPhamMoi; // Giải phóng bộ nhớ nếu sản phẩm đã tồn tại
+    // Hiển thị các sản phẩm thuộc loại được chọn
+    for (size_t i = 0; i < danhSachSanPham.size(); ++i) {
+        if (((loai == THUC_PHAM && dynamic_cast<ThucPham*>(danhSachSanPham[i])) ||
+            (loai == DO_UONG && dynamic_cast<DoUong*>(danhSachSanPham[i])) ||
+            (loai == THOI_TRANG && dynamic_cast<ThoiTrang*>(danhSachSanPham[i])) ||
+            (loai == DO_GIA_DUNG && dynamic_cast<DoGiaDung*>(danhSachSanPham[i])) ||
+            (loai == DO_DIEN_TU && dynamic_cast<DoDienTu*>(danhSachSanPham[i])))) {
+            
+            cout << danhSachHienThi.size() + 1 << ". " << danhSachSanPham[i]->getTen() 
+                 << " (So luong: " << danhSachSanPham[i]->getSoLuong() << ") " 
+                 << danhSachSanPham[i]->getGia() << " vnd" << endl;
+            danhSachHienThi.push_back(i); // Lưu chỉ mục của sản phẩm hợp lệ
+            found = true;
         }
+    }
 
-        // Cập nhật file sản phẩm
-        luuSanPhamVaoFile("database/product.txt");
+    if (!found) {
+        cout << "Khong co san pham nao trong kho.\n";
+        return; // Nếu không có sản phẩm nào, thoát hàm
+    }
+
+    // Lặp để người dùng chọn sản phẩm cần nhập
+    while (true) {
+        int luaChon;
+        cout << "\nChon san pham muon nhap (nhap so tuong ung, hoac 0 de dung): ";
+        cin >> luaChon;
+
+        if (luaChon == 0){
+
+            system("cls");
+            break; 
+        }
+         // Kết thúc nếu người dùng nhập 0
+
+        if (luaChon > 0 && luaChon <= danhSachHienThi.size()) {
+            int indexSanPham = danhSachHienThi[luaChon - 1]; // Lấy chỉ mục thực của sản phẩm từ danhSachHienThi
+
+            // Nhập số lượng muốn thêm vào kho
+            int soLuongNhap;
+            cout << "Nhap so luong muon them: ";
+            cin >> soLuongNhap;
+
+            if (soLuongNhap > 0) {
+                // Cập nhật số lượng sản phẩm
+                int soLuongMoi = danhSachSanPham[indexSanPham]->getSoLuong() + soLuongNhap;
+                danhSachSanPham[indexSanPham]->setSoLuong(soLuongMoi);
+                
+                cout << "Da them " << soLuongNhap << " vao " << danhSachSanPham[indexSanPham]->getTen() 
+                     << ". So luong hien tai: " << soLuongMoi << ".\n";
+                
+                // Cập nhật lại file sau khi thêm số lượng
+                luuSanPhamVaoFile("database/product.txt");
+            } else {
+                cout << "So luong phai lon hon 0.\n";
+            }
+
+        } else {
+            cout << "Lua chon khong hop le.\n";
         }
     }
 }
@@ -396,11 +439,31 @@ void xoaHang(){
         cin >> luaChonLoai;
     }
     switch (luaChonLoai) {
-            case 1: xoaSanPham(THUC_PHAM); break;
-            case 2: xoaSanPham(DO_UONG); break;
-            case 3: xoaSanPham(THOI_TRANG); break;
-            case 4: xoaSanPham(DO_GIA_DUNG); break;
-            case 5: xoaSanPham(DO_DIEN_TU); break;
+            case 1: {
+                this_thread::sleep_for(chrono::milliseconds(1000));
+                system("cls");
+                xoaSanPham(THUC_PHAM); break;
+            }
+            case 2: {
+                this_thread::sleep_for(chrono::milliseconds(1000));
+                system("cls");
+                xoaSanPham(DO_UONG); break;
+            }
+            case 3: {
+                this_thread::sleep_for(chrono::milliseconds(1000));
+                system("cls");
+                xoaSanPham(THOI_TRANG); break;
+            }
+            case 4: {
+                this_thread::sleep_for(chrono::milliseconds(1000));
+                system("cls");
+                xoaSanPham(DO_GIA_DUNG); break;
+            }   
+            case 5: {
+                this_thread::sleep_for(chrono::milliseconds(1000));
+                system("cls");
+                xoaSanPham(DO_DIEN_TU); break;
+            }
         }
     }
 }
@@ -436,7 +499,12 @@ void xoaSanPham(LoaiSanPham loai) {
         cout << "\nChon san pham muon xoa (nhap so tuong ung, hoac 0 de dung): ";
         cin >> luaChon;
 
-        if (luaChon == 0) break; // Kết thúc nếu người dùng nhập 0
+
+        if (luaChon == 0){
+
+            system("cls");
+            break; 
+        } // Kết thúc nếu người dùng nhập 0
 
         if (luaChon > 0 && luaChon <= danhSachHienThi.size()) {
             int indexSanPham = danhSachHienThi[luaChon - 1]; // Lấy chỉ mục thực của sản phẩm từ danhSachHienThi
@@ -502,24 +570,29 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
 
         if (luaChon == 0) break; // Kết thúc nếu người dùng nhập 0
 
-        if (luaChon > 0 && luaChon <= danhSachHienThi.size()) {
-            int soLuong;
-            cout << "Nhap so luong muon mua: ";
-            cin >> soLuong;
+    if (luaChon > 0 && luaChon <= danhSachHienThi.size()) {
+    int soLuong;
+    cout << "Nhap so luong muon mua: ";
+    cin >> soLuong;
 
-            // Kiểm tra xem có đủ số lượng trong kho không
-            int indexSanPham = danhSachHienThi[luaChon - 1];
-            if (soLuong <= danhSachSanPham[indexSanPham]->getSoLuong()) {
-                cart.push_back(indexSanPham); // Thêm sản phẩm vào giỏ hàng
-                quantities.push_back(soLuong);
-                danhSachSanPham[indexSanPham]->setSoLuong(danhSachSanPham[indexSanPham]->getSoLuong() - soLuong);
-                cout << "Da them " << soLuong << " " << danhSachSanPham[indexSanPham]->getTen() << " vao gio hang.\n";
-            } else {
-                cout << "Khong du so luong san pham trong kho.\n";
-            }
+    // Kiểm tra nếu số lượng là 0
+    if (soLuong <= 0) {
+        cout << "So luong phai lon hon 0.\n";
+    } else {
+        // Kiểm tra xem có đủ số lượng trong kho không
+        int indexSanPham = danhSachHienThi[luaChon - 1];
+        if (soLuong <= danhSachSanPham[indexSanPham]->getSoLuong()) {
+            cart.push_back(indexSanPham); // Thêm sản phẩm vào giỏ hàng
+            quantities.push_back(soLuong);
+            danhSachSanPham[indexSanPham]->setSoLuong(danhSachSanPham[indexSanPham]->getSoLuong() - soLuong);
+            cout << "Da them " << soLuong << " " << danhSachSanPham[indexSanPham]->getTen() << " vao gio hang.\n";
         } else {
-            cout << "Lua chon khong hop le.\n";
+            cout << "Khong du so luong san pham trong kho.\n";
         }
+    }
+} else {
+    cout << "Lua chon khong hop le.\n";
+}
     }
 
     // Xác nhận các sản phẩm đã mua
@@ -541,6 +614,7 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
             thanhToan(cart, quantities, user); // Gọi hàm thanh toán
         } else if (luaChonTiep == 2) {
             cout << "Dang di toi quay khac...\n";
+
             system("cls");
             chonQuayKhac(user);
         } else {
@@ -630,11 +704,12 @@ void docSanPhamTuFile(const string& tenFile) {
     cout << "*****************************************************\n";
     cout << "*                                                   *\n";
     cout << "*   [QUAY THU NGAN]                                 *\n";
-    cout << "*   +----------------------+                        *                    Thong tin khach hang:\n";
-    cout << "*   |   KHACH HANG         |                        *                    Ten: "<<user.getUsername()<<"\n";
-    cout << "*   |   TINH TIEN          |                        *                    So du: "<<user.getCredits()<<"\n";
-    cout << "*   +----------------------+                        *\n";
-    cout << "*                                                   *\n";
+    cout << "*   +----------------------+                        *                  +-------------------------------------+\n";
+    cout << "*   |   KHACH HANG         |                        *                  | Thong tin khach hang:               |\n";
+    cout << "*   |   TINH TIEN          |                        *                  |-------------------------------------|\n";
+    cout << "*   +----------------------+                        *                  | Ten: "  << setw(31) << left << user.getUsername() << "|\n";
+    cout << "*                                                   *                  | So du: "  << setw(26) << left << fixed << setprecision(2) << user.getCredits() << "$  |\n";
+    cout << "*                                                   *                  +-------------------------------------+\n";
     cout << "*   +----------------------+   +---------------+    *\n";
     cout << "*   |    KHU DO UONG       |   | KHU THOI TRANG|    *\n";
     cout << "*   +----------------------+   +---------------+    *\n";
@@ -652,5 +727,6 @@ void docSanPhamTuFile(const string& tenFile) {
     cout << "*   +----------------------+   +----------------+   *\n";
     cout << "*                   [CUA RA]                        *\n";
     cout << "*****************************************************\n";
+
     }   
 };

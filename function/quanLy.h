@@ -3,6 +3,7 @@
 #include <iostream>
 #include "doiTuong.h"
 #include "nguoiDung.h"
+
 #include "nhanVien.h"
 #include "QLNVien.h"
 #include "dangNhap.h"
@@ -12,6 +13,9 @@ using namespace std;
 int ShowMainMenu(UserAccount user);
 int ShowManageMenu(UserAccount user)
 {
+   
+        this_thread::sleep_for(chrono::milliseconds(2000));
+        system("cls");
     QuanLyChucNang qlcn;
     int choice;
     do{
@@ -27,21 +31,45 @@ int ShowManageMenu(UserAccount user)
 
     switch (choice) {
         case 1:
+            cout<<"ban dang den voi chuc nang nhap hang"<<endl;
+            this_thread::sleep_for(chrono::milliseconds(1000));
+            system("cls");
             qlcn.nhapHang();
+            this_thread::sleep_for(chrono::milliseconds(1000));
+            system("cls");
             break;
         case 2:
+            cout<<"ban dang den voi chuc nang xoa hang"<<endl;
+            this_thread::sleep_for(chrono::milliseconds(1000));
+            system("cls");
             qlcn.xoaHang();
+            this_thread::sleep_for(chrono::milliseconds(1000));
+            system("cls");
             break;
         case 3:
+            cout<<"ban dang den voi chuc nang quang ly nhan vien"<<endl;
+            this_thread::sleep_for(chrono::milliseconds(1000));
+            system("cls");
             menuEmployeeManagement();
+            this_thread::sleep_for(chrono::milliseconds(1000));
+            system("cls");
             break;
         case 4:
+            cout <<"Ban dang den voi chuc nang giao dien nguoi dung"<<endl;
+            this_thread::sleep_for(chrono::milliseconds(1000));
+            system("cls");
             ShowStaffMenu(user);
             break;
         case 5:
+            cout <<"Ban dang den voi chuc nang giao dien nhan vien"<<endl;
+            this_thread::sleep_for(chrono::milliseconds(1000));
+            system("cls");
             ShowMainMenu(user);
             break;
         case 6:
+           
+            this_thread::sleep_for(chrono::milliseconds(1000));
+            system("cls");
             cout << "Thoat khoi chuong trinh." << endl;
             return choice;
             break;

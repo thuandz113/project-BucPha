@@ -27,28 +27,41 @@ bool searchUsername(const string& s, UserAccount &user)
     file.close();
     return false;
 }
-void showList()
-{
+void showList() {
     ifstream file("database/account.txt");
     if (!file.is_open()) {
         cout << "Khong the mo file tai khoan!" << endl;
         return;
     }
 
-    int sex, credits, roles;
-    string line, username, password, number, address;
+    // Bỏ qua dòng đầu tiên (tiêu đề)
+    string line;
     getline(file, line);
-    int count = 0, value;
+
+    int sex, credits, roles;
+    string username, password, number, address;
+
+    // In tiêu đề bảng
+    cout << "+------------+---------------+-------+---------+------+------------+-----------------------+" << endl;
+    cout << "| Username   | Password      | Roles | Credits | Sex  |  Number    | Address               |" << endl;
+    cout << "+------------+---------------+-------+---------+------+------------+-----------------------+" << endl;
+
+    // Đọc dữ liệu từ file và hiển thị trong bảng
     while (file >> username >> password >> roles >> credits >> sex >> number >> address) {
-        cout << "Username: " << username 
-            << ", Password: " << password 
-            << ", Roles: " << roles 
-            << ", Credits: " << credits 
-            << ", Sex: " << sex 
-            << ", Number: " << number 
-            << ", Address: " << address 
-            << endl;
+        if(roles==0){
+            cout << "| " << setw(10) << left << username
+             << " | " << setw(13) << left << password
+             << " | " << setw(5) << left << roles
+             << " | " << setw(7) << left << credits
+             << " | " << setw(4) << left << sex
+             << " | " << setw(10) << left << number
+             << " | " << setw(21) << left << address << " |" << endl;
+        }
     }
+
+    // Kết thúc bảng
+    cout << "+------------+---------------+-------+---------+------+------------+-----------------------+" << endl;
+
     file.close();
 }
 void logDeletion(string line, const string& staffName) 
@@ -131,6 +144,8 @@ int ShowStaffMenu(UserAccount user)
     char tiepTuc;
     do
     {
+        this_thread::sleep_for(chrono::milliseconds(500));
+        system("cls");
         int choice;
 
         cout << "==================== Menu nhan vien ====================" << endl;
