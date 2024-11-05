@@ -42,15 +42,15 @@ void showList() {
     string username, password, number, address;
 
     // In tiêu đề bảng
-    cout << "+------------+---------------+-------+---------+------+------------+-----------------------+" << endl;
-    cout << "| Username   | Password      | Roles | Credits | Sex  |  Number    | Address               |" << endl;
-    cout << "+------------+---------------+-------+---------+------+------------+-----------------------+" << endl;
+    cout << "+---------------+------------------+-------+---------+------+------------+-----------------------+" << endl;
+    cout << "| Username      | Password         | Roles | Credits | Sex  |  Number    | Address               |" << endl;
+    cout << "+---------------+------------------+-------+---------+------+------------+-----------------------+" << endl;
 
     // Đọc dữ liệu từ file và hiển thị trong bảng
     while (file >> username >> password >> roles >> credits >> sex >> number >> address) {
         if(roles==0){
-            cout << "| " << setw(10) << left << username
-             << " | " << setw(13) << left << password
+            cout << "| " << setw(13) << left << username
+             << " | " << setw(16) << left << password
              << " | " << setw(5) << left << roles
              << " | " << setw(7) << left << credits
              << " | " << setw(4) << left << sex
@@ -60,7 +60,7 @@ void showList() {
     }
 
     // Kết thúc bảng
-    cout << "+------------+---------------+-------+---------+------+------------+-----------------------+" << endl;
+    cout << "+---------------+------------------+-------+---------+------+------------+-----------------------+" << endl;
 
     file.close();
 }

@@ -35,7 +35,7 @@ void printBorder(int width) {
 void inputPass(string &password) {
     char ch;
     password = "";
-    cout << "Password: ";
+    cout<<"password: ";
     while (true) {
         ch = _getch();  // Đọc ký tự không hiện trên màn hình
         if (ch == '\r') { // Dừng khi nhấn Enter

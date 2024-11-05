@@ -143,9 +143,8 @@ void registerAccount() {
     }
     fileCheck.close();
     while (true) {
-        cout << "Nhap mat khau moi (it nhat 8 ky tu): ";
+       
         inputPass(password);
-
         if (checkPass(password)) 
         {
             int sex;
