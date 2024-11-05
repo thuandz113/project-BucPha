@@ -13,9 +13,9 @@ using namespace std;
 int ShowMainMenu(UserAccount user);
 int ShowManageMenu(UserAccount user)
 {
-   
-        this_thread::sleep_for(chrono::milliseconds(2000));
-        system("cls");
+
+    this_thread::sleep_for(chrono::milliseconds(1000));
+    system("cls");
     QuanLyChucNang qlcn;
     int choice;
     do{

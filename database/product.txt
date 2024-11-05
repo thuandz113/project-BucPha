@@ -1,8 +1,8 @@
 DoUong,coca,10,20
 ThoiTrang,nike,20,10
-ThucPham,GaRan,10000,10
+ThucPham,GaRan,10000,30
 ThucPham,Ca,10000,18
-DoUong,pepsi,15,8
+DoUong,pepsi,15,0
 DoUong,traSua,25,0
 DoUong,nuocCam,12,2
 DoUong,caPhe,30,0
@@ -26,3 +26,4 @@ DoDienTu,Tablet,7000,35
 DoDienTu,TaiNghe,1500,20
 ThucPham,ga ta,1000,40
 ThoiTrang,quankaki,50000,100
+ThucPham,ca ko,10,220

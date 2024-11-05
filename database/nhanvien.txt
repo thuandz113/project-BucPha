@@ -1,0 +1,7 @@
+NV1
+bao dep tria
+giam doc
+2
+5
+0
+400000
