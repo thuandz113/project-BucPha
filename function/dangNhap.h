@@ -233,6 +233,7 @@ int ShowMainMenu(UserAccount user) {
         cout << "2. Nap tien vao tai khoan.\n";
         cout << "3. Lich su mua hang.\n";
         cout << "4. Dang xuat.\n";
+        if(user.getRoles() == 2) cout << "5. Quay lai man hinh quan ly.\n";
         int luaChon;
         cout << "Vui long nhap lua chon: ";
         cinInt >> luaChon;
@@ -309,6 +310,9 @@ int ShowMainMenu(UserAccount user) {
                 updateAccount(user);
                 displayMenu(120);
                 return 0;
+            case 5:
+            	system("cls");
+            	ShowManageMenu(user);
             default:
                 cout << "Lua chon khong hop le. Vui long nhap lai.\n";
         }

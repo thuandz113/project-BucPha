@@ -23,8 +23,8 @@ int ShowManageMenu(UserAccount user)
     cout << "1. Nhap hang" << endl;
     cout << "2. Xoa hang" << endl;
     cout << "3. Cap nhat danh sach nhan vien" << endl;
-    cout << "4. Giao dien nguoi dung"<<endl;
-    cout << "5. Giao dien nhan vien"<<endl;
+    cout << "4. Giao dien nhan vien"<<endl;
+    cout << "5. Giao dien nguoi dung"<<endl;
     cout << "6. Thoat" << endl;
     cout << "Nhap lua chon cua ban: ";
     cinInt >> choice;

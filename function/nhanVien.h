@@ -5,6 +5,7 @@
 #include "ham.h"
 using namespace std;
 void displayMenu(int width);
+int ShowManageMenu(UserAccount user);
 bool searchUsername(const string& s, UserAccount &user) 
 {
     ifstream file("database/account.txt");
@@ -153,6 +154,7 @@ int ShowStaffMenu(UserAccount user)
         cout << "2. Xoa tai khoan khach hang" << endl;
         cout << "3. Xem hoa don khach hang" << endl;
         cout << "4. Dang xuat" << endl;
+        if(user.getRoles() == 2) cout << "5. Quay lai man hinh quan ly.\n" << endl;
         cout << "Nhap lua chon cua ban: ";
         cinInt >> choice;
         switch(choice)
@@ -332,6 +334,11 @@ int ShowStaffMenu(UserAccount user)
                 updateAccount(user);
                 displayMenu(120);        
             }
+            case 5:
+        	{
+        		system("cls");
+        		ShowManageMenu(user);
+			}
         }
         cout << "Ban co muon tiep tuc? (y/n): ";
         cin >> tiepTuc;
