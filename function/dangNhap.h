@@ -143,8 +143,9 @@ void registerAccount() {
     }
     fileCheck.close();
     while (true) {
-       
+        cout << "Nhap mat khau moi (it nhat 8 ky tu): ";
         inputPass(password);
+
         if (checkPass(password)) 
         {
             int sex;
@@ -231,8 +232,9 @@ int ShowMainMenu(UserAccount user) {
         cout << "1. Chon quay san pham.\n";
         cout << "2. Nap tien vao tai khoan.\n";
         cout << "3. Lich su mua hang.\n";
-        cout << "4. Dang xuat.\n";
-        if(user.getRoles() == 2) cout << "5. Quay lai man hinh quan ly.\n";
+        cout << "4. Doi mat khau.\n";
+        cout << "5. Dang xuat.\n";
+        if(user.getRoles() == 2) cout << "6. Quay lai man hinh quan ly.\n";
         int luaChon;
         cout << "Vui long nhap lua chon: ";
         cinInt >> luaChon;
@@ -304,14 +306,26 @@ int ShowMainMenu(UserAccount user) {
                 break;
 
             }
-            case 4:
+            case 4://doi mat khau
+            {
+            	string newPassword;
+                cout << "Nhap Password moi: ";
+                cin.ignore();
+                getline(cin, newPassword);
+                user.setPassword(newPassword);
+                cout << "Password da duoc cap nhat." << endl;
+                updateAccount(user);
+                break;
+			}
+            case 5:
                 system("cls");
                 updateAccount(user);
                 displayMenu(120);
-                return 0;
-            case 5:
+                break;
+            case 6:
             	system("cls");
             	ShowManageMenu(user);
+            	break;
             default:
                 cout << "Lua chon khong hop le. Vui long nhap lai.\n";
         }

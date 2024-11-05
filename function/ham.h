@@ -96,7 +96,7 @@ bool updateAccount(UserAccount user) {
     while (fileIn >> userTemp >> passTemp >> roles >> credits >> sex >> number >> address) {
         if (replaceUnderscore(userTemp) == user.getUsername()) {
             fileOut << replaceSpace(userTemp) << " " 
-                    << passTemp << " " 
+                    << user.getPassword() << " " 
                     << user.getRoles() << " " 
                     << user.getCredits() << " " 
                     << user.getSex() << " " 

@@ -1,7 +1,7 @@
 DoUong,coca,10,20
 ThoiTrang,nike,20,10
 ThucPham,GaRan,10000,30
-ThucPham,Ca,10000,18
+ThucPham,Ca,10000,13
 DoUong,pepsi,15,0
 DoUong,traSua,25,0
 DoUong,nuocCam,12,2
