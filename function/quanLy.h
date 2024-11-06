@@ -18,6 +18,7 @@ int ShowManageMenu(UserAccount user)
     system("cls");
     QuanLyChucNang qlcn;
     int choice;
+
     do{
     cout << "==================== Menu Quan Ly ====================" << endl;
     cout << "1. Nhap hang" << endl;
@@ -25,7 +26,7 @@ int ShowManageMenu(UserAccount user)
     cout << "3. Cap nhat danh sach nhan vien" << endl;
     cout << "4. Giao dien nhan vien"<<endl;
     cout << "5. Giao dien nguoi dung"<<endl;
-    cout << "6. Thoat" << endl;
+    cout << "6. Dang xuat" << endl;
     cout << "Nhap lua chon cua ban: ";
     cinInt >> choice;
 
@@ -55,13 +56,13 @@ int ShowManageMenu(UserAccount user)
             system("cls");
             break;
         case 4:
-            cout <<"Ban dang den voi chuc nang giao dien nguoi dung"<<endl;
+            cout <<"Ban dang den voi chuc nang giao dien nhan vien"<<endl;
             this_thread::sleep_for(chrono::milliseconds(1000));
             system("cls");
             ShowStaffMenu(user);
             break;
         case 5:
-            cout <<"Ban dang den voi chuc nang giao dien nhan vien"<<endl;
+            cout <<"Ban dang den voi chuc nang giao dien nguoi dung"<<endl;
             this_thread::sleep_for(chrono::milliseconds(1000));
             system("cls");
             ShowMainMenu(user);
@@ -70,7 +71,7 @@ int ShowManageMenu(UserAccount user)
            
             this_thread::sleep_for(chrono::milliseconds(1000));
             system("cls");
-            cout << "Thoat khoi chuong trinh." << endl;
+            displayMenu(120);
             return choice;
             break;
         default:
