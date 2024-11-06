@@ -51,7 +51,7 @@ void showList() {
     while (file >> username >> password >> roles >> credits >> sex >> number >> address) {
         if(roles==0){
             cout << "| " << setw(13) << left << username
-             << " | " << setw(16) << left << password
+             << " | " << setw(16) << left << maskString(password)
              << " | " << setw(5) << left << roles
              << " | " << setw(7) << left << credits
              << " | " << setw(4) << left << sex
@@ -181,36 +181,16 @@ int ShowStaffMenu(UserAccount user)
                 {
                     cout << "Chinh sua thong tin cho " << option << endl;
                     cout << "0. Thoat" << endl;
-                    cout << "1. Sua Credits" << endl;
-                    cout << "2. Sua Password" << endl;
-                    cout << "3. Sua Gioi tinh" << endl;
-                    cout << "4. Sua dia chi" << endl;
-                    cout << "5. Sua so dien thoai" << endl;
-                    cout << "6. Luu" << endl;
+                    cout << "1. Sua Gioi tinh" << endl;
+                    cout << "2. Sua dia chi" << endl;
+                    cout << "3. Sua so dien thoai" << endl;
+                    cout << "4. Luu" << endl;
                     cout << "Nhap lua chon cua ban: ";
                     cinInt >> editChoice;
                     bool edit = false;
                     switch (editChoice) 
                     {
                         case 1:
-                        {
-                            int newCredits;
-                            cout << "Nhap so Credits moi: ";
-                            cinInt >> newCredits;
-                            editUser.setCredits(newCredits);
-                            cout << "Credits da duoc cap nhat." << endl;
-                            break;
-                        }
-                        case 2:
-                        {
-                            string newPassword;
-                            cout << "Nhap Password moi: ";
-                            getline(cin, newPassword);
-                            editUser.setPassword(newPassword);
-                            cout << "Password da duoc cap nhat." << endl;
-                            break;
-                        }
-                        case 3:
                         {
                             int newSex;
                             cout << "Nhap Gioi tinh (1: Nam, 2: Nu): ";
@@ -219,7 +199,7 @@ int ShowStaffMenu(UserAccount user)
                             cout << "Gioi tinh da duoc cap nhat." << endl;
                             break;
                         }
-                        case 4:
+                        case 2:
                         {
                             string newAddress;
                             cout << "Nhap Dia chi moi: ";
@@ -229,7 +209,7 @@ int ShowStaffMenu(UserAccount user)
                             cout << "Dia chi da duoc cap nhat." << endl;
                             break;
                         }
-                        case 5:
+                        case 3:
                         {
                             string newNum;
                             cout << "Nhap so dien thoai moi: ";
@@ -239,7 +219,7 @@ int ShowStaffMenu(UserAccount user)
                             cout << "So dien thoai da duoc cap nhat." << endl;
                             break;
                         }
-                        case 6:
+                        case 4:
                         {
                             updateAccount(editUser);
                             break;

@@ -9,7 +9,8 @@ const int maxNV = 100;
 bool checkPasss(const string &password) {
     return password.size() >= 8;
 }
-void registerEmployeeAccout(){
+
+void registerEmployeeAccout(string &tenTaiKhoan){
     ofstream file("database/account.txt", ios::app);
     if (!file.is_open()) {
         cout << "Khong the mo file tai khoan!" << endl;
@@ -37,6 +38,7 @@ void registerEmployeeAccout(){
             first = true;
         }
         getline(cin, userName);
+        tenTaiKhoan = userName;
         fileCheck.clear();
         fileCheck.seekg(0);
         string line;
@@ -86,11 +88,11 @@ void registerEmployeeAccout(){
 
 class NhanVien {
     private:
-        static int demMaNV;  // Biến static để đếm mã nhân viên
         string maNhanVien;
         string tenNhanVien;
         string chucVu;
         string caLamViec;
+        string tenTaiKhoan;
         int soGioLamViec;
         int soGioLamThem;
         float luongTheoGio;
@@ -98,10 +100,42 @@ class NhanVien {
     public:
         NhanVien(string maNV = "", string tenNV = "", string cv = "", string caLV = "", float luongGio = 0, int gioLV = 0, int gioLamThem = 0)
         : maNhanVien(maNV), tenNhanVien(tenNV), chucVu(cv), caLamViec(caLV), luongTheoGio(luongGio), soGioLamViec(gioLV), soGioLamThem(gioLamThem) {}
-
-        // Ham nhap thong tin nhan vien
+		int timKiemMaNhanVien()
+		{
+			ifstream infile("database/listEmployees.txt");
+			int demMaNV = 0;
+			int a[100], count= 0;
+			NhanVien nv;
+			if(infile.is_open())
+			{
+			 	while(true)
+				{
+					if(infile.eof()) break;
+					nv.docFile(infile);
+					string maNV = nv.getMaNV();
+		            if (maNV.size() > 2) {
+		                string part = maNV.substr(2); 
+		                int partInt = stoi(part);
+		                a[count++] = partInt;
+		            }
+				}
+				infile.close();
+			}
+			if(count == 0) return 1;
+			bool found = true;
+			while(found == true)
+			{
+				++demMaNV;
+				found = false;
+				for(int i = 0; i < count ; i++)
+				{
+					if(a[i] == demMaNV) found = true;
+				}
+			}
+			return demMaNV;
+		}
         void nhap() {
-            maNhanVien = "NV" + to_string(demMaNV++);  // Tự động gán mã nhân viên
+            maNhanVien = "NV" + to_string(timKiemMaNhanVien());
             cout << "Ma nhan vien tu dong: " << maNhanVien << endl;
             cout << "Nhap ten nhan vien: ";
             cin.ignore();
@@ -119,9 +153,11 @@ class NhanVien {
         	char choice;
         	cout<<"ban co muon tao tai khoan cho nhan vien nay(y/n): ";
 			cin>>choice;
-        	if(choice=='y'||choice=='Y'){
-        		registerEmployeeAccout();
+        	if(choice=='y'||choice=='Y')
+			{
+        		registerEmployeeAccout(tenTaiKhoan);
 			}
+			else tenTaiKhoan = "None";
         }
 
         // Ham lay luong co ban theo chuc vu
@@ -140,7 +176,8 @@ class NhanVien {
         // Ham hien thi thong tin nhan vien
         void xuat() {
             cout << "| " << left << setw(5) << maNhanVien << " | "
-                 << left << setw(13) << tenNhanVien << " | "
+            	 << left << setw(17) << tenTaiKhoan << " | "
+                 << left << setw(17) << tenNhanVien << " | "
                  << left << setw(27) << chucVu << " | "
                  << left << setw(11) << caLamViec << " | "
                  << left << setw(5) << soGioLamViec << " | "
@@ -155,6 +192,7 @@ class NhanVien {
         // Ghi nhan vien vao file
         void ghiFile(ofstream &outfile) {
             outfile << maNhanVien << endl;
+            outfile << tenTaiKhoan << endl;
             outfile << tenNhanVien << endl;
             outfile << chucVu << endl;
             outfile << caLamViec << endl;
@@ -166,6 +204,7 @@ class NhanVien {
         // Doc nhan vien tu file
         void docFile(ifstream &infile) {
             getline(infile, maNhanVien);
+            getline(infile, tenTaiKhoan);
             getline(infile, tenNhanVien);
             getline(infile, chucVu);
             getline(infile, caLamViec);
@@ -183,9 +222,7 @@ class NhanVien {
 			luongTheoGio = luongMoi;
 		}
 };
-
 // Khởi tạo biến static
-int NhanVien::demMaNV = 1;
 class QLNV:public NhanVien{
 	private:
 		NhanVien dsNV[maxNV];
@@ -193,7 +230,8 @@ int n; //sl nhan vien
 	public:
 		QLNV():n(0){}
 		//Ham them nv
-		void themNV(){
+		void themNV()
+		{
 			if(n>=maxNV){
 				cout<<"Da du so luong nhan vien!"<<endl;
 				return;
@@ -217,7 +255,8 @@ int n; //sl nhan vien
 			ofstream tempfile("database/t.txt");
 			NhanVien nv;
 			bool found=false;
-			if(infile.is_open() && tempfile.is_open()){
+			if(infile.is_open() && tempfile.is_open())
+			{
 				while(true){
 					nv.docFile(infile);
 					if(infile.eof()) break;
@@ -306,7 +345,7 @@ int n; //sl nhan vien
 				infile.close();
 				tempfile.close();
 				remove("database/listEmployees.txt");
-				rename("database/t.txt","database/nhanvien.txt");
+				rename("database/t.txt","database/listEmployees.txt");
 				if(found){
 					cout<<"Da cap nhat luong cho nhan vien co ma: "<<maNV<<endl;
 				}else{
@@ -318,26 +357,28 @@ int n; //sl nhan vien
 		}
 		//Ham tim kiem nhan vien theo ma
 		void timKiemNV(string maNV){
-	ifstream infile("database/listEmployees.txt");
+		ifstream infile("database/listEmployees.txt");
 			NhanVien nv;
 			bool found=false;
-			if(infile.is_open()){
+			if(infile.is_open())
+			{
 				while(true){
 					nv.docFile(infile);
 					if(infile.eof()) break;
-					if(nv.getMaNV()==maNV){
-						cout << "+-------+---------------+-----------------------------+-------------+-------+---------------+-----------+" << endl;
-                        cout << "| MaNV  |     TenNV     |            Chuc vu          | Ca lam viec | GioLV | Gio lam them  |   Luong   |" << endl;
-                        cout << "+-------+---------------+-----------------------------+-------------+-------+---------------+-----------+" << endl;
+					if(nv.getMaNV()==maNV)
+					{
+				cout << "+-------+-------------------+-------------------+-----------------------------+-------------+-------+---------------+-----------+" << endl;
+                cout << "| MaNV  |     TenTK         |       TenNV       |            Chuc vu          | Ca lam viec | GioLV | Gio lam them  |   Luong   |" << endl;
+                cout << "+-------+-------------------+-------------------+-----------------------------+-------------+-------+---------------+-----------+" << endl;
                         nv.xuat();
                         found=true;
                         break;
 					}
 				}
 				if(!found){
-					cout<<"Khon tim thay nhan vien co ma: "<<maNV<<endl;
+					cout<<"Khong tim thay nhan vien co ma: "<<maNV<<endl;
 				}
-				cout<<"+-------+---------------+-----------------------------+-------------+-------+---------------+-----------+"<<endl;
+				cout<<"+-------+-------------------+-------------------+-----------------------------+-------------+-------+---------------+-----------+"<<endl;
 				infile.close();
 			}else{
 				cout<<"Khong the mo file!\n";
@@ -348,15 +389,15 @@ int n; //sl nhan vien
 			ifstream infile("database/listEmployees.txt");
 			NhanVien nv;
 			if(infile.is_open()){
-				cout << "+-------+---------------+-----------------------------+-------------+-------+---------------+-----------+" << endl;
-                cout << "| MaNV  |     TenNV     |            Chuc vu          | Ca lam viec | GioLV | Gio lam them  |   Luong   |" << endl;
-                cout << "+-------+---------------+-----------------------------+-------------+-------+---------------+-----------+" << endl;
+				cout << "+-------+-------------------+-------------------+-----------------------------+-------------+-------+---------------+-----------+" << endl;
+                cout << "| MaNV  |     TenTK         |       TenNV       |            Chuc vu          | Ca lam viec | GioLV | Gio lam them  |   Luong   |" << endl;
+                cout << "+-------+-------------------+-------------------+-----------------------------+-------------+-------+---------------+-----------+" << endl;
 				while(true){
 					nv.docFile(infile);
 					if(infile.eof()) break;
 					nv.xuat();
 				}
-				cout<<"+-------+---------------+-----------------------------+-------------+-------+---------------+-----------+"<<endl;
+				cout<<"+-------+-------------------+-------------------+-----------------------------+-------------+-------+---------------+-----------+"<<endl;
 				infile.close();
 		}else{
 			cout<<"Khong the mo file!\n";
