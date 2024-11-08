@@ -78,7 +78,8 @@ void logDeletion(string line, const string& staffName)
     logFile.close();
 }
 
-bool searchAccount(const string& usernameToSearch) {
+bool searchAccount(const string& usernameToSearch) 
+{
     ifstream inputFile("database/account.txt");
     
     if (!inputFile.is_open()) {
@@ -96,7 +97,7 @@ bool searchAccount(const string& usernameToSearch) {
 
         if (replaceUnderscore(username) == usernameToSearch) {
             accountFound = true;
-            cout << "Tai khoan tim thay: " << line << endl;
+            cout << "Tai khoan tim thay: " << username << endl;
             break;
         }
     }
