@@ -3,7 +3,9 @@
 #include <string>
 #include <ctime>
 #include "doiTuong.h"
-string maskString(const string& str) {
+
+string maskString(const string& str) 
+{
     string result;
     for (size_t i = 0; i < str.size(); ++i) {
         result += '*';

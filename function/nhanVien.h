@@ -19,7 +19,7 @@ bool searchUsername(const string& s, UserAccount &user)
 
     getline(file, line);
     while (file >> username >> password >> roles >> credits >> sex >> number >> address) {
-        if (replaceUnderscore(username) == s) 
+        if (replaceUnderscore(username) == s && roles == 0) 
         {
             user.setAttributes(replaceUnderscore(username),password,roles,credits,sex,number,address);
             return true;
@@ -90,13 +90,15 @@ bool searchAccount(const string& usernameToSearch) {
     bool accountFound = false;
 
     while (getline(inputFile, line)) {
-        string username;
+        string username, password;
+        int roles = -1;
         istringstream iss(line);
-        iss >> username;
-
-        if (replaceUnderscore(username) == usernameToSearch) {
+        iss >> username >> password >> roles;
+		
+        if (replaceUnderscore(username) == usernameToSearch && roles == 0) {
             accountFound = true;
             cout << "Tai khoan tim thay: " << line << endl;
+            cout<<roles;
             break;
         }
     }
@@ -175,7 +177,9 @@ int ShowStaffMenu(UserAccount user)
                 {
                     cout<<"Nhap ten tai khoan ban muon chinh sua thong tin:";
                     getline(cin, option);
-                }while (searchUsername(option, editUser) == false);
+                }
+				while (searchUsername(option, editUser) == false);
+				
                 int editChoice;
                 do 
                 {

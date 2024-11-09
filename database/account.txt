@@ -20,8 +20,7 @@ thuancute 123123123 0 0 2 0915566167 asd
 thuanz 123123123 1 0 1 0915566167 256_tran_quy_cap
 vietz 123123123 0 0 1 0123456789 binh_hung
 peterjasonz 12312312345asd 0 0 1 0915566167 256_tran_quy_cap
-peterjason thuancute 0 50000 2 0915566167 256_tran_quy_cap
-le_thai_bao 123123123 0 900000 2 0835442443 32_Vo_Thi_Sau
+peterjason thuancute 0 50000 2 113 256_tran_quy_cap
 baoangle 123123123 1 0 1 0835442443 vin
 asd qweqweqwe 1 0 2 091 256_tra
 peterround 12312312345asd 1 0 2 0915566167 256_tran_quy_cap
@@ -29,3 +28,4 @@ peternani 123123123 1 0 1 0915566167 256_tran_quy_cap
 qew qweqweqwe 1 0 2 123123 2
 asdasd 123123123 1 0 2 123 123
 cacacacac 123123123 1 0 1 2123123 256_tran_quy_cap
+thuanasdasd 123123123 1 0 1 0915566167 256_tran_quy_cap
