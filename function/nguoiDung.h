@@ -199,13 +199,16 @@ public:
 
     void chonQuayKhac(UserAccount &user) {
 
-        cout << "Chon loai san pham muon mua:\n";
-        cout << "1. Thuc pham\n";
-        cout << "2. Do uong\n";
-        cout << "3. Thoi trang\n";
-        cout << "4. Do gia dung\n";
-        cout << "5. Do dien tu\n";
-        cout << "6. thoat \n";
+
+        cout << "============================\n";
+        cout << "| 1. Thuc pham              |\n";
+        cout << "| 2. Do uong                |\n";
+        cout << "| 3. Thoi trang             |\n";
+        cout << "| 4. Do gia dung            |\n";
+        cout << "| 5. Do dien tu             |\n";
+        cout << "| 6. Thoat                  |\n";
+        cout << "============================\n";
+        cout << " Chon loai san pham muon mua:\n";
         int luaChonLoai;
         cinInt >> luaChonLoai;
 
@@ -614,24 +617,32 @@ vector<int> cart; // Giỏ hàng tạm thời lưu các chỉ mục sản phẩm
 vector<int> quantities; // Số lượng tương ứng với từng sản phẩm trong giỏ hàng
 
 void muaSanPham(LoaiSanPham loai, UserAccount &user) {
-    cout << "Danh sach san pham hien co:\n";
     vector<int> danhSachHienThi; // Lưu các chỉ mục của sản phẩm hợp lệ được hiển thị
     bool found = false;
     
     // Hiển thị các sản phẩm thuộc loại được chọn
+    cout << "=================================================================\n";
+    cout << "| STT | Ten san pham                   | So luong | Gia (vnd)    |\n";
+    cout << "=================================================================\n";
+
     for (size_t i = 0; i < danhSachSanPham.size(); ++i) {
         if (((loai == THUC_PHAM && dynamic_cast<ThucPham*>(danhSachSanPham[i])) ||
             (loai == DO_UONG && dynamic_cast<DoUong*>(danhSachSanPham[i])) ||
             (loai == THOI_TRANG && dynamic_cast<ThoiTrang*>(danhSachSanPham[i])) ||
             (loai == DO_GIA_DUNG && dynamic_cast<DoGiaDung*>(danhSachSanPham[i])) ||
             (loai == DO_DIEN_TU && dynamic_cast<DoDienTu*>(danhSachSanPham[i]))) && danhSachSanPham[i]->getSoLuong() != 0) {
-            
-            cout << danhSachHienThi.size() + 1 << ". " << danhSachSanPham[i]->getTen() 
-                 << " (So luong: " << danhSachSanPham[i]->getSoLuong() << ") " << danhSachSanPham[i]->getGia() << " vnd" << endl;
+
+            cout << "| " << setw(3) << left << danhSachHienThi.size() + 1 << " | ";
+            cout << setw(30) << left << danhSachSanPham[i]->getTen() << " | ";
+            cout << setw(8) << left << danhSachSanPham[i]->getSoLuong() << " | ";
+            cout << setw(12) << left << danhSachSanPham[i]->getGia() << " |\n";
+
             danhSachHienThi.push_back(i); // Lưu chỉ mục của sản phẩm hợp lệ
             found = true;
         }
     }
+    
+    cout << "=================================================================\n";
 	int count=0;
     if (!found) {
         cout << "Khong co san pham nao trong kho.\n";
