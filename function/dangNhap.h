@@ -94,6 +94,7 @@ void login() {
         }
     } else {
         cout << "\n\nDa nhap qua 3 lan. Chuong trinh thoat\n";
+        exit(0);
     }
 }
 
