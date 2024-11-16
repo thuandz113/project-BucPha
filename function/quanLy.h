@@ -20,14 +20,15 @@ int ShowManageMenu(UserAccount user)
     int choice;
 
     do{
-    cout << "==================== Menu Quan Ly ====================" << endl;
-    cout << "1. Nhap hang" << endl;
-    cout << "2. Xoa hang" << endl;
-    cout << "3. Cap nhat danh sach nhan vien" << endl;
-    cout << "4. Giao dien nhan vien"<<endl;
-    cout << "5. Giao dien nguoi dung"<<endl;
-    cout << "6. Dang xuat" << endl;
-    cout << "Nhap lua chon cua ban: ";
+    cout << "==================== MENU QUAN LY ====================" << endl;
+    cout << "| 1. Nhap hang                                       |" << endl;
+    cout << "| 2. Xoa hang                                        |" << endl;
+    cout << "| 3. Cap nhat danh sach nhan vien                    |" << endl;
+    cout << "| 4. Giao dien nhan vien                             |" << endl;
+    cout << "| 5. Giao dien nguoi dung                            |" << endl;
+    cout << "| 6. Dang xuat                                       |" << endl;
+    cout << "======================================================" << endl;
+    cout << "Nhap lua chon cua ban!: ";
     cinInt >> choice;
 
     switch (choice) {

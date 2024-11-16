@@ -24,21 +24,4 @@ public:
     virtual void nhapThongTin() = 0; // Nhập thông tin sản phẩm
     virtual void luuThongTinVaoFile(ofstream& file) = 0; // Lưu thông tin vào file
 
-    string getTen() const { return ten; } // Lấy tên sản phẩm
-    int getSoLuong() const { return soLuong; } // Lấy số lượng
-    void setSoLuong(int sl) { soLuong = sl; } // Cập nhật số lượng
-    int getGia() const { return gia; } // Lấy giá sản phẩm
-
-    virtual ~SanPham() {} // Destructor ảo
-    void setGia(int giaSanPham) {
-        gia = giaSanPham;
-    }
-    void setTen(const string& tenSanPham) {
-        ten = tenSanPham;
-    }
-};
-
-class ThucPham : public SanPham {
-private:
-    string hanSuDung;
-
+  
