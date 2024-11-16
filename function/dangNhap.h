@@ -241,7 +241,7 @@ int ShowMainMenu(UserAccount user) {
         cout << "+---------------------------------------+\n";
         if(user.getRoles() == 2) cout << "6. Quay lai man hinh quan ly.\n";
         int luaChon;
-        cout << "Vui long nhap lua chon !: ";
+        cout << "Vui long nhap lua chon!: ";
         cinInt >> luaChon;
 
         switch (luaChon) {

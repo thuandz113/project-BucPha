@@ -152,12 +152,13 @@ int ShowStaffMenu(UserAccount user)
         int choice;
 
         cout << "==================== MENU NHAN VIEN ====================" << endl;
-        cout << "1. Xem danh sach va chinh sua thong tin khach hang" << endl;
-        cout << "2. Xoa tai khoan khach hang" << endl;
-        cout << "3. Xem hoa don khach hang" << endl;
-        cout << "4. Dang xuat" << endl;
+        cout << "| 1. Xem danh sach va chinh sua thong tin khach hang   |" << endl;
+        cout << "| 2. Xoa tai khoan khach hang                          |" << endl;
+        cout << "| 3. Xem hoa don khach hang                            |" << endl;
+        cout << "| 4. Dang xuat                                         |" << endl;
+        cout << "========================================================" << endl;
         if(user.getRoles() == 2) cout << "5. Quay lai man hinh quan ly.\n" << endl;
-        cout << "Nhap lua chon cua ban: ";
+        cout << "Nhap lua chon cua ban!: ";
         cinInt >> choice;
         switch(choice)
         {
