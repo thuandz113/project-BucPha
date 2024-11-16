@@ -280,13 +280,13 @@ int ShowMainMenu(UserAccount user) {
                     break;
                 }
                 file.seekg(0, ios::beg);
-
-                cout << left << setw(15) << "Ten mon"
-                    << setw(10) << "Gia"
-                    << setw(10) << "So luong"
-                    << setw(15) << "Tong tien"
-                    << "Ngay mua" << endl;
-                cout << string(60, '-') << endl;
+                cout << "========================================================================\n";
+                cout << "| " << left << setw(15) << "Ten mon"
+                     << "| " << setw(10) << "Gia"
+                     << "| " << setw(10) << "So luong"
+                     << "| " << setw(15) << "Tong tien"
+                     << "| " << "Ngay mua" << "   |\n";
+                cout << "========================================================================\n";
 
                 string line;
                 while (getline(file, line)) {
@@ -296,13 +296,13 @@ int ShowMainMenu(UserAccount user) {
 
                     iss >> itemName >> price >> quantity >> total >> Date;
 
-                    cout << left << setw(15) << itemName
-                        << setw(10) << price
-                        << setw(10) << quantity
-                        << setw(15) << total
-                        << Date << endl;
+                    cout << "| " << left << setw(15) << itemName
+                         << "| " << setw(10) << price
+                         << "| " << setw(10) << quantity
+                         << "| " << setw(15) << total
+                         << "| " << Date << " |\n";
                 }
-
+                cout << "========================================================================\n";
                 file.close();
                 break;
 
