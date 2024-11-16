@@ -397,7 +397,7 @@ void nhapSanPham(LoaiSanPham loai) {
             
             cout << danhSachHienThi.size() + 1 << ". " << danhSachSanPham[i]->getTen() 
                  << " (So luong: " << danhSachSanPham[i]->getSoLuong() << ") " 
-                 << danhSachSanPham[i]->getGia() << " vnd" << endl;
+                 << danhSachSanPham[i]->getGia() << " VND" << endl;
             danhSachHienThi.push_back(i); // Lưu chỉ mục của sản phẩm hợp lệ
             found = true;
         }
@@ -563,7 +563,7 @@ void xoaSanPham(LoaiSanPham loai) {
             (loai == DO_DIEN_TU && dynamic_cast<DoDienTu*>(danhSachSanPham[i]))) && danhSachSanPham[i]->getSoLuong() != 0) {
             
             cout << danhSachHienThi.size() + 1 << ". " << danhSachSanPham[i]->getTen() 
-                 << " (So luong: " << danhSachSanPham[i]->getSoLuong() << ") " << danhSachSanPham[i]->getGia() << " vnd" << endl;
+                 << " (So luong: " << danhSachSanPham[i]->getSoLuong() << ") " << danhSachSanPham[i]->getGia() << " VND" << endl;
             danhSachHienThi.push_back(i); // Lưu chỉ mục của sản phẩm hợp lệ
             found = true;
         }
@@ -624,7 +624,7 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
     
     // Hiển thị các sản phẩm thuộc loại được chọn
     cout << "==================================================================\n";
-    cout << "| STT | Ten san pham                   | So luong | Gia (vnd)    |\n";
+    cout << "| STT | Ten san pham                   | So luong | Gia (VND)    |\n";
     cout << "==================================================================\n";
 
     for (size_t i = 0; i < danhSachSanPham.size(); ++i) {
@@ -696,7 +696,7 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
         for (size_t i = 0; i < cart.size(); ++i) {
             int index = cart[i];
             cout << "- " << danhSachSanPham[index]->getTen() << ": " << quantities[i] 
-                 << " thanh tien: "<< fixed << setprecision(1) << quantities[i] * danhSachSanPham[index]->getGia() << " vnd" << endl;
+                 << " thanh tien: "<< fixed << setprecision(1) << quantities[i] * danhSachSanPham[index]->getGia() << " VND" << endl;
         }
 
         int luaChonTiep;
