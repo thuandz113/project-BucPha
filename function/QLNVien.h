@@ -457,7 +457,7 @@ int menuEmployeeManagement(){
 			case 6:
 				this_thread::sleep_for(chrono::milliseconds(1000));
             	system("cls");
-				cout<<"-------------------------------- DANH SACH NHAN VIEN ----------------------------------\n\n";
+				cout<<"--------------------------------------------------- DANH SACH NHAN VIEN --------------------------------------------------------\n\n";
 				qlnv.xuatds();
 				break;
 			case 7:
