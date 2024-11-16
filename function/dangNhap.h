@@ -229,15 +229,19 @@ int ShowMainMenu(UserAccount user) {
     char tiepTuc;
     do {
         qlcn.veSieuThi(user);
-        cout << "Chao mung den he thong quan ly sieu thi.\n";
-        cout << "1. Chon quay san pham.\n";
-        cout << "2. Nap tien vao tai khoan.\n";
-        cout << "3. Lich su mua hang.\n";
-        cout << "4. Doi mat khau.\n";
-        cout << "5. Dang xuat.\n";
+        cout << "+---------------------------------------+\n";
+        cout << "|    CHAO MUNG DEN HE THONG QUAN LY     |\n";
+        cout << "|               SIEU THI                |\n";
+        cout << "+---------------------------------------+\n";
+        cout << "| 1. Chon quay san pham.                |\n";
+        cout << "| 2. Nap tien vao tai khoan.            |\n";
+        cout << "| 3. Lich su mua hang.                  |\n";
+        cout << "| 4. Doi mat khau.                      |\n";
+        cout << "| 5. Dang xuat.                         |\n";
+        cout << "+---------------------------------------+\n";
         if(user.getRoles() == 2) cout << "6. Quay lai man hinh quan ly.\n";
         int luaChon;
-        cout << "Vui long nhap lua chon: ";
+        cout << "Vui long nhap lua chon !: ";
         cinInt >> luaChon;
 
         switch (luaChon) {

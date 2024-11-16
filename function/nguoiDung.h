@@ -794,34 +794,34 @@ void docSanPhamTuFile(const string& tenFile) {
     }
     void veSieuThi(UserAccount user) {
     system("cls");
-    cout << "*********************************************************\n";
-    cout << "*                        SIEU THI                       *\n";
-    cout << "*********************************************************\n";
-    cout << "*                                                       *\n";
-    cout << "*   [QUAY THU NGAN]                                     *\n";
-    cout << "*   +----------------------+                            *                  +-------------------------------------+\n";
-    cout << "*   |   KHACH HANG         |                            *                  | Thong tin khach hang:               |\n";
-    cout << "*   |   TINH TIEN          |                            *                  |-------------------------------------|\n";
-    cout << "*   +----------------------+                            *                  | Ten: "  << setw(31) << left << user.getUsername() << "|\n";
-    cout << "*                                                       *                  | So du: "  << setw(26) << left << fixed << setprecision(2) << user.getCredits() << "$  |\n";
-    cout << "*                                                       *                  +-------------------------------------+\n";
-    cout << "*   +----------------------+   +--------------------+   *\n";
-    cout << "*   |    KHU DO UONG       |   | KHU THOI TRANG     |   *\n";
-    cout << "*   +----------------------+   +--------------------+   *\n";
-    cout << "*   |  - Nuoc co ga        |   |  - Quan ao         |   *\n";
-    cout << "*   |  - Nuoc ep trai cay  |   |  - Phu kien        |   *\n";
-    cout << "*   |  - Sua tuoi          |   |  - Giay dep        |   *\n";
-    cout << "*   +----------------------+   +--------------------+   *\n";
-    cout << "*                                                       *\n";
-    cout << "*   +----------------------+   +--------------------+   *\n";
-    cout << "*   |   KHU THUC PHAM      |   | KHU TONG HOP       |   *\n";
-    cout << "*   +----------------------+   +--------------------+   *\n";
-    cout << "*   |  - Thit tuoi         |   |  - Do gia dung     |   *\n";
-    cout << "*   |  - Ca dong lanh      |   |  - Do dien tu      |   *\n";
-    cout << "*   |  - Rau cu tuoi       |   |                    |   *\n";
-    cout << "*   +----------------------+   +--------------------+   *\n";
-    cout << "*                        [CUA RA]                       *\n";
-    cout << "*********************************************************\n";
-
+    cout << "+-------------------------------------------------------+\n";
+    cout << "|                       SIEU THI                        |\n";
+    cout << "+-------------------------------------------------------+\n";
+    cout << "|                                                       |\n";
+    cout << "|   [QUAY THU NGAN]                                     |\n";
+    cout << "|   +----------------------+                            |                  +-------------------------------------+\n";
+    cout << "|   |   KHACH HANG         |                            |                  | Thong tin khach hang:               |\n";
+    cout << "|   |   TINH TIEN          |                            |                  |-------------------------------------|\n";
+    cout << "|   +----------------------+                            |                  | Ten: "  << setw(31) << left << user.getUsername() << "|\n";
+    cout << "|                                                       |                  | So du: "  << setw(26) << left << fixed << setprecision(2) << user.getCredits() << "$  |\n";
+    cout << "|                                                       |                  +-------------------------------------+\n";
+    cout << "|   +----------------------+   +--------------------+   |\n";
+    cout << "|   |    KHU DO UONG       |   | KHU THOI TRANG     |   |\n";
+    cout << "|   +----------------------+   +--------------------+   |\n";
+    cout << "|   |  - Nuoc co ga        |   |  - Quan ao         |   |\n";
+    cout << "|   |  - Nuoc ep trai cay  |   |  - Phu kien        |   |\n";
+    cout << "|   |  - Sua tuoi          |   |  - Giay dep        |   |\n";
+    cout << "|   +----------------------+   +--------------------+   |\n";
+    cout << "|                                                       |\n";
+    cout << "|   +----------------------+   +--------------------+   |\n";
+    cout << "|   |   KHU THUC PHAM      |   | KHU TONG HOP       |   |\n";
+    cout << "|   +----------------------+   +--------------------+   |\n";
+    cout << "|   |  - Thit tuoi         |   |  - Do gia dung     |   |\n";
+    cout << "|   |  - Ca dong lanh      |   |  - Do dien tu      |   |\n";
+    cout << "|   |  - Rau cu tuoi       |   |                    |   |\n";
+    cout << "|   +----------------------+   +--------------------+   |\n";
+    cout << "|                        [CUA RA]                       |\n";
+    cout << "+-------------------------------------------------------+\n";
+    
     }   
 };
