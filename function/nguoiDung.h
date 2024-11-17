@@ -336,12 +336,14 @@ void nhapHang() {
     system("cls");
     while(true){
     cout << "Chon loai san pham muon nhap:\n";
-    cout << "1. Thuc pham\n";
-    cout << "2. Do uong\n";
-    cout << "3. Thoi trang\n";
-    cout << "4. Do gia dung\n";
-    cout << "5. Do dien tu\n";
-    cout << "6. thoat\n";
+    cout << "-----------------------------\n";
+    cout << "| 1. Thuc pham              |\n";
+    cout << "| 2. Do uong                |\n";
+    cout << "| 3. Thoi trang             |\n";
+    cout << "| 4. Do gia dung            |\n";
+    cout << "| 5. Do dien tu             |\n";
+    cout << "| 6. Thoat                  |\n";
+    cout << "-----------------------------\n";
     int luaChonLoai;
     cinInt >> luaChonLoai;
      if (luaChonLoai == 6) { // Nếu người dùng chọn thoát
