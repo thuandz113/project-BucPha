@@ -43,26 +43,7 @@ class UserAccount
             username = newUsername;
         }
 
-        void setPassword(const string& newPassword) {
-            password = newPassword;
-        }
+     
 
-        void setRoles(int newRoles) {
-            roles = newRoles;
-        }
-
-        void setCredits(int newCredits) {
-            credits = newCredits;
-        }
-
-        void setSex(int newSex) {
-            sex = newSex;
-        }
-        void setNumber(const string& newNumber) {
-            number = newNumber;
-        }
-
-        void setAddress(const string& newAddress) {
-            address = newAddress;
-        }
+        
 };
