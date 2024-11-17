@@ -410,14 +410,15 @@ int menuEmployeeManagement(){
 	QLNV qlnv;
 	int choice;
 	do{
-		cout<<"\n--- QUAN LY NHAN VIEN ---\n";
-		cout<<"1. Them nhan vien\n";
-		cout<<"2. Xoa nhan vien\n";
-		cout<<"3. Phan ca lam viec\n";
-		cout<<"4. Cap nhat luong\n";
-		cout<<"5. Tim kiem nhan vien\n";
-		cout<<"6. Hien thi danh sach nhan vien\n";
-		cout<<"7. Thoat\n";
+		cout<<"======== QUAN LY NHAN VIEN ========\n";
+		cout<<"| 1. Them nhan vien               |\n";
+		cout<<"| 2. Xoa nhan vien                |\n";
+		cout<<"| 3. Phan ca lam viec             |\n";
+		cout<<"| 4. Cap nhat luong               |\n";
+		cout<<"| 5. Tim kiem nhan vien           |\n";
+		cout<<"| 6. Hien thi danh sach nhan vien |\n";
+		cout<<"| 7. Thoat                        |\n";
+		cout<<"===================================\n";
 		cout<<"Lua chon: ";
 		cinInt>>choice;
 		switch(choice){
@@ -457,7 +458,7 @@ int menuEmployeeManagement(){
 			case 6:
 				this_thread::sleep_for(chrono::milliseconds(1000));
             	system("cls");
-				cout<<"--------------------------------------------------- DANH SACH NHAN VIEN --------------------------------------------------------\n\n";
+				cout<<"====================================================== DANH SACH NHAN VIEN ====================================================\n\n";
 				qlnv.xuatds();
 				break;
 			case 7:
