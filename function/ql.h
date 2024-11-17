@@ -18,17 +18,7 @@ class UserAccount
             this->sex = sex;
             this->number = number;
             this->address = address;
-        }
-        string getUsername() const { return username; }
-        string getPassword() const { return password; }
-        int getRoles() const { return roles; }
-        int getCredits() const { return credits; }
-        int getSex() const { return sex; }
-        string getNumber() const { return number; }
-        string getAddress() const { return address; }
-        void accountDeposit(int credits)
-        {
-            this->credits += credits;
+        
         }
        
      
