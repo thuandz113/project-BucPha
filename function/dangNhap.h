@@ -238,8 +238,8 @@ int ShowMainMenu(UserAccount user) {
         cout << "| 3. Lich su mua hang.                  |\n";
         cout << "| 4. Doi mat khau.                      |\n";
         cout << "| 5. Dang xuat.                         |\n";
+        if(user.getRoles() == 2) cout << "| 6. Quay lai man hinh quan ly.         |\n";
         cout << "+---------------------------------------+\n";
-        if(user.getRoles() == 2) cout << "6. Quay lai man hinh quan ly.\n";
         int luaChon;
         cout << "Vui long nhap lua chon!: ";
         cinInt >> luaChon;

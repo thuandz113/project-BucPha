@@ -185,11 +185,13 @@ int ShowStaffMenu(UserAccount user)
                 do 
                 {
                     cout << "Chinh sua thong tin cho " << option << endl;
-                    cout << "0. Thoat" << endl;
-                    cout << "1. Sua Gioi tinh" << endl;
-                    cout << "2. Sua dia chi" << endl;
-                    cout << "3. Sua so dien thoai" << endl;
-                    cout << "4. Luu" << endl;
+                    cout << "--------------------------------------\n";
+                    cout << "| 0. Thoat                           |" << endl;
+                    cout << "| 1. Sua Gioi tinh                   |" << endl;
+                    cout << "| 2. Sua dia chi                     |" << endl;
+                    cout << "| 3. Sua so dien thoai               |" << endl;
+                    cout << "| 4. Luu                             |" << endl;
+                    cout << "--------------------------------------\n";
                     cout << "Nhap lua chon cua ban: ";
                     cinInt >> editChoice;
                     bool edit = false;
