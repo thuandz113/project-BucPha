@@ -30,19 +30,7 @@ class UserAccount
         {
             this->credits += credits;
         }
-        void setAttributes(string newUsername, string newPassword, int newRoles, int newCredits, int newSex, string newNumber, string newAddress) {
-            username = newUsername;
-            password = newPassword;
-            roles = newRoles;
-            credits = newCredits;
-            sex = newSex;
-            number = newNumber;
-            address = newAddress;
-        }
-        void setUsername(const string& newUsername) {
-            username = newUsername;
-        }
-
+       
      
 
         
