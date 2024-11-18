@@ -1054,7 +1054,7 @@ void docSanPhamTuFile(const string& tenFile) {
     cout << "|   |   KHACH HANG         |                            |                  | Thong tin khach hang:               |\n";
     cout << "|   |   TINH TIEN          |                            |                  |-------------------------------------|\n";
     cout << "|   +----------------------+                            |                  | Ten: "  << setw(31) << left << user.getUsername() << "|\n";
-    cout << "|                                                       |                  | So du: "  << setw(26) << left << fixed << setprecision(2) << user.getCredits() << "$  |\n";
+    cout << "|                                                       |                  | So du: "  << setw(24) << left << fixed << setprecision(2) << user.getCredits() << "vnd  |\n";
     cout << "|                                                       |                  +-------------------------------------+\n";
     cout << "|   +----------------------+   +--------------------+   |\n";
     cout << "|   |    KHU DO UONG       |   | KHU THOI TRANG     |   |\n";

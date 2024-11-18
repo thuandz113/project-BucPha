@@ -237,54 +237,7 @@ void displayMenu(int width)
     }
 }
 //output function//
-// void displayMenu(int width) 
-// {
-//     system("cls");
-//     string title = "CHAO MUNG DEN VOI SIEU THI UTC2";
-//     string message = "BAN CAN GI";
-    
-//     printBorder(width);
-//     printInBox(title, width);
-//     printBorder(width);
-//     printInBox(message, width);
-//     printBorder(width);
 
-//     string option1 = "1.Dang nhap";
-//     string option2 = "2.Dang ky";
-//     string option3 = "3.Thoat chuong trinh";
-    
-//     printInBox(option1, width);
-//     printInBox(option2, width);
-//     printInBox(option3, width);
-//     printBorder(width);
-    
-//     int choice;
-//     cout << " Vui long nhap trong (1-3): "; 
-//     cout.flush(); 
-//     cinInt >> choice;
-//     while (choice < 1 || choice > 3) 
-// 	{
-//         cout << " Vui long nhap lai trong (1-3): "; 
-//         cout.flush(); 
-//         cinInt >> choice;
-//     }
-
-//     cout << " Ban da chon: " << choice << "" << endl;
-
-//     printBorder(width);
-//     system("cls");
-//     if (choice == 1) 
-//     {
-//         login();
-//     } else if (choice == 2) {
-//         registerAccount();
-//     }
-//     else{
-//         cout<<"Cam on ban da su dung chuong trinh !"<<endl;
-//         cout<<"Hen gap lai ban <3"<<endl;
-//         return;
-//     }
-// }
 int navigateMenu(const vector<string>& options, UserAccount user) {
     int choice = 0;
     QuanLyChucNang qlcn;
