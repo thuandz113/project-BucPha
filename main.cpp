@@ -4,6 +4,6 @@
 
 int main()
 {
-    displayMenu(170);
+    displayMenu(50);
     return 1;
 }

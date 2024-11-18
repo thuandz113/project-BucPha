@@ -32,14 +32,7 @@ public:
 };
 InputStream cinInt;
 
-void printInBox(const string& content, int width) {
-    int padding = (width - 4 - content.size()) / 2;
-    cout << "|" << string(padding, ' ') << content << string(width - 4 - padding - content.size(), ' ') << "  |" << endl;
-}
 
-void printBorder(int width) {
-    cout << "+" << string(width - 2, '-') << "+" << endl;
-}
 void inputPass(string &password) {
     char ch;
     password = "";
@@ -144,4 +137,59 @@ string getCurrentDate()
     int year = 1900 + ltm->tm_year;
 
     return to_string(day) + "/" + to_string(month) + "/" + to_string(year);
+}
+void setColor(int color) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, color);
+}
+void printBorder(int width) 
+{
+    cout << char(218); // Góc trên bên trái
+    for (int i = 0; i < width - 2; i++) 
+        cout << char(196); // Đường ngang
+    cout << char(191) << endl; // Góc trên bên phải
+}
+
+// Hàm vẽ đường viền dưới
+void printBottomBorder(int width) 
+{
+    cout << char(192); // Góc dưới bên trái
+    for (int i = 0; i < width - 2; i++) 
+        cout << char(196); // Đường ngang
+    cout << char(217) << endl; // Góc dưới bên phải
+}
+
+// Hàm in nội dung căn giữa trong khung vừa đủ
+void printInBox(string content, int width, bool highlight = false, int color = 7) 
+{
+    int contentLength = content.length();
+    // Đảm bảo chiều rộng của khung đủ để bao bọc nội dung
+    width = max(contentLength + 2, width); // Chiều rộng tối thiểu là đủ cho nội dung
+    int padding = (width - contentLength - 2) / 2; // Tính khoảng cách bên trái
+
+    // In đường viền bên trái
+    cout << char(179); 
+
+    // Đổi màu khi có highlight
+    if (highlight) 
+        setColor(14); // Màu vàng
+    else 
+        setColor(color); // Màu mặc định
+
+    // In khoảng trắng trước nội dung
+    for (int i = 0; i < padding; i++) 
+        cout << " ";
+
+    // In nội dung
+    cout << content;
+
+    // In khoảng trắng sau nội dung
+    for (int i = 0; i < width - padding - contentLength - 2; i++) 
+        cout << " ";
+
+    // Trả lại màu mặc định
+    setColor(7); 
+
+    // In đường viền bên phải
+    cout << char(179) << endl; 
 }
