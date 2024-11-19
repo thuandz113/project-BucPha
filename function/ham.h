@@ -142,33 +142,30 @@ void setColor(int color) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, color);
 }
-void printBorder(int width) 
-{
-    cout << char(218); // Góc trên bên trái
+void printBorder(int width) {
+    cout << "\t\t\t\t\t\t\t\t" << u8"┌"; // Góc trên bên trái
     for (int i = 0; i < width - 2; i++) 
-        cout << char(196); // Đường ngang
-    cout << char(191) << endl; // Góc trên bên phải
+        cout << u8"─"; // Đường ngang
+    cout << u8"┐" << endl; // Góc trên bên phải
 }
 
 // Hàm vẽ đường viền dưới
-void printBottomBorder(int width) 
-{
-    cout << char(192); // Góc dưới bên trái
+void printBottomBorder(int width) {
+    cout << "\t\t\t\t\t\t\t\t" << u8"└"; // Góc dưới bên trái
     for (int i = 0; i < width - 2; i++) 
-        cout << char(196); // Đường ngang
-    cout << char(217) << endl; // Góc dưới bên phải
+        cout << u8"─"; // Đường ngang
+    cout << u8"┘" << endl; // Góc dưới bên phải
 }
 
 // Hàm in nội dung căn giữa trong khung vừa đủ
-void printInBox(string content, int width, bool highlight = false, int color = 7) 
-{
+void printInBox(string content, int width, bool highlight = false, int color = 7) {
     int contentLength = content.length();
     // Đảm bảo chiều rộng của khung đủ để bao bọc nội dung
     width = max(contentLength + 2, width); // Chiều rộng tối thiểu là đủ cho nội dung
     int padding = (width - contentLength - 2) / 2; // Tính khoảng cách bên trái
 
     // In đường viền bên trái
-    cout << char(179); 
+    cout << "\t\t\t\t\t\t\t\t" << u8"│"; 
 
     // Đổi màu khi có highlight
     if (highlight) 
@@ -191,5 +188,34 @@ void printInBox(string content, int width, bool highlight = false, int color = 7
     setColor(7); 
 
     // In đường viền bên phải
-    cout << char(179) << endl; 
+    cout << u8"│" << endl; 
+}
+
+void showWelcomeArt() {
+    system("cls");
+    SetConsoleOutputCP(CP_UTF8); // Thiết lập mã hóa UTF-8
+    cout<<endl<<endl;
+    // ASCII art
+    const string art[] = {
+        "\t\t\t\t\t ░██████╗░██╗███████╗██╗░░░██╗     ████████╗██╗░░██╗░██╗     ██╗░░░██╗░████████╗░██████░╔███████╗",
+        "\t\t\t\t\t ██╔════╝░██║██╔════╝██║░░░██║     ╚══██╔══╝██║░░██║░██║     ██║░░░██║░╚══██╔══╝██╔═══  ╚═════██╗",
+        "\t\t\t\t\t ╚█████╗░░██║█████╗░░██║░░░██║     ░░░██║░░░███████║░██║     ██║░░░██║░░░░██║░░░██║░░░░░░██████╔╝",
+        "\t\t\t\t\t ░╚═══██╗░██║██╔══╝░░██║░░░██║     ░░░██║░░░██╔══██║░██║     ██║░░░██║░░░░██║░░░██║░░░░░░██╔═══╝ ",
+        "\t\t\t\t\t ██████╔╝░██║███████╗╚██████╔╝     ░░░██║░░░██║░░██║░██║     ╚██████╔╝░░░░██║░░░╚██████ ╔██║░░░  ",
+        "\t\t\t\t\t ╚═════╝░░╚═╝╚══════╝░╚═════╝      ░░░╚═╝░░░╚═╝░░╚═╝░╚═╝      ╚═════╝░░░░░╚═╝░░░╚═════╝ ╚███████ "
+    };
+
+    // Hiển thị từng dòng với hiệu ứng chậm
+    for (const string& line : art) {
+        for (char c : line) {
+            cout << c;
+            Sleep(0.8); // Độ trễ giữa các ký tự (ms)
+        }
+        cout << endl;
+        Sleep(30); // Độ trễ giữa các dòng (ms)
+    }
+
+    // Thông báo
+    cout << "\nBam Enter de bat dau...";
+    cin.ignore(); // Chờ người dùng nhấn Enter
 }

@@ -170,7 +170,7 @@ void registerAccount() {
             file << replaceSpace(userName) << " " << password << " "<< 0 <<" "<< 0<<" "<< sex <<" "<< replaceSpace(number) << " "<< replaceSpace(address)<<endl;
             cout << "Dang ky tai khoan thanh cong!" << endl;
             file.close();
-            displayMenu(120);
+            displayMenu(50);
             break;
         } else {
             cout << "Mat khau khong du manh, vui long thu lai." << endl;
