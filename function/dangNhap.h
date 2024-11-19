@@ -44,7 +44,7 @@ bool checkLogin(ifstream& file, const string& userName, string& password, int& r
             }
         }
     }
-    return false; // Tài khoản không tồn tại
+    return false;
 }
 
 void login() {
@@ -60,9 +60,9 @@ void login() {
     }
 
     bool isLoggedIn = false;
-    for (int count = 0; count < 3; ++count) {
-        cout << "UserName: ";
-        if (count == 0) cin.ignore();
+    for (int count = 0; count < 3; ++count)
+	{
+        setw(12); cout << "UserName: ";
         getline(cin, userName);
 
         file.clear();
@@ -70,7 +70,8 @@ void login() {
         string line;
         getline(file, line);
 
-        if (checkLogin(file, userName, password, roles, credits, sex, number, address)) {
+        if (checkLogin(file, userName, password, roles, credits, sex, number, address))
+		{
             isLoggedIn = true;
             break;
         } else {
@@ -375,20 +376,20 @@ int ShowMainMenu(UserAccount user) {
                 setColor(14); // Vàng
                 cout << "Nhap Password moi: ";
                 setColor(7); // Trắng
-                cin.ignore();
                 string newPassword;
                 getline(cin, newPassword);
                 user.setPassword(newPassword);
                 setColor(10); // Xanh lá
                 cout << "Password da duoc cap nhat.\n";
                 setColor(7); // Trắng
+                
                 updateAccount(user);
                 break;
             }
             case 4: {
                 system("cls");
                 updateAccount(user);
-                displayMenu(120);
+                displayMenu(50);
                 return 0;
             }
             case 5:{
