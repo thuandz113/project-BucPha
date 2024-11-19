@@ -44,7 +44,7 @@ void showList() {
     string username, password, number, address;
 
     // In tiêu đề bảng
-    setColor(10);
+    setColor(11);
     cout << "+---------------+------------------+-------+---------+------+------------+-----------------------+" << endl;
     cout << "| Username      | Password         | Roles | Credits | Sex  |  Number    | Address               |" << endl;
     cout << "+---------------+------------------+-------+---------+------+------------+-----------------------+" << endl;
@@ -154,7 +154,7 @@ int ShowStaffMenu(UserAccount user)
         int choice;
         setColor(14);
         cout << "                      MENU NHAN VIEN\n";
-        setColor(10);
+        setColor(11);
         cout << "========================================================" << endl;
         cout << "| 1. Xem danh sach va chinh sua thong tin khach hang   |" << endl;
         cout << "| 2. Xoa tai khoan khach hang                          |" << endl;
@@ -163,7 +163,9 @@ int ShowStaffMenu(UserAccount user)
         if(user.getRoles() == 2) cout << "| 5. Quay lai man hinh quan ly.                        |" << endl;
         cout << "========================================================" << endl;
         setColor(7);
+        setColor(12);
         cout << "Nhap lua chon cua ban!: ";
+        setColor(7);
         cinInt >> choice;
         switch(choice)
         {
@@ -172,8 +174,10 @@ int ShowStaffMenu(UserAccount user)
                 showList();
                 char luaChon;
                 string option;
+                setColor(12);
                 cout<<"Ban co muon chinh sua khach hang khong?"<<endl;
                 cout<<"Lua chon cua ban(Y/N):";
+                setColor(7);
                 cin >>luaChon;
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 
@@ -181,7 +185,9 @@ int ShowStaffMenu(UserAccount user)
                 UserAccount editUser("Null","Null",0,0,0,"Null","Null");
                 do
                 {
+                    setColor(12);
                     cout<<"Nhap ten tai khoan ban muon chinh sua thong tin:";
+                    setColor(7);
                     getline(cin, option);
                 }
 				while (searchUsername(option, editUser) == false);
@@ -189,7 +195,10 @@ int ShowStaffMenu(UserAccount user)
                 int editChoice;
                 do 
                 {
+                    setColor(12);
                     cout << "Chinh sua thong tin cho " << option << endl;
+                    setColor(7);
+                    setColor(11);
                     cout << "--------------------------------------\n";
                     cout << "| 0. Thoat                           |" << endl;
                     cout << "| 1. Sua Gioi tinh                   |" << endl;
@@ -197,7 +206,10 @@ int ShowStaffMenu(UserAccount user)
                     cout << "| 3. Sua so dien thoai               |" << endl;
                     cout << "| 4. Luu                             |" << endl;
                     cout << "--------------------------------------\n";
+                    setColor(7);
+                    setColor(12);
                     cout << "Nhap lua chon cua ban: ";
+                    setColor(7);
                     cinInt >> editChoice;
                     bool edit = false;
                     switch (editChoice) 
@@ -205,30 +217,42 @@ int ShowStaffMenu(UserAccount user)
                         case 1:
                         {
                             int newSex;
+                            setColor(12);
                             cout << "Nhap Gioi tinh (1: Nam, 2: Nu): ";
+                            setColor(7);
                             cinInt >> newSex;
                             editUser.setSex(newSex);
-                            cout << "Gioi tinh da duoc cap nhat." << endl;
+                            setColor(12);
+                            cout << "Gioi tinh da duoc cap nhat!" << endl;
+                            setColor(7);
                             break;
                         }
                         case 2:
                         {
                             string newAddress;
+                            setColor(12);
                             cout << "Nhap Dia chi moi: ";
+                            setColor(7);
                             cin.ignore();
                             getline(cin, newAddress);
                             editUser.setAddress(newAddress);
-                            cout << "Dia chi da duoc cap nhat." << endl;
+                            setColor(12);
+                            cout << "Dia chi da duoc cap nhat!" << endl;
+                            setColor(7);
                             break;
                         }
                         case 3:
                         {
                             string newNum;
+                            setColor(12);
                             cout << "Nhap so dien thoai moi: ";
+                            setColor(7);
                             cin.ignore();
                             getline(cin, newNum);
                             editUser.setNumber(newNum);
-                            cout << "So dien thoai da duoc cap nhat." << endl;
+                            setColor(12);
+                            cout << "So dien thoai da duoc cap nhat!" << endl;
+                            setColor(7);
                             break;
                         }
                         case 4:
@@ -244,16 +268,22 @@ int ShowStaffMenu(UserAccount user)
             case 2: {
                 showList();
                 string userDelete;
-                cout << "Nhap ten tai khoan khach hang muon xoa(bo trong de huy): ";
+                setColor(12);
+                cout << "Nhap ten tai khoan khach hang muon xoa (bo trong de huy): ";
+                setColor(7);
                 cin.ignore();
                 getline(cin, userDelete);
                 if(userDelete == "") break;
                 if (deleteAccount(userDelete, user.getUsername())) {
+                    setColor(12);
                     cout << "Tai khoan da duoc xoa thanh cong." << endl;
+                    setColor(7);
                 } 
                 else 
                 {
+                    setColor(12);
                     cout << "Khong tim thay tai khoan!" << endl;
+                    setColor(7);
                 }
 
                 break;
@@ -262,7 +292,9 @@ int ShowStaffMenu(UserAccount user)
             {
                 showList();
                 string userName;
-                cout << "Nhap ten tai khoan khach hang muon xem hoa don(bo trong de huy): ";
+                setColor(12);
+                cout << "Nhap ten tai khoan khach hang muon xem hoa don (bo trong de huy): ";
+                setColor(7);
                 cin.ignore();
                 getline(cin, userName);
                 if(userName == "") break;
@@ -272,7 +304,9 @@ int ShowStaffMenu(UserAccount user)
                     ifstream file(fileName);
 
                     if (!file.is_open()) {
+                        setColor(12);
                         cout << "Khong co thong tin!" << endl;
+                        setColor(7);
                         break;
                     }
 
@@ -280,15 +314,20 @@ int ShowStaffMenu(UserAccount user)
                     file.seekg(0, ios::end); // Di chuyển con trỏ đến cuối file
                     if (file.tellg() == 0) 
                     {
+                        setColor(12);
                         cout << "Trang thong tin!" << endl;
+                        setColor(7);
                         file.close();
                         // Xóa file trống
                         if (remove(fileName.c_str()) != 0) {
+                            setColor(12);
                             cout << "Xoa that bai!" << endl;
+                            setColor(7);
                         }
                         break;
                     }
                     file.seekg(0, ios::beg);
+                    setColor(11);
                     cout << "=======================================================================\n";
                     cout << "| " << left << setw(15) << "Ten mon"
                          << "| " << setw(10) << "Gia"
@@ -312,11 +351,14 @@ int ShowStaffMenu(UserAccount user)
                              << "| " << Date << " |\n";
                     }
                     cout << "========================================================================\n";
+                    setColor(7);
                     file.close();
                 }
                 else 
                 {
+                    setColor(12);
                     cout << "Khong tim thay tai khoan!" << endl;
+                    setColor(7);
                 }
                 break;
             }
@@ -332,7 +374,9 @@ int ShowStaffMenu(UserAccount user)
         		ShowManageMenu(user);
 			}
         }
+        setColor(12);
         cout << "Ban co muon tiep tuc? (y/n): ";
+        setColor(7);
         cin >> tiepTuc;
         system("cls");
     }

@@ -21,7 +21,9 @@ public:
             cin >> value;
             if (cin.fail()) 
 			{
+                setColor(12);
 				cout<<"\nBan vua nhap chu thay vi nhap so, hay nhap lai:";
+                setColor(7);
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
             } 
