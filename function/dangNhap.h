@@ -8,6 +8,7 @@
 #include <conio.h> // Dùng cho _getch() trên Windows
 #include <windows.h>
 
+
 #include "nguoiDung.h"
 #include "nhanVien.h"
 #include "quanLy.h"
@@ -230,7 +231,11 @@ void registerAccount() {
 void displayMenu(int width) 
 {
     system("cls");
-
+	
+    cout<<"Nhan phim bat ky de tiep tuc...";
+    cin.ignore();
+    
+	 
     string title = "CHAO MUNG DEN VOI SIEU THI UTC2";
     vector<string> options = {
         "Dang nhap",
@@ -410,7 +415,7 @@ int ShowMainMenu(UserAccount user) {
 
                     iss >> itemName >> price >> quantity >> total >> Date;
 
-                    cout << "| " << left << setw(15) << itemName
+                    cout << "| " << left << setw(15) << replaceUnderscore(itemName)
                          << "| " << setw(10) << price
                          << "| " << setw(10) << quantity
                          << "| " << setw(15) << total

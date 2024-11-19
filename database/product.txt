@@ -1,7 +1,7 @@
 DoUong,Coca,10,0
 ThoiTrang,Nike,20,0
-ThucPham,Ga Ran,10000,79
-ThucPham,Ca,10000,16
+ThucPham,Ga Ran,10000,31
+ThucPham,Ca,10000,0
 DoUong,Pepsi,15,0
 DoUong,Tra Sua,25,0
 DoUong,Nuoc Cam,12,0
@@ -19,7 +19,7 @@ DoGiaDung,Tu Lanh,5000,25
 DoGiaDung,Quat Dien,1000,15
 DoGiaDung,May Say Toc,800,10
 DoGiaDung,Ban Ui,600,8
-DoDienTu,Dien Thoai,10000,48
+DoDienTu,Dien Thoai,10000,8
 DoDienTu,Tivi,8000,40
 DoDienTu,Laptop,12000,50
 DoDienTu,Tablet,7000,35
