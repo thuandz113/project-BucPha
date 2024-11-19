@@ -219,3 +219,6 @@ void showWelcomeArt() {
     cout << "\nBam Enter de bat dau...";
     cin.ignore(); // Chờ người dùng nhấn Enter
 }
+void ResetColor() {
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+}

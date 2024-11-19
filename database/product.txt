@@ -1,6 +1,6 @@
 DoUong,Coca,10,0
 ThoiTrang,Nike,20,0
-ThucPham,Ga Ran,10000,83
+ThucPham,Ga Ran,10000,79
 ThucPham,Ca,10000,16
 DoUong,Pepsi,15,0
 DoUong,Tra Sua,25,0
@@ -24,100 +24,3 @@ DoDienTu,Tivi,8000,40
 DoDienTu,Laptop,12000,50
 DoDienTu,Tablet,7000,35
 DoDienTu,TaiNghe,1500,20
-ThucPham,Ga ta,1000,40
-ThoiTrang,Quankaki,50000,100
-ThucPham,Ca kho,10,220
-ThucPham,ca tuoi,255555,2
-DoUong,Coca,10,0
-ThoiTrang,Nike,20,0
-ThucPham,Ga Ran,10000,83
-ThucPham,Ca,10000,13
-DoUong,Pepsi,15,0
-DoUong,Tra Sua,25,0
-DoUong,Nuoc Cam,12,0
-DoUong,Ca Phe,30,0
-ThoiTrang,Adidas,18,11
-ThoiTrang,Puma,22,12
-ThoiTrang,Gucci,35,20
-ThoiTrang,Lv,50,25
-ThucPham,Pizza,8000,0
-ThucPham,Hamburger,9000,71
-ThucPham,Xoi Ga,5000,60
-ThucPham,Banh Mi,6000,62
-DoGiaDung,May Giat,3000,10
-DoGiaDung,Tu Lanh,5000,25
-DoGiaDung,Quat Dien,1000,15
-DoGiaDung,May Say Toc,800,10
-DoGiaDung,Ban Ui,600,8
-DoDienTu,Dien Thoai,10000,48
-DoDienTu,Tivi,8000,40
-DoDienTu,Laptop,12000,50
-DoDienTu,Tablet,7000,35
-DoDienTu,TaiNghe,1500,20
-ThucPham,Ga ta,1000,40
-ThoiTrang,Quankaki,50000,100
-ThucPham,Ca kho,10,220
-ThucPham,ca tuoi,255555,2
-ThoiTrang,sip,10000,4
-DoUong,Coca,10,0
-ThoiTrang,Nike,20,0
-ThucPham,Ga Ran,10000,83
-ThucPham,Ca,10000,13
-DoUong,Pepsi,15,0
-DoUong,Tra Sua,25,0
-DoUong,Nuoc Cam,12,0
-DoUong,Ca Phe,30,0
-ThoiTrang,Adidas,18,11
-ThoiTrang,Puma,22,12
-ThoiTrang,Gucci,35,20
-ThoiTrang,Lv,50,25
-ThucPham,Pizza,8000,0
-ThucPham,Hamburger,9000,71
-ThucPham,Xoi Ga,5000,60
-ThucPham,Banh Mi,6000,62
-DoGiaDung,May Giat,3000,10
-DoGiaDung,Tu Lanh,5000,25
-DoGiaDung,Quat Dien,1000,15
-DoGiaDung,May Say Toc,800,10
-DoGiaDung,Ban Ui,600,8
-DoDienTu,Dien Thoai,10000,48
-DoDienTu,Tivi,8000,40
-DoDienTu,Laptop,12000,50
-DoDienTu,Tablet,7000,35
-DoDienTu,TaiNghe,1500,20
-ThucPham,Ga ta,1000,40
-ThoiTrang,Quankaki,50000,100
-ThucPham,Ca kho,10,220
-ThucPham,ca tuoi,255555,2
-DoUong,Coca,10,0
-ThoiTrang,Nike,20,0
-ThucPham,Ga Ran,10000,83
-ThucPham,Ca,10000,13
-DoUong,Pepsi,15,0
-DoUong,Tra Sua,25,0
-DoUong,Nuoc Cam,12,0
-DoUong,Ca Phe,30,0
-ThoiTrang,Adidas,18,11
-ThoiTrang,Puma,22,12
-ThoiTrang,Gucci,35,20
-ThoiTrang,Lv,50,25
-ThucPham,Pizza,8000,0
-ThucPham,Hamburger,9000,71
-ThucPham,Xoi Ga,5000,60
-ThucPham,Banh Mi,6000,62
-DoGiaDung,May Giat,3000,10
-DoGiaDung,Tu Lanh,5000,25
-DoGiaDung,Quat Dien,1000,15
-DoGiaDung,May Say Toc,800,10
-DoGiaDung,Ban Ui,600,8
-DoDienTu,Dien Thoai,10000,48
-DoDienTu,Tivi,8000,40
-DoDienTu,Laptop,12000,50
-DoDienTu,Tablet,7000,35
-DoDienTu,TaiNghe,1500,20
-ThucPham,Ga ta,1000,40
-ThoiTrang,Quankaki,50000,100
-ThucPham,Ca kho,10,220
-ThucPham,ca tuoi,255555,2
-ThoiTrang,sip,10000,4
-ThucPham,0,1,2
