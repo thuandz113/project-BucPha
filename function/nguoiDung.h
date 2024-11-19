@@ -327,7 +327,7 @@ void thanhToan(std::vector<int>& luaChonSanPham, std::vector<int>& soLuongMua, U
     cout << "================================================================================\n";
     cout<<  "|                                   HOA DON                                    |\n";
     cout << "================================================================================\n";
-    ResetColor();
+    setColor(7);
 
     // In thông tin hóa đơn
     setColor(15); // Màu trắng cho phần thông tin sản phẩm
@@ -336,7 +336,7 @@ void thanhToan(std::vector<int>& luaChonSanPham, std::vector<int>& soLuongMua, U
          << "| " << setw(15) << "Gia (VND)" 
          << "| " << setw(15) << "Thanh Tien (VND)" << "|\n";
     cout << "================================================================================\n";
-    ResetColor();
+    setColor(7);
 
     // Hiển thị danh sách sản phẩm đã mua
     for (size_t i = 0; i < luaChonSanPham.size(); ++i) {
@@ -354,12 +354,12 @@ void thanhToan(std::vector<int>& luaChonSanPham, std::vector<int>& soLuongMua, U
     }
 
     cout << "================================================================================\n";
-    ResetColor();
+    setColor(7);
 
     // In tổng tiền
     setColor(10); // Màu xanh lá cho tổng tiền
     cout << "Tong so tien can thanh toan: " << tongTien << " VND" << endl;
-    ResetColor();
+    setColor(7);
 
     char luaChon;
     cout << "Ban co muon thanh toan khong? (y/n): ";
@@ -372,7 +372,7 @@ void thanhToan(std::vector<int>& luaChonSanPham, std::vector<int>& soLuongMua, U
             if (!fileHoaDon.is_open()) {
                 setColor(12); // Màu đỏ cho thông báo lỗi
                 cout << "Khong the mo file hoa don!" << endl;
-                ResetColor();
+                setColor(7);
                 return;
             }
             for (size_t i = 0; i < luaChonSanPham.size(); ++i) {
@@ -386,7 +386,7 @@ void thanhToan(std::vector<int>& luaChonSanPham, std::vector<int>& soLuongMua, U
 
             setColor(10); // Màu xanh lá cho thông báo thành công
             cout << "Thanh toan thanh cong! Cam on ban!" << endl;
-            ResetColor();
+            setColor(7);
 
             user.accountDeposit(-tongTien);
             luuSanPhamVaoFile("database/product.txt"); // Cập nhật file sản phẩm
@@ -396,7 +396,7 @@ void thanhToan(std::vector<int>& luaChonSanPham, std::vector<int>& soLuongMua, U
             double soTienThieu = tongTien - user.getCredits(); // Tính số tiền thiếu
             setColor(12); // Màu đỏ cho thông báo thiếu tiền
             cout << "Ban khong du " << tongTien << "$ de thanh toan, tong tien cua ban: " << user.getCredits() << "$." << endl;
-            ResetColor();
+            setColor(7);
 
             // Hỏi người dùng có muốn nạp tiền đủ để thanh toán không
             char luaChonNap;
@@ -410,7 +410,7 @@ void thanhToan(std::vector<int>& luaChonSanPham, std::vector<int>& soLuongMua, U
                 user.accountDeposit(soTienThieu); // Nạp tiền vào tài khoản người dùng
                 setColor(10); // Màu xanh lá cho thông báo thành công
                 cout << "Nap thanh cong: " << soTienThieu << "$.\n";
-                ResetColor();
+                setColor(7);
 
                 // Sau khi nạp tiền, tiếp tục thanh toán lại
                 if (user.getCredits() >= tongTien) {
@@ -428,7 +428,7 @@ void thanhToan(std::vector<int>& luaChonSanPham, std::vector<int>& soLuongMua, U
     } else {
         setColor(14); // Màu vàng cho thông báo hủy
         cout << "Huy thanh toan!" << endl;
-        ResetColor();
+        setColor(7);
         cart.clear(); // Xóa giỏ hàng
         quantities.clear(); // Xóa số lượng
     }
@@ -739,7 +739,7 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
     cout << "==================================================================\n";
     cout << "| STT | Ten san pham                   | So luong | Gia (VND)    |\n";
     cout << "==================================================================\n";
-    ResetColor();
+    setColor(7);
 
     for (size_t i = 0; i < danhSachSanPham.size(); ++i) {
         if (((loai == THUC_PHAM && dynamic_cast<ThucPham*>(danhSachSanPham[i])) ||
@@ -753,7 +753,7 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
             cout << setw(30) << left << danhSachSanPham[i]->getTen() << " | ";
             cout << setw(8) << left << danhSachSanPham[i]->getSoLuong() << " | ";
             cout << setw(12) << left << danhSachSanPham[i]->getGia() << " |\n";
-            ResetColor();
+            setColor(7);
             
             danhSachHienThi.push_back(i);
             found = true;
@@ -764,7 +764,7 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
     if (!found) {
         setColor(12); // Màu đỏ cho thông báo không có sản phẩm
         cout << "Khong co san pham nao trong kho.\n";
-        ResetColor();
+        setColor(7);
     }
 
     // Lặp để người dùng mua nhiều sản phẩm
@@ -772,7 +772,7 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
         int luaChon;
         setColor(14); // Màu vàng cho yêu cầu chọn sản phẩm
         cout << "\nChon san pham muon mua (nhap so tuong ung, hoac 0 de dung mua): ";
-        ResetColor();
+        setColor(7);
         cin >> luaChon;
 
         if (luaChon == 0) {
@@ -783,13 +783,13 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
             int soLuong;
             setColor(10); // Màu xanh lá cho yêu cầu nhập số lượng
             cout << "Nhap so luong muon mua: ";
-            ResetColor();
+            setColor(7);
             cin >> soLuong;
 
             if (soLuong <= 0) {
                 setColor(12); // Màu đỏ cho thông báo sai số lượng
                 cout << "So luong phai lon hon 0.\n";
-                ResetColor();
+                setColor(7);
             } else {
                 int indexSanPham = danhSachHienThi[luaChon - 1];
 
@@ -801,14 +801,14 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
                     quantities[indexInCart] += soLuong;
                     setColor(10); // Màu xanh lá cho thông báo thêm sản phẩm vào giỏ
                     cout << "Da them " << soLuong << " " << danhSachSanPham[indexSanPham]->getTen() << " vao gio hang.\n";
-                    ResetColor();
+                    setColor(7);
                 } else {
                     // Nếu chưa có, thêm vào giỏ hàng
                     cart.push_back(indexSanPham);
                     quantities.push_back(soLuong);
                     setColor(10); // Màu xanh lá cho thông báo thêm sản phẩm vào giỏ
                     cout << "Da them " << soLuong << " " << danhSachSanPham[indexSanPham]->getTen() << " vao gio hang.\n";
-                    ResetColor();
+                    setColor(7);
                 }
 
                 // Giảm số lượng sản phẩm trong kho
@@ -817,7 +817,7 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
         } else {
             setColor(12); // Màu đỏ cho thông báo sai lựa chọn
             cout << "Lua chon khong hop le.\n";
-            ResetColor();
+            setColor(7);
         }
     }
 
@@ -827,25 +827,25 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
         system("cls");
         setColor(11); // Màu xanh sáng cho thông báo sản phẩm đã chọn
         cout << "\nBan da chon mua cac san pham sau:\n";
-        ResetColor();
+        setColor(7);
         for (size_t i = 0; i < cart.size(); ++i) {
             int index = cart[i];
             setColor(15); // Màu trắng cho danh sách sản phẩm trong giỏ
             cout << "- " << danhSachSanPham[index]->getTen() << ": " << quantities[i] 
                  << " thanh tien: "<< fixed << setprecision(1) << quantities[i] * danhSachSanPham[index]->getGia() << " VND" << endl;
-            ResetColor();
+            setColor(7);
         }
         
         int luaChonTiep;
         setColor(14); // Màu vàng cho lựa chọn tiếp theo
         cout << "\n1. Toi quay thanh toan\n2. Toi quay khac de tiep tuc mua sam\nLua chon cua ban: ";
-        ResetColor();
+        setColor(7);
         cin >> luaChonTiep;
 
         if (luaChonTiep == 1) {
             setColor(10); // Màu xanh lá cho thông báo thanh toán
             cout << "Dang di toi quay thanh toan...\n";
-            ResetColor();
+            setColor(7);
             system("cls");
 
             // Thực hiện thanh toán, và giảm số lượng trong kho
@@ -859,19 +859,19 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
         } else if (luaChonTiep == 2) {
             setColor(15); // Màu trắng cho thông báo quay lại
             cout << "Dang di toi quay khac...\n";
-            ResetColor();
+            setColor(7);
             this_thread::sleep_for(chrono::milliseconds(500));
             system("cls");
             chonQuayKhac(user);
         } else {
             setColor(12); // Màu đỏ cho thông báo sai lựa chọn
             cout << "Lua chon khong hop le.\n";
-            ResetColor();
+            setColor(7);
         }
     } else {
         setColor(12); // Màu đỏ cho thông báo giỏ hàng trống
         cout << "Ban chua mua san pham nao.\n";
-        ResetColor();
+        setColor(7);
     }
 }
 
