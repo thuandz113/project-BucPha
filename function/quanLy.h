@@ -14,22 +14,18 @@
 using namespace std;
 int ShowMainMenu(UserAccount user);
 void drawHeader() {
-    setColor(12); // Màu đỏ cho tiêu đề
-    cout << "  ╔══════════════════════════════════════════════════════╗" << endl;
-    cout << "  ║                    ★ MENU QUẢN LÝ ★                 ║" << endl;
-    cout << "  ╚══════════════════════════════════════════════════════╝" << endl;
+
+    cout << " ╔══════════════════════════════════════════════════════╗" << endl;
+    cout << " ║                    ";
+    setColor(11);
+    cout<<"★ MENU QUẢN LÝ ★";
+    setColor(7);
+    cout<<"                  ║" << endl;
+    cout << " ╠══════════════════════════════════════════════════════╣" ;
 }
 
 // Hàm vẽ khung menu
-void drawMenuFrame() {
-    setColor(9); // Màu xanh cho khung menu
-    cout << " ╔══════════════════════════════════════════════════════╗" << endl;
-    cout << " ║                                                      ║" << endl;
-    cout << " ║                                                      ║" << endl;
-    cout << " ║                                                      ║" << endl;
-    cout << " ║                                                      ║" << endl;
-    cout << " ╚══════════════════════════════════════════════════════╝" << endl;
-}
+
 
 // Hàm vẽ các mục trong menu
 void drawMenuOptions(int choice) {
@@ -44,13 +40,45 @@ void drawMenuOptions(int choice) {
     };
 
     for (int i = 0; i < 6; i++) {
+        // Nếu đang ở mục chọn hiện tại, đổi màu
         if (i == choice) {
-            setColor(14); // Màu vàng cho mục được chọn
-            cout << "     > " << options[i] << " <" << endl; // Dấu > < để tạo sự chú ý
+            cout << " ║";
+            setColor(14);  // Màu vàng cho mục được chọn
+            cout << " * ";  // Dấu * để đánh dấu mục chọn
         } else {
-            setColor(7); // Màu trắng cho các mục không được chọn
-            cout << "       " << options[i] << endl;
+            setColor(7);  // Màu trắng cho các lựa chọn khác
+            cout << " ║   ";  // Khoảng trống cho mục không chọn
         }
+
+        // In tên lựa chọn với việc căn chỉnh cho đẹp
+        switch (i) {
+            case 0: cout << "Nhap hang                                          ";
+                    setColor(7);
+                    cout << "║";
+                    break;
+            case 1: cout << "Xoa hang                                           ";
+                    setColor(7);
+                    cout << "║";
+                    break;
+            case 2: cout << "Cap nhat danh sach nhan vien                       ";
+                    setColor(7);
+                    cout << "║";
+                    break;
+            case 3: cout << "Giao dien nhan vien                                ";
+                    setColor(7);
+                    cout << "║";
+                    break;
+            case 4: cout << "Giao dien nguoi dung                               ";
+                    setColor(7);
+                    cout << "║";
+                    break;
+            case 5: cout << "Dang xuat                                          ";
+                    setColor(7);
+                    cout << "║";
+                    break;
+        }
+
+        cout << endl;
     }
 }
 
@@ -67,8 +95,7 @@ int ShowManageMenu(UserAccount user) {
         // Vẽ tiêu đề và khung
         drawHeader();
         cout << endl;  // Thêm khoảng trắng giữa tiêu đề và menu
-        drawMenuFrame();
-        cout << endl;  // Thêm khoảng trắng giữa khung và các lựa chọn
+
 
         // Vẽ các mục trong menu
         drawMenuOptions(choice);

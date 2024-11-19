@@ -24,3 +24,5 @@ DoDienTu,Tivi,8000,40
 DoDienTu,Laptop,12000,50
 DoDienTu,Tablet,7000,35
 DoDienTu,TaiNghe,1500,20
+ThucPham,ca cha,10,0
+ThucPham,kho ga,10,0

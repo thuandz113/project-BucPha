@@ -157,6 +157,93 @@ bool deleteAccount(const string& usernameToDelete, const string& staffName) {
 
     return accountFound;
 }
+void handleViewAndEditCustomer() {
+    showList();
+    char luaChon;
+    string option;
+    setColor(14);
+    cout << "Ban co muon chinh sua khach hang khong?" << endl;
+    setColor(7);
+    cout << "Lua chon cua ban(Y(y)/khac):";
+    cin >> luaChon;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    if (luaChon != 'y' && luaChon != 'Y') return;
+
+    UserAccount editUser("Null", "Null", 0, 0, 0, "Null", "Null");
+    do {
+        system("cls");
+        setColor(14);
+        cout << "Nhap ten tai khoan ban muon chinh sua thong tin:";
+        setColor(7);
+        getline(cin, option);
+    } while (searchUsername(option, editUser) == false);
+
+    int editChoice;
+    do {
+        setColor(12);
+        cout << "Chinh sua thong tin cho " << option << endl;
+        setColor(7);
+        setColor(11);
+        cout << "--------------------------------------\n";
+        cout << "| 0. Thoat                           |" << endl;
+        cout << "| 1. Sua Gioi tinh                   |" << endl;
+        cout << "| 2. Sua dia chi                     |" << endl;
+        cout << "| 3. Sua so dien thoai               |" << endl;
+        cout << "| 4. Luu                             |" << endl;
+        cout << "--------------------------------------\n";
+        setColor(7);
+        setColor(12);
+        cout << "Nhap lua chon cua ban: ";
+        setColor(7);
+        cinInt >> editChoice;
+
+        switch (editChoice) {
+            case 1: {
+                int newSex;
+                setColor(12);
+                cout << "Nhap Gioi tinh (1: Nam, 2: Nu): ";
+                setColor(7);
+                cinInt >> newSex;
+                editUser.setSex(newSex);
+                setColor(12);
+                cout << "Gioi tinh da duoc cap nhat!" << endl;
+                setColor(7);
+                break;
+            }
+            case 2: {
+                string newAddress;
+                setColor(12);
+                cout << "Nhap Dia chi moi: ";
+                setColor(7);
+                cin.ignore();
+                getline(cin, newAddress);
+                editUser.setAddress(newAddress);
+                setColor(12);
+                cout << "Dia chi da duoc cap nhat!" << endl;
+                setColor(7);
+                break;
+            }
+            case 3: {
+                string newNum;
+                setColor(12);
+                cout << "Nhap so dien thoai moi: ";
+                setColor(7);
+                cin.ignore();
+                getline(cin, newNum);
+                editUser.setNumber(newNum);
+                setColor(12);
+                cout << "So dien thoai da duoc cap nhat!" << endl;
+                setColor(7);
+                break;
+            }
+            case 4: {
+                updateAccount(editUser);
+                break;
+            }
+        }
+    } while (editChoice != 6 && editChoice != 0);
+}
+
 
 
 int ShowStaffMenu(UserAccount user)
@@ -185,99 +272,8 @@ int ShowStaffMenu(UserAccount user)
         {
             case 1:
             {
-                showList();
-                char luaChon;
-                string option;
-                setColor(12);
-                cout<<"Ban co muon chinh sua khach hang khong?"<<endl;
-                cout<<"Lua chon cua ban(Y/N):";
-                setColor(7);
-                cin >>luaChon;
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                
-                if(luaChon != 'y' && luaChon != 'Y') break;
-                UserAccount editUser("Null","Null",0,0,0,"Null","Null");
-                do
-                {
-                    setColor(12);
-                    cout<<"Nhap ten tai khoan ban muon chinh sua thong tin:";
-                    setColor(7);
-                    getline(cin, option);
-                }
-				while (searchUsername(option, editUser) == false);
-				
-                int editChoice;
-                do 
-                {
-                    setColor(12);
-                    cout << "Chinh sua thong tin cho " << option << endl;
-                    setColor(7);
-                    setColor(11);
-                    cout << "--------------------------------------\n";
-                    cout << "| 0. Thoat                           |" << endl;
-                    cout << "| 1. Sua Gioi tinh                   |" << endl;
-                    cout << "| 2. Sua dia chi                     |" << endl;
-                    cout << "| 3. Sua so dien thoai               |" << endl;
-                    cout << "| 4. Luu                             |" << endl;
-                    cout << "--------------------------------------\n";
-                    setColor(7);
-                    setColor(12);
-                    cout << "Nhap lua chon cua ban: ";
-                    setColor(7);
-                    cinInt >> editChoice;
-                    bool edit = false;
-                    switch (editChoice) 
-                    {
-                        case 1:
-                        {
-                            int newSex;
-                            setColor(12);
-                            cout << "Nhap Gioi tinh (1: Nam, 2: Nu): ";
-                            setColor(7);
-                            cinInt >> newSex;
-                            editUser.setSex(newSex);
-                            setColor(12);
-                            cout << "Gioi tinh da duoc cap nhat!" << endl;
-                            setColor(7);
-                            break;
-                        }
-                        case 2:
-                        {
-                            string newAddress;
-                            setColor(12);
-                            cout << "Nhap Dia chi moi: ";
-                            setColor(7);
-                            cin.ignore();
-                            getline(cin, newAddress);
-                            editUser.setAddress(newAddress);
-                            setColor(12);
-                            cout << "Dia chi da duoc cap nhat!" << endl;
-                            setColor(7);
-                            break;
-                        }
-                        case 3:
-                        {
-                            string newNum;
-                            setColor(12);
-                            cout << "Nhap so dien thoai moi: ";
-                            setColor(7);
-                            cin.ignore();
-                            getline(cin, newNum);
-                            editUser.setNumber(newNum);
-                            setColor(12);
-                            cout << "So dien thoai da duoc cap nhat!" << endl;
-                            setColor(7);
-                            break;
-                        }
-                        case 4:
-                        {
-                            updateAccount(editUser);
-                            break;
-                        }
-                    }
-                } 
-                while (editChoice != 6 && editChoice != 0);
-                break;
+                 handleViewAndEditCustomer();
+                 break;
             }
             case 2: {
                 showList();

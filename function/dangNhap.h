@@ -272,20 +272,20 @@ int navigateMenu(const vector<string>& options, UserAccount user) {
     while (true) {
         system("cls");
         qlcn.veSieuThi(user);
-        cout << "┌──────────────────────────────────────────┐\n";
+        cout << "┌───────────────────────────────────────────────────────┐\n";
         cout << "│       ";
         setColor(9); // Màu xanh dương cho chữ
-        cout << "CHAO MUNG DEN HE THONG QUAN LY";
+        cout << "      CHAO MUNG DEN HE THONG QUAN LY";
         setColor(7); // Màu trắng
-        cout << "     │\n";
+        cout << "            │\n";
 
         cout << "│                 ";
         setColor(9); // Màu xanh dương cho chữ
-        cout << "SIEU THI";
+        cout << "      SIEU THI";
         setColor(7); // Màu trắng
-        cout << "                 │\n";
+        cout << "                        │\n";
 
-        cout << "└──────────────────────────────────────────┘\n";
+        cout << "└───────────────────────────────────────────────────────┘\n";
         // Hiển thị các mục trong menu
         for (size_t i = 0; i < options.size(); ++i) {
         if (i == choice) {

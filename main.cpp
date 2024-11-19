@@ -5,7 +5,8 @@
 
 int main()
 {
-    showWelcomeArt();
+    SetConsoleOutputCP(CP_UTF8);
+    // showWelcomeArt();
     displayMenu(50);
     return 1;
 }

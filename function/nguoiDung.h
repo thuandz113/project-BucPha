@@ -411,63 +411,89 @@ void thanhToan(std::vector<int>& luaChonSanPham, std::vector<int>& soLuongMua, U
 
 
 void nhapHang() {
-    // Đọc danh sách sản phẩm từ file trước
     docSanPhamTuFile("database/product.txt");
+    // Đọc danh sách sản phẩm từ file trước
+    int luaChonLoai = 1;  // Lựa chọn mặc định
+    bool keyPress = false;
+
+    while (true) {
+        system("cls");
+
+        // Hiển thị menu với màu sắc
+        cout << "=============================\n";
+        for (int i = 1; i <= 6; ++i) {
+            // Nếu đang ở mục chọn hiện tại, đổi màu
+            if (i == luaChonLoai) {
+
+                cout << "|";
+                setColor(14);
+                cout <<" * ";
+            } else {
+                setColor(7); // Màu trắng cho các lựa chọn khác
+                cout << "|   ";
+            }
+
+            // In tên lựa chọn
+            switch (i) {
+                case 1: cout << "Thuc pham               ";
+                        setColor(7);
+                        cout<<"|";
+                        break;
+                case 2: cout << "Do uong                 ";
+                        setColor(7);
+                        cout<<"|";
+                        break;
+                case 3: cout << "Thoi trang              ";
+                        setColor(7);
+                        cout<<"|";
+                        break;
+                case 4: cout << "Do gia dung             ";
+                        setColor(7);
+                        cout<<"|";
+                        break;
+                case 5: cout << "Do dien tu              ";
+                        setColor(7);
+                        cout<<"|";
+                        break;
+                case 6: cout << "Thoat                   ";
+                        setColor(7);
+                        cout<<"|";
+                        break;
+            }
+
+            cout << endl;
+        }
+        setColor(7);
+        cout << "=============================\n";
+        cout << "Chon loai san pham muon nhap (Sử dụng mũi tên lên/xuống để di chuyển và Enter để chọn):";
+
+        // Đọc phím người dùng
+        int key = _getch();
+
+        // Xử lý mũi tên
+        if (key == 224) {  // Phím mũi tên
+            key = _getch(); // Đọc mã phím mũi tên
+            if (key == 72 && luaChonLoai > 1) {  // Mũi tên lên
+                luaChonLoai--;
+            } else if (key == 80 && luaChonLoai < 6) {  // Mũi tên xuống
+                luaChonLoai++;
+            }
+        } else if (key == 13) {  // Enter
+            break;  // Chọn lựa chọn hiện tại
+        }
+    }
+
+    // Sau khi chọn xong, chuyển đến mục tương ứng
     this_thread::sleep_for(chrono::milliseconds(500));
     system("cls");
-    while(true){
-    setColor(12);
-    cout << "Chon loai san pham muon nhap:\n";
-    setColor(7);
-    setColor(11);
-    cout << "-----------------------------\n";
-    cout << "| 1. Thuc pham              |\n";
-    cout << "| 2. Do uong                |\n";
-    cout << "| 3. Thoi trang             |\n";
-    cout << "| 4. Do gia dung            |\n";
-    cout << "| 5. Do dien tu             |\n";
-    cout << "| 6. Thoat                  |\n";
-    cout << "-----------------------------\n";
-    setColor(7);
-    int luaChonLoai;
-    cinInt >> luaChonLoai;
-     if (luaChonLoai == 6) { // Nếu người dùng chọn thoát
-            setColor(12);
-            cout << "Da thoat khoi chuc nang nhap hang.\n";
-            setColor(7);
-            break; // Thoát khỏi vòng lặp
-        }
-        while (luaChonLoai < 1 || luaChonLoai > 6) {
-        cout << "Lua chon khong hop le. Vui long nhap tu 1 den 6: ";
-        cinInt >> luaChonLoai;
-    }
+
     switch (luaChonLoai) {
-            case 1: {
-                this_thread::sleep_for(chrono::milliseconds(1000));
-                system("cls");
-                nhapSanPham(THUC_PHAM); break;
-            }
-            case 2: {
-                this_thread::sleep_for(chrono::milliseconds(1000));
-                system("cls");
-            nhapSanPham(DO_UONG); break;
-            }
-            case 3: {
-                this_thread::sleep_for(chrono::milliseconds(1000));
-                system("cls");
-                nhapSanPham(THOI_TRANG); break;
-            }
-            case 4: {
-                this_thread::sleep_for(chrono::milliseconds(1000));
-                system("cls");
-                nhapSanPham(DO_GIA_DUNG); break;
-            }   
-            case 5: {
-                this_thread::sleep_for(chrono::milliseconds(1000));
-                system("cls");
-                nhapSanPham(DO_DIEN_TU); break;
-            }
-        }
+        case 1: nhapSanPham(THUC_PHAM); break;
+        case 2: nhapSanPham(DO_UONG); break;
+        case 3: nhapSanPham(THOI_TRANG); break;
+        case 4: nhapSanPham(DO_GIA_DUNG); break;
+        case 5: nhapSanPham(DO_DIEN_TU); break;
+        case 6: break;  // Thoát
     }
 }
 
@@ -533,21 +559,51 @@ void nhapSanPham(LoaiSanPham loai) {
     vector<int> danhSachHienThi;
     bool found = false;
 
+    cout << "==================================================================\n";
+
+    // In thông tin tiêu đề, chỉ chữ được tô màu
+    cout << "| ";
+    setColor(11); // Xanh dương nhạt
+    cout << "STT";
+    setColor(7); // Trở lại màu mặc định
+    cout << " | ";
+
+    setColor(11);
+    cout << "Ten san pham";
+    setColor(7);
+    cout << "                   | ";
+
+    setColor(11);
+    cout << "So luong";
+    setColor(7);
+    cout << " | ";
+
+    setColor(11);
+    cout << "Gia (VND)";
+    setColor(7);
+    cout << "    |\n";
+    cout << "==================================================================\n";
     // Hiển thị sản phẩm theo loại
     for (size_t i = 0; i < danhSachSanPham.size(); ++i) {
         if (((loai == THUC_PHAM && dynamic_cast<ThucPham*>(danhSachSanPham[i])) ||
             (loai == DO_UONG && dynamic_cast<DoUong*>(danhSachSanPham[i])) ||
             (loai == THOI_TRANG && dynamic_cast<ThoiTrang*>(danhSachSanPham[i])) ||
             (loai == DO_GIA_DUNG && dynamic_cast<DoGiaDung*>(danhSachSanPham[i])) ||
-            (loai == DO_DIEN_TU && dynamic_cast<DoDienTu*>(danhSachSanPham[i])))) {
+            (loai == DO_DIEN_TU && dynamic_cast<DoDienTu*>(danhSachSanPham[i]))) ) {
             
-            cout << danhSachHienThi.size() + 1 << ". " << danhSachSanPham[i]->getTen()
-                 << " (So luong: " << danhSachSanPham[i]->getSoLuong() << ") "
-                 << danhSachSanPham[i]->getGia() << " VND\n";
+            setColor(15); // Màu trắng cho danh sách sản phẩm
+            cout << "| " << setw(3) << left << danhSachHienThi.size() + 1 << " | ";
+            cout << setw(30) << left << danhSachSanPham[i]->getTen() << " | ";
+            cout << setw(8) << left << danhSachSanPham[i]->getSoLuong() << " | ";
+            cout << setw(12) << left << danhSachSanPham[i]->getGia() << " |\n";
+            setColor(7);
+            
             danhSachHienThi.push_back(i);
             found = true;
         }
     }
+    cout << "==================================================================\n";
+
 
     if (!found) {
         cout << "Khong co san pham nao trong kho. Ban co muon nhap san pham moi khong? (Y(y)/Phim khac): ";
@@ -563,7 +619,9 @@ void nhapSanPham(LoaiSanPham loai) {
     // Nhập sản phẩm
     while (true) {
         int luaChon;
+        setColor(14);
         cout << "\nChon san pham muon nhap (nhap so tuong ung, hoac 0 de dung, hoac -1 de nhap san pham moi): ";
+        setColor(7);
         cinInt >> luaChon;
 
         if (luaChon == 0) {
@@ -579,7 +637,9 @@ void nhapSanPham(LoaiSanPham loai) {
         if (luaChon > 0 && luaChon <= danhSachHienThi.size()) {
             int indexSanPham = danhSachHienThi[luaChon - 1];
             int soLuongNhap;
+            setColor(10);
             cout << "Nhap so luong muon them: ";
+            setColor(7);
             cinInt >> soLuongNhap;
             capNhatSanPham(indexSanPham, soLuongNhap);
         } else {
@@ -590,69 +650,214 @@ void nhapSanPham(LoaiSanPham loai) {
 
 void xoaHang(){
     docSanPhamTuFile("database/product.txt");
+    int luaChonLoai = 1;  // Lựa chọn mặc định
+    bool keyPress = false;
 
-    while(true){
-    setColor(12);
-    cout << "Chon loai san pham muon xoa:\n";
-    setColor(7);
-    setColor(11);
-    cout << "-----------------------------\n";
-    cout << "| 1. Thuc pham              |\n";
-    cout << "| 2. Do uong                |\n";
-    cout << "| 3. Thoi trang             |\n";
-    cout << "| 4. Do gia dung            |\n";
-    cout << "| 5. Do dien tu             |\n";
-    cout << "| 6. Thoat                  |\n";
-    cout << "-----------------------------\n";
-    setColor(7);
-    int luaChonLoai;
-    cinInt >> luaChonLoai;
-     if (luaChonLoai == 6) { // Nếu người dùng chọn thoát
-            setColor(12);
-            cout << "Da thoat khoi chuc nang xoa hang.\n";
-            setColor(7);
-            break; // Thoát khỏi vòng lặp
+    while (true) {
+        system("cls");
+
+        // Hiển thị menu với màu sắc
+        cout << "=============================\n";
+        for (int i = 1; i <= 6; ++i) {
+            // Nếu đang ở mục chọn hiện tại, đổi màu
+            if (i == luaChonLoai) {
+
+                cout << "|";
+                setColor(14);
+                cout <<" * ";
+            } else {
+                setColor(7); // Màu trắng cho các lựa chọn khác
+                cout << "|   ";
+            }
+
+            // In tên lựa chọn
+            switch (i) {
+                case 1: cout << "Thuc pham               ";
+                        setColor(7);
+                        cout<<"|";
+                        break;
+                case 2: cout << "Do uong                 ";
+                        setColor(7);
+                        cout<<"|";
+                        break;
+                case 3: cout << "Thoi trang              ";
+                        setColor(7);
+                        cout<<"|";
+                        break;
+                case 4: cout << "Do gia dung             ";
+                        setColor(7);
+                        cout<<"|";
+                        break;
+                case 5: cout << "Do dien tu              ";
+                        setColor(7);
+                        cout<<"|";
+                        break;
+                case 6: cout << "Thoat                   ";
+                        setColor(7);
+                        cout<<"|";
+                        break;
+            }
+
+            cout << endl;
         }
-    // Kiểm tra lựa chọn đầu vào
-    while (luaChonLoai < 1 || luaChonLoai > 6) {
-        cout << "Lua chon khong hop le. Vui long nhap tu 1 den 6: ";
-        cinInt >> luaChonLoai;
+        setColor(7);
+        cout << "=============================\n";
+        cout << "Chon loai san pham muon mua (Sử dụng mũi tên lên/xuống để di chuyển và Enter để chọn):";
+
+        // Đọc phím người dùng
+        int key = _getch();
+
+        // Xử lý mũi tên
+        if (key == 224) {  // Phím mũi tên
+            key = _getch(); // Đọc mã phím mũi tên
+            if (key == 72 && luaChonLoai > 1) {  // Mũi tên lên
+                luaChonLoai--;
+            } else if (key == 80 && luaChonLoai < 6) {  // Mũi tên xuống
+                luaChonLoai++;
+            }
+        } else if (key == 13) {  // Enter
+            break;  // Chọn lựa chọn hiện tại
+        }
     }
+
+    // Sau khi chọn xong, chuyển đến mục tương ứng
+    this_thread::sleep_for(chrono::milliseconds(500));
+    system("cls");
+
     switch (luaChonLoai) {
-            case 1: {
-                this_thread::sleep_for(chrono::milliseconds(1000));
-                system("cls");
-                xoaSanPham(THUC_PHAM); break;
-            }
-            case 2: {
-                this_thread::sleep_for(chrono::milliseconds(1000));
-                system("cls");
-                xoaSanPham(DO_UONG); break;
-            }
-            case 3: {
-                this_thread::sleep_for(chrono::milliseconds(1000));
-                system("cls");
-                xoaSanPham(THOI_TRANG); break;
-            }
-            case 4: {
-                this_thread::sleep_for(chrono::milliseconds(1000));
-                system("cls");
-                xoaSanPham(DO_GIA_DUNG); break;
-            }   
-            case 5: {
-                this_thread::sleep_for(chrono::milliseconds(1000));
-                system("cls");
-                xoaSanPham(DO_DIEN_TU); break;
-            }
-        }
+        case 1: xoaSanPham(THUC_PHAM); break;
+        case 2: xoaSanPham(DO_UONG); break;
+        case 3: xoaSanPham(THOI_TRANG); break;
+        case 4: xoaSanPham(DO_GIA_DUNG); break;
+        case 5: xoaSanPham(DO_DIEN_TU); break;
+        case 6: break;  // Thoát
     }
 }
 
+// void xoaSanPham(LoaiSanPham loai) {
+//     vector<int> danhSachHienThi; // Lưu các chỉ mục của sản phẩm hợp lệ được hiển thị
+//     bool found = false;
+//     cout << "==================================================================\n";
+
+//     // In thông tin tiêu đề, chỉ chữ được tô màu
+//     cout << "| ";
+//     setColor(11); // Xanh dương nhạt
+//     cout << "STT";
+//     setColor(7); // Trở lại màu mặc định
+//     cout << " | ";
+
+//     setColor(11);
+//     cout << "Ten san pham";
+//     setColor(7);
+//     cout << "                   | ";
+
+//     setColor(11);
+//     cout << "So luong";
+//     setColor(7);
+//     cout << " | ";
+
+//     setColor(11);
+//     cout << "Gia (VND)";
+//     setColor(7);
+//     cout << "    |\n";
+
+//     // Đường viền dưới giữ màu mặc định
+//     cout << "==================================================================\n";
+//     // Hiển thị các sản phẩm thuộc loại được chọn
+//     for (size_t i = 0; i < danhSachSanPham.size(); ++i) {
+//         if (((loai == THUC_PHAM && dynamic_cast<ThucPham*>(danhSachSanPham[i])) ||
+//             (loai == DO_UONG && dynamic_cast<DoUong*>(danhSachSanPham[i])) ||
+//             (loai == THOI_TRANG && dynamic_cast<ThoiTrang*>(danhSachSanPham[i])) ||
+//             (loai == DO_GIA_DUNG && dynamic_cast<DoGiaDung*>(danhSachSanPham[i])) ||
+//             (loai == DO_DIEN_TU && dynamic_cast<DoDienTu*>(danhSachSanPham[i]))) && danhSachSanPham[i]->getSoLuong() != 0) {
+            
+//             setColor(15); // Màu trắng cho danh sách sản phẩm
+//             cout << "| " << setw(3) << left << danhSachHienThi.size() + 1 << " | ";
+//             cout << setw(30) << left << danhSachSanPham[i]->getTen() << " | ";
+//             cout << setw(8) << left << danhSachSanPham[i]->getSoLuong() << " | ";
+//             cout << setw(12) << left << danhSachSanPham[i]->getGia() << " |\n";
+//             setColor(7);
+            
+//             danhSachHienThi.push_back(i);
+//             found = true;
+//         }
+//     }
+//     cout << "==================================================================\n";
+//     if (!found) {
+//         cout << "Khong co san pham nao trong kho.\n";
+//         return; // Nếu không có sản phẩm nào, thoát hàm
+//     }
+
+//     // Lặp để người dùng chọn sản phẩm cần xóa
+//     while (true) {
+//         int luaChon;
+//         setColor(14);
+//         cout << "\nChon san pham muon xoa (nhap so tuong ung, hoac 0 de dung): ";
+//         setColor(7);
+//         cinInt >> luaChon;
+
+
+//         if (luaChon == 0){
+
+//             system("cls");
+//             break; 
+//         } // Kết thúc nếu người dùng nhập 0
+
+//         if (luaChon > 0 && luaChon <= danhSachHienThi.size()) {
+//             int indexSanPham = danhSachHienThi[luaChon - 1]; // Lấy chỉ mục thực của sản phẩm từ danhSachHienThi
+
+//             // Xóa sản phẩm này khỏi danh sách (chuyển số lượng về 0)
+//             danhSachSanPham[indexSanPham]->setSoLuong(0);
+//             setColor(10);
+//             cout << "San pham " << danhSachSanPham[indexSanPham]->getTen() << " da duoc xoa.\n";
+//             setColor(7);
+//             // Loại bỏ sản phẩm khỏi danh sách hiển thị
+//             danhSachHienThi.erase(danhSachHienThi.begin() + luaChon - 1);
+
+//             // Cập nhật lại file sau khi xóa sản phẩm
+//             luuSanPhamVaoFile("database/product.txt");
+
+//             // Nếu không còn sản phẩm nào trong danh sách hiển thị, dừng lại
+//             if (danhSachHienThi.empty()) {
+//                 setColor(12);
+//                 cout << "Tat ca san pham da duoc xoa.\n";
+//                 setColor(7);
+//                 break;
+//             }
+//         } else {
+//             cout << "Lua chon khong hop le.\n";
+//         }
+//     }
+// }
 void xoaSanPham(LoaiSanPham loai) {
-    cout << "Danh sach san pham hien co:\n";
     vector<int> danhSachHienThi; // Lưu các chỉ mục của sản phẩm hợp lệ được hiển thị
     bool found = false;
+    cout << "==================================================================\n";
 
+    // In thông tin tiêu đề, chỉ chữ được tô màu
+    cout << "| ";
+    setColor(11); // Xanh dương nhạt
+    cout << "STT";
+    setColor(7); // Trở lại màu mặc định
+    cout << " | ";
+
+    setColor(11);
+    cout << "Ten san pham";
+    setColor(7);
+    cout << "                   | ";
+
+    setColor(11);
+    cout << "So luong";
+    setColor(7);
+    cout << " | ";
+
+    setColor(11);
+    cout << "Gia (VND)";
+    setColor(7);
+    cout << "    |\n";
+
+    // Đường viền dưới giữ màu mặc định
+    cout << "==================================================================\n";
     // Hiển thị các sản phẩm thuộc loại được chọn
     for (size_t i = 0; i < danhSachSanPham.size(); ++i) {
         if (((loai == THUC_PHAM && dynamic_cast<ThucPham*>(danhSachSanPham[i])) ||
@@ -661,13 +866,18 @@ void xoaSanPham(LoaiSanPham loai) {
             (loai == DO_GIA_DUNG && dynamic_cast<DoGiaDung*>(danhSachSanPham[i])) ||
             (loai == DO_DIEN_TU && dynamic_cast<DoDienTu*>(danhSachSanPham[i]))) && danhSachSanPham[i]->getSoLuong() != 0) {
             
-            cout << danhSachHienThi.size() + 1 << ". " << danhSachSanPham[i]->getTen() 
-                 << " (So luong: " << danhSachSanPham[i]->getSoLuong() << ") " << danhSachSanPham[i]->getGia() << " VND" << endl;
-            danhSachHienThi.push_back(i); // Lưu chỉ mục của sản phẩm hợp lệ
+            setColor(15); // Màu trắng cho danh sách sản phẩm
+            cout << "| " << setw(3) << left << danhSachHienThi.size() + 1 << " | ";
+            cout << setw(30) << left << danhSachSanPham[i]->getTen() << " | ";
+            cout << setw(8) << left << danhSachSanPham[i]->getSoLuong() << " | ";
+            cout << setw(12) << left << danhSachSanPham[i]->getGia() << " |\n";
+            setColor(7);
+            
+            danhSachHienThi.push_back(i);
             found = true;
         }
     }
-
+    cout << "==================================================================\n";
     if (!found) {
         cout << "Khong co san pham nao trong kho.\n";
         return; // Nếu không có sản phẩm nào, thoát hàm
@@ -676,12 +886,12 @@ void xoaSanPham(LoaiSanPham loai) {
     // Lặp để người dùng chọn sản phẩm cần xóa
     while (true) {
         int luaChon;
+        setColor(14);
         cout << "\nChon san pham muon xoa (nhap so tuong ung, hoac 0 de dung): ";
+        setColor(7);
         cinInt >> luaChon;
 
-
         if (luaChon == 0){
-
             system("cls");
             break; 
         } // Kết thúc nếu người dùng nhập 0
@@ -691,8 +901,9 @@ void xoaSanPham(LoaiSanPham loai) {
 
             // Xóa sản phẩm này khỏi danh sách (chuyển số lượng về 0)
             danhSachSanPham[indexSanPham]->setSoLuong(0);
+            setColor(10);
             cout << "San pham " << danhSachSanPham[indexSanPham]->getTen() << " da duoc xoa.\n";
-            
+            setColor(7);
             // Loại bỏ sản phẩm khỏi danh sách hiển thị
             danhSachHienThi.erase(danhSachHienThi.begin() + luaChon - 1);
 
@@ -701,7 +912,9 @@ void xoaSanPham(LoaiSanPham loai) {
 
             // Nếu không còn sản phẩm nào trong danh sách hiển thị, dừng lại
             if (danhSachHienThi.empty()) {
+                setColor(12);
                 cout << "Tat ca san pham da duoc xoa.\n";
+                setColor(7);
                 break;
             }
         } else {
