@@ -199,60 +199,7 @@ public:
         DO_DIEN_TU
     };
 
-    // void chonQuayKhac(UserAccount &user) {
-
-        
-    //     cout << "=============================\n";
-    //     cout << "| 1. Thuc pham              |\n";
-    //     cout << "| 2. Do uong                |\n";
-    //     cout << "| 3. Thoi trang             |\n";
-    //     cout << "| 4. Do gia dung            |\n";
-    //     cout << "| 5. Do dien tu             |\n";
-    //     cout << "| 6. Thoat                  |\n";
-    //     cout << "=============================\n";
-    //     cout << " Chon loai san pham muon mua:\n";
-    //     int luaChonLoai;
-    //     cinInt >> luaChonLoai;
-
-    //     while (luaChonLoai < 1 || luaChonLoai > 6) {
-    //         cout << "Lua chon khong hop le. Vui long nhap tu 1 den 6: ";
-    //         cinInt >> luaChonLoai;
-    //     }
-
-    //     switch (luaChonLoai) {
-    //         case 1: {
-    //             this_thread::sleep_for(chrono::milliseconds(500));
-    //             system("cls");
-    //             muaSanPham(THUC_PHAM,user);
-    //             break;
-    //         }
-    //         case 2: {
-    //             this_thread::sleep_for(chrono::milliseconds(500));
-    //             system("cls");
-    //             muaSanPham(DO_UONG,user);
-    //             break;
-    //         }
-    //         case 3: {
-    //             this_thread::sleep_for(chrono::milliseconds(500));
-    //             system("cls");
-    //             muaSanPham(THOI_TRANG,user);
-    //             break;
-    //         }
-    //         case 4: {
-    //             this_thread::sleep_for(chrono::milliseconds(500));
-    //             system("cls");
-    //             muaSanPham(DO_GIA_DUNG,user);
-    //             break;
-    //         }   
-    //         case 5: {
-    //             this_thread::sleep_for(chrono::milliseconds(500));
-    //             system("cls");
-    //             muaSanPham(DO_DIEN_TU,user);
-    //             break;
-    //         }
-    //         case 6: break;
-    //     }
-    // }
+ 
     void chonQuayKhac(UserAccount &user) {
     int luaChonLoai = 1;  // Lựa chọn mặc định
     bool keyPress = false;

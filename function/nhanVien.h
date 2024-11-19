@@ -44,9 +44,24 @@ void showList() {
     string username, password, number, address;
 
     // In tiêu đề bảng
-    setColor(11);
+    setColor(7); // Màu mặc định
     cout << "+---------------+------------------+-------+---------+------+------------+-----------------------+" << endl;
-    cout << "| Username      | Password         | Roles | Credits | Sex  |  Number    | Address               |" << endl;
+
+    // Tiêu đề với chỉ chữ cái đổi màu
+    string header = "| Username      | Password         | Roles | Credits | Sex  |  Number    | Address               |";
+    for (char c : header) {
+        if (isalpha(c)) {
+            setColor(11); // Màu xanh sáng cho chữ cái
+            cout << c;
+        } else {
+            setColor(7); // Màu mặc định cho các ký tự khác
+            cout << c;
+        }
+    }
+    cout << endl;
+
+    // Đường phân cách
+    setColor(7);
     cout << "+---------------+------------------+-------+---------+------+------------+-----------------------+" << endl;
 
     // Đọc dữ liệu từ file và hiển thị trong bảng
@@ -152,17 +167,16 @@ int ShowStaffMenu(UserAccount user)
         this_thread::sleep_for(chrono::milliseconds(500));
         system("cls");
         int choice;
-        setColor(14);
-        cout << "                      MENU NHAN VIEN\n";
         setColor(11);
-        cout << "========================================================" << endl;
-        cout << "| 1. Xem danh sach va chinh sua thong tin khach hang   |" << endl;
-        cout << "| 2. Xoa tai khoan khach hang                          |" << endl;
-        cout << "| 3. Xem hoa don khach hang                            |" << endl;
-        cout << "| 4. Dang xuat                                         |" << endl;
-        if(user.getRoles() == 2) cout << "| 5. Quay lai man hinh quan ly.                        |" << endl;
-        cout << "========================================================" << endl;
+        cout << "                      MENU NHAN VIEN\n";
         setColor(7);
+        cout << "╔══════════════════════════════════════════════════════╗" << endl;
+        cout << "║ 1. Xem danh sach va chinh sua thong tin khach hang   ║" << endl;
+        cout << "║ 2. Xoa tai khoan khach hang                          ║" << endl;
+        cout << "║ 3. Xem hoa don khach hang                            ║" << endl;
+        cout << "║ 4. Dang xuat                                         ║" << endl;
+        if(user.getRoles() == 2) cout << "║ 5. Quay lai man hinh quan ly.                        ║" << endl;
+        cout << "╚══════════════════════════════════════════════════════╝" << endl;
         setColor(12);
         cout << "Nhap lua chon cua ban!: ";
         setColor(7);
