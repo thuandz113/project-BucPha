@@ -324,7 +324,7 @@ int ShowStaffMenu(UserAccount user)
             {
                 system("cls");
                 updateAccount(user);
-                displayMenu(120);        
+                displayMenu(50);        
             }
             case 5:
         	{

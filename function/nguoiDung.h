@@ -265,8 +265,10 @@ public:
         for (int i = 1; i <= 6; ++i) {
             // Nếu đang ở mục chọn hiện tại, đổi màu
             if (i == luaChonLoai) {
-                setColor(10); // Màu xanh lá cho lựa chọn hiện tại
-                cout << "| * ";
+
+                cout << "|";
+                setColor(14);
+                cout <<" * ";
             } else {
                 setColor(7); // Màu trắng cho các lựa chọn khác
                 cout << "|   ";
@@ -274,19 +276,37 @@ public:
 
             // In tên lựa chọn
             switch (i) {
-                case 1: cout << "Thuc pham               |"; break;
-                case 2: cout << "Do uong                 |"; break;
-                case 3: cout << "Thoi trang              |"; break;
-                case 4: cout << "Do gia dung             |"; break;
-                case 5: cout << "Do dien tu              |"; break;
-                case 6: cout << "Thoat                   |"; break;
+                case 1: cout << "Thuc pham               ";
+                        setColor(7);
+                        cout<<"|";
+                        break;
+                case 2: cout << "Do uong                 ";
+                        setColor(7);
+                        cout<<"|";
+                        break;
+                case 3: cout << "Thoi trang              ";
+                        setColor(7);
+                        cout<<"|";
+                        break;
+                case 4: cout << "Do gia dung             ";
+                        setColor(7);
+                        cout<<"|";
+                        break;
+                case 5: cout << "Do dien tu              ";
+                        setColor(7);
+                        cout<<"|";
+                        break;
+                case 6: cout << "Thoat                   ";
+                        setColor(7);
+                        cout<<"|";
+                        break;
             }
 
             cout << endl;
         }
         setColor(7);
         cout << "=============================\n";
-        cout << "Chon loai san pham muon mua (Sử dụng mũi tên lên/xuống để di chuyển và Enter để chọn):\n";
+        cout << "Chon loai san pham muon mua (Sử dụng mũi tên lên/xuống để di chuyển và Enter để chọn):";
 
         // Đọc phím người dùng
         int key = _getch();
@@ -323,20 +343,26 @@ void thanhToan(std::vector<int>& luaChonSanPham, std::vector<int>& soLuongMua, U
     double tongTien = 0.0;
 
     // Tiêu đề hóa đơn
-    setColor(14); // Màu vàng cho tiêu đề
+        setColor(7); // Màu vàng cho đường viền tiêu đề
     cout << "================================================================================\n";
-    cout<<  "|                                   HOA DON                                    |\n";
-    cout << "================================================================================\n";
+    setColor(11); // Màu xanh dương nhạt cho tiêu đề
+    cout << "|                                   ";
+    setColor(11);
+    cout<<"HOA DON"                                    ;
     setColor(7);
+    cout<<"|\n";
+    setColor(7); // Màu vàng cho đường viền tiêu đề
+    cout << "================================================================================\n";
+    setColor(7); // Màu trắng trở lại cho nội dung bên dưới
 
     // In thông tin hóa đơn
     setColor(15); // Màu trắng cho phần thông tin sản phẩm
     cout << "| " << left << setw(30) << "Ten San Pham"                                       
-         << "| " << setw(10) << "So Luong" 
-         << "| " << setw(15) << "Gia (VND)" 
-         << "| " << setw(15) << "Thanh Tien (VND)" << "|\n";
+        << "| " << setw(10) << "So Luong" 
+        << "| " << setw(15) << "Gia (VND)" 
+        << "| " << setw(15) << "Thanh Tien (VND)" << "|\n";
     cout << "================================================================================\n";
-    setColor(7);
+    setColor(7); // Trở lại màu trắng mặc định
 
     // Hiển thị danh sách sản phẩm đã mua
     for (size_t i = 0; i < luaChonSanPham.size(); ++i) {
@@ -348,13 +374,13 @@ void thanhToan(std::vector<int>& luaChonSanPham, std::vector<int>& soLuongMua, U
 
         // In ra từng sản phẩm
         cout << "| " << left << setw(30) << danhSachSanPham[index]->getTen() 
-             << "| " << setw(10) << soLuong 
-             << "| " << setw(15) << giaSanPham 
-             << "| " << setw(15) << thanhTien << " |\n";
+            << "| " << setw(10) << soLuong 
+            << "| " << setw(15) << giaSanPham 
+            << "| " << setw(15) << thanhTien << " |\n";
     }
 
     cout << "================================================================================\n";
-    setColor(7);
+    setColor(7); // Trở lại màu trắng mặc định
 
     // In tổng tiền
     setColor(10); // Màu xanh lá cho tổng tiền
@@ -735,11 +761,32 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
     bool found = false;
 
     // Hiển thị các sản phẩm thuộc loại được chọn
-    setColor(11); // Màu xanh sáng cho tiêu đề
     cout << "==================================================================\n";
-    cout << "| STT | Ten san pham                   | So luong | Gia (VND)    |\n";
-    cout << "==================================================================\n";
+
+    // In thông tin tiêu đề, chỉ chữ được tô màu
+    cout << "| ";
+    setColor(11); // Xanh dương nhạt
+    cout << "STT";
+    setColor(7); // Trở lại màu mặc định
+    cout << " | ";
+
+    setColor(11);
+    cout << "Ten san pham";
     setColor(7);
+    cout << "                   | ";
+
+    setColor(11);
+    cout << "So luong";
+    setColor(7);
+    cout << " | ";
+
+    setColor(11);
+    cout << "Gia (VND)";
+    setColor(7);
+    cout << "    |\n";
+
+    // Đường viền dưới giữ màu mặc định
+    cout << "==================================================================\n";
 
     for (size_t i = 0; i < danhSachSanPham.size(); ++i) {
         if (((loai == THUC_PHAM && dynamic_cast<ThucPham*>(danhSachSanPham[i])) ||
@@ -837,7 +884,7 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
         }
         
         int luaChonTiep;
-        setColor(14); // Màu vàng cho lựa chọn tiếp theo
+        setColor(7); // Màu vàng cho lựa chọn tiếp theo
         cout << "\n1. Toi quay thanh toan\n2. Toi quay khac de tiep tuc mua sam\nLua chon cua ban: ";
         setColor(7);
         cin >> luaChonTiep;
@@ -947,36 +994,169 @@ void docSanPhamTuFile(const string& tenFile) {
     }
     void veSieuThi(UserAccount user) {
     system("cls");
-    setColor(12);
-    cout << "+-------------------------------------------------------+\n";
-    cout << "|                       SIEU THI                        |\n";
-    cout << "+-------------------------------------------------------+\n";
-    setColor(10);
-    cout << "|                                                       |\n";
-    cout << "|   [QUAY THU NGAN]                                     |\n";
-    cout << "|   +----------------------+                            |                  +-------------------------------------+\n";
-    cout << "|   |   KHACH HANG         |                            |                  | Thong tin khach hang:               |\n";
-    cout << "|   |   TINH TIEN          |                            |                  |-------------------------------------|\n";
-    cout << "|   +----------------------+                            |                  | Ten: "  << setw(31) << left << user.getUsername() << "|\n";
-    cout << "|                                                       |                  | So du: "  << setw(24) << left << fixed << setprecision(2) << user.getCredits() << "vnd  |\n";
-    cout << "|                                                       |                  +-------------------------------------+\n";
-    cout << "|   +----------------------+   +--------------------+   |\n";
-    cout << "|   |    KHU DO UONG       |   | KHU THOI TRANG     |   |\n";
-    cout << "|   +----------------------+   +--------------------+   |\n";
-    cout << "|   |  - Nuoc co ga        |   |  - Quan ao         |   |\n";
-    cout << "|   |  - Nuoc ep trai cay  |   |  - Phu kien        |   |\n";
-    cout << "|   |  - Sua tuoi          |   |  - Giay dep        |   |\n";
-    cout << "|   +----------------------+   +--------------------+   |\n";
-    cout << "|                                                       |\n";
-    cout << "|   +----------------------+   +--------------------+   |\n";
-    cout << "|   |   KHU THUC PHAM      |   | KHU TONG HOP       |   |\n";
-    cout << "|   +----------------------+   +--------------------+   |\n";
-    cout << "|   |  - Thit tuoi         |   |  - Do gia dung     |   |\n";
-    cout << "|   |  - Ca dong lanh      |   |  - Do dien tu      |   |\n";
-    cout << "|   |  - Rau cu tuoi       |   |                    |   |\n";
-    cout << "|   +----------------------+   +--------------------+   |\n";
-    cout << "|                        [CUA RA]                       |\n";
-    cout << "+-------------------------------------------------------+\n";
+    // setColor(12);
+    // cout << "+-------------------------------------------------------+\n";
+    // cout << "|                       SIEU THI                        |\n";
+    // cout << "+-------------------------------------------------------+\n";
+    // setColor(10);
+    // cout << "|                                                       |\n";
+    // cout << "|   [QUAY THU NGAN]                                     |\n";
+    // cout << "|   +----------------------+                            |                  +-------------------------------------+\n";
+    // cout << "|   |   KHACH HANG         |                            |                  | Thong tin khach hang:               |\n";
+    // cout << "|   |   TINH TIEN          |                            |                  |-------------------------------------|\n";
+    // cout << "|   +----------------------+                            |                  | Ten: "  << setw(31) << left << user.getUsername() << "|\n";
+    // cout << "|                                                       |                  | So du: "  << setw(24) << left << fixed << setprecision(2) << user.getCredits() << "vnd  |\n";
+    // cout << "|                                                       |                  +-------------------------------------+\n";
+    // cout << "|   +----------------------+   +--------------------+   |\n";
+    // cout << "|   |    KHU DO UONG       |   | KHU THOI TRANG     |   |\n";
+    // cout << "|   +----------------------+   +--------------------+   |\n";
+    // cout << "|   |  - Nuoc co ga        |   |  - Quan ao         |   |\n";
+    // cout << "|   |  - Nuoc ep trai cay  |   |  - Phu kien        |   |\n";
+    // cout << "|   |  - Sua tuoi          |   |  - Giay dep        |   |\n";
+    // cout << "|   +----------------------+   +--------------------+   |\n";
+    // cout << "|                                                       |\n";
+    // cout << "|   +----------------------+   +--------------------+   |\n";
+    // cout << "|   |   KHU THUC PHAM      |   | KHU TONG HOP       |   |\n";
+    // cout << "|   +----------------------+   +--------------------+   |\n";
+    // cout << "|   |  - Thit tuoi         |   |  - Do gia dung     |   |\n";
+    // cout << "|   |  - Ca dong lanh      |   |  - Do dien tu      |   |\n";
+    // cout << "|   |  - Rau cu tuoi       |   |                    |   |\n";
+    // cout << "|   +----------------------+   +--------------------+   |\n";
+    // cout << "|                        [CUA RA]                       |\n";
+    // cout << "+-------------------------------------------------------+\n";
+    // setColor(7);
+    setColor(7); // Màu đỏ cho tiêu đề chính
+    cout << "┌───────────────────────────────────────────────────────┐\n";
+    cout << "│                       ";
+    setColor(11); 
+    cout << "SIEU THI";
+    setColor(7); // Trở lại màu đỏ
+    cout << "                        │\n";
+    cout << "├───────────────────────────────────────────────────────┤\n";
+
+    setColor(7); // Màu trắng
+    cout << "│                                                       │\n";
+    cout << "│     [";
+    setColor(14);
+    cout<<"QUAY THU NGAN";
     setColor(7);
+    cout<<"]                                   │\n";
+    cout << "│   ┌─────────────────┐                                 │\n";
+    cout << "│   │   ";
+    setColor(7); // Màu xanh lá cho chữ "KHACH HANG"
+    cout << "KHACH HANG";
+    setColor(7); // Trắng trở lại
+    cout << "    │                                 │\n";
+    cout << "│   │   ";
+    setColor(7); // Màu xanh lá cho chữ "TINH TIEN"
+    cout << "TINH TIEN";
+    setColor(7);
+    cout << "     │                                 │\n";
+    cout << "│   └─────────────────┘                                 │\n";
+    cout << "│                                                       │                  ┌─────────────────────────────────────┐\n";
+    cout << "│                                                       │                  │ ";
+    setColor(11); // Màu xanh dương nhạt
+    cout << "Thong tin khach hang:";
+    setColor(7); // Màu trắng
+    cout << "               │\n";
+    cout << "│                                                       │                  ├─────────────────────────────────────┤\n";
+    cout << "│                                                       │                  │ Ten: "  
+        << setw(31) << left;
+    setColor(7); // Màu xanh lá
+    cout << user.getUsername();
+    setColor(7);
+    cout << "│\n";
+    cout << "│                                                       │                  │ So du: "  
+        << setw(24) << left << fixed << setprecision(2);
+    setColor(7);
+    cout << user.getCredits() << "vnd";
+    setColor(7);
+    cout << "  │\n";
+    cout << "│                                                       │                  └─────────────────────────────────────┘\n";
+
+    cout << "│   ┌──────────────────────┐   ┌──────────────────────┐ │\n";
+    cout << "│   │    ";
+    setColor(14);
+    cout << "KHU DO UONG";
+    setColor(7);
+    cout << "       │   │ ";
+    setColor(14);
+    cout << "KHU THOI TRANG";
+    setColor(7);
+    cout << "       │ │\n";
+                 
+    cout << "│   ├──────────────────────┤   ├──────────────────────┤ │\n";
+    cout << "│   │  - ";
+    setColor(7); // Màu xanh lá
+    cout << "Nuoc co ga";
+    setColor(7);
+    cout << "        │   │  - ";
+    setColor(7);
+    cout << "Quan ao";
+    setColor(7);
+    cout << "           │ │\n";
+    cout << "│   │  - ";
+    setColor(7);
+    cout << "Nuoc ep trai cay";
+    setColor(7);
+    cout << "  │   │  - ";
+    setColor(7);
+    cout << "Phu kien";
+    setColor(7);
+    cout << "          │ │\n";
+    cout << "│   │  - ";
+    setColor(7);
+    cout << "Sua tuoi";
+    setColor(7);
+    cout << "          │   │  - ";
+    setColor(7);
+    cout << "Giay dep";
+    setColor(7);
+    cout << "          │ │\n";
+    cout << "│   └──────────────────────┘   └──────────────────────┘ │\n";
+
+    cout << "│                                                       │\n";
+    cout << "│   ┌──────────────────────┐   ┌──────────────────────┐ │\n";
+    cout << "│   │   ";
+    setColor(14);
+    cout << "KHU THUC PHAM";
+    setColor(7);
+    cout << "      │   │ ";
+    setColor(14);
+    cout << "KHU TONG HOP";
+    setColor(7);
+    cout << "         │ │\n";
+    cout << "│   ├──────────────────────┤   ├──────────────────────┤ │\n";
+    cout << "│   │  - ";
+    setColor(7);
+    cout << "Thit tuoi";
+    setColor(7);
+    cout << "         │   │  - ";
+    setColor(7);
+    cout << "Do gia dung";
+    setColor(7);
+    cout << "       │ │\n";
+    cout << "│   │  - ";
+    setColor(7);
+    cout << "Ca dong lanh";
+    setColor(7);
+    cout << "      │   │  - ";
+    setColor(7);
+    cout << "Do dien tu";
+    setColor(7);
+    cout << "        │ │\n";
+    cout << "│   │  - ";
+    setColor(7);
+    cout << "Rau cu tuoi";
+    setColor(7);
+    cout << "       │   │                      │ │\n";
+    cout << "│   └──────────────────────┘   └──────────────────────┘ │\n";
+    cout << "│                        [";
+    setColor(12); // Đỏ
+    cout << "CUA RA";
+    setColor(7);
+    cout << "]                       │\n";
+    cout << "└───────────────────────────────────────────────────────┘\n";
+
     }   
 };
