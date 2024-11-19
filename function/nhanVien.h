@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <windows.h>
 #include "doiTuong.h"
 #include "ham.h"
 using namespace std;
@@ -43,6 +44,7 @@ void showList() {
     string username, password, number, address;
 
     // In tiêu đề bảng
+    setColor(10);
     cout << "+---------------+------------------+-------+---------+------+------------+-----------------------+" << endl;
     cout << "| Username      | Password         | Roles | Credits | Sex  |  Number    | Address               |" << endl;
     cout << "+---------------+------------------+-------+---------+------+------------+-----------------------+" << endl;
@@ -62,7 +64,7 @@ void showList() {
 
     // Kết thúc bảng
     cout << "+---------------+------------------+-------+---------+------+------------+-----------------------+" << endl;
-
+    setColor(7);
     file.close();
 }
 void logDeletion(string line, const string& staffName) 
@@ -150,14 +152,17 @@ int ShowStaffMenu(UserAccount user)
         this_thread::sleep_for(chrono::milliseconds(500));
         system("cls");
         int choice;
-
-        cout << "==================== MENU NHAN VIEN ====================" << endl;
+        setColor(14);
+        cout << "                      MENU NHAN VIEN\n";
+        setColor(10);
+        cout << "========================================================" << endl;
         cout << "| 1. Xem danh sach va chinh sua thong tin khach hang   |" << endl;
         cout << "| 2. Xoa tai khoan khach hang                          |" << endl;
         cout << "| 3. Xem hoa don khach hang                            |" << endl;
         cout << "| 4. Dang xuat                                         |" << endl;
         if(user.getRoles() == 2) cout << "| 5. Quay lai man hinh quan ly.                        |" << endl;
         cout << "========================================================" << endl;
+        setColor(7);
         cout << "Nhap lua chon cua ban!: ";
         cinInt >> choice;
         switch(choice)
