@@ -469,7 +469,10 @@ void nhapHang() {
     this_thread::sleep_for(chrono::milliseconds(500));
     system("cls");
     while(true){
+    setColor(12);
     cout << "Chon loai san pham muon nhap:\n";
+    setColor(7);
+    setColor(11);
     cout << "-----------------------------\n";
     cout << "| 1. Thuc pham              |\n";
     cout << "| 2. Do uong                |\n";
@@ -478,10 +481,13 @@ void nhapHang() {
     cout << "| 5. Do dien tu             |\n";
     cout << "| 6. Thoat                  |\n";
     cout << "-----------------------------\n";
+    setColor(7);
     int luaChonLoai;
     cinInt >> luaChonLoai;
      if (luaChonLoai == 6) { // Nếu người dùng chọn thoát
+            setColor(12);
             cout << "Da thoat khoi chuc nang nhap hang.\n";
+            setColor(7);
             break; // Thoát khỏi vòng lặp
         }
         while (luaChonLoai < 1 || luaChonLoai > 6) {
@@ -639,7 +645,10 @@ void xoaHang(){
     docSanPhamTuFile("database/product.txt");
 
     while(true){
+    setColor(12);
     cout << "Chon loai san pham muon xoa:\n";
+    setColor(7);
+    setColor(11);
     cout << "-----------------------------\n";
     cout << "| 1. Thuc pham              |\n";
     cout << "| 2. Do uong                |\n";
@@ -648,10 +657,13 @@ void xoaHang(){
     cout << "| 5. Do dien tu             |\n";
     cout << "| 6. Thoat                  |\n";
     cout << "-----------------------------\n";
+    setColor(7);
     int luaChonLoai;
     cinInt >> luaChonLoai;
      if (luaChonLoai == 6) { // Nếu người dùng chọn thoát
+            setColor(12);
             cout << "Da thoat khoi chuc nang xoa hang.\n";
+            setColor(7);
             break; // Thoát khỏi vòng lặp
         }
     // Kiểm tra lựa chọn đầu vào
