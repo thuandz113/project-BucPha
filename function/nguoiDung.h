@@ -1045,9 +1045,11 @@ void docSanPhamTuFile(const string& tenFile) {
     }
     void veSieuThi(UserAccount user) {
     system("cls");
+    setColor(12);
     cout << "+-------------------------------------------------------+\n";
     cout << "|                       SIEU THI                        |\n";
     cout << "+-------------------------------------------------------+\n";
+    setColor(10);
     cout << "|                                                       |\n";
     cout << "|   [QUAY THU NGAN]                                     |\n";
     cout << "|   +----------------------+                            |                  +-------------------------------------+\n";
@@ -1073,6 +1075,6 @@ void docSanPhamTuFile(const string& tenFile) {
     cout << "|   +----------------------+   +--------------------+   |\n";
     cout << "|                        [CUA RA]                       |\n";
     cout << "+-------------------------------------------------------+\n";
-    
+    setColor(7);
     }   
 };
