@@ -389,6 +389,7 @@ int n; //sl nhan vien
 			ifstream infile("database/listEmployees.txt");
 			NhanVien nv;
 			if(infile.is_open()){
+				setColor(11);
 				cout << "+-------+-------------------+-------------------+-----------------------------+-------------+-------+---------------+-----------+" << endl;
                 cout << "| MaNV  |     TenTK         |       TenNV       |            Chuc vu          | Ca lam viec | GioLV | Gio lam them  |   Luong   |" << endl;
                 cout << "+-------+-------------------+-------------------+-----------------------------+-------------+-------+---------------+-----------+" << endl;
@@ -398,6 +399,7 @@ int n; //sl nhan vien
 					nv.xuat();
 				}
 				cout<<"+-------+-------------------+-------------------+-----------------------------+-------------+-------+---------------+-----------+"<<endl;
+				setColor(7);
 				infile.close();
 		}else{
 			cout<<"Khong the mo file!\n";
@@ -410,7 +412,11 @@ int menuEmployeeManagement(){
 	QLNV qlnv;
 	int choice;
 	do{
-		cout<<"======== QUAN LY NHAN VIEN ========\n";
+		setColor(14);
+		cout<<"           QUAN LY NHAN VIEN       \n";
+		setColor(7);
+		setColor(11);
+		cout<<"===================================\n";
 		cout<<"| 1. Them nhan vien               |\n";
 		cout<<"| 2. Xoa nhan vien                |\n";
 		cout<<"| 3. Phan ca lam viec             |\n";
@@ -419,7 +425,10 @@ int menuEmployeeManagement(){
 		cout<<"| 6. Hien thi danh sach nhan vien |\n";
 		cout<<"| 7. Thoat                        |\n";
 		cout<<"===================================\n";
+		setColor(7);
+		setColor(12);
 		cout<<"Lua chon: ";
+		setColor(7);
 		cinInt>>choice;
 		switch(choice){
 			case 1:
@@ -429,7 +438,9 @@ int menuEmployeeManagement(){
 				break;
 			case 2:{
 				string maNV;
+				setColor(12);
 				cout<<"Nhap ma nhan vien can xoa: ";
+				setColor(7);
 				cin>>maNV;
 				qlnv.xoaNV(maNV);
 				this_thread::sleep_for(chrono::milliseconds(2000));
@@ -448,7 +459,9 @@ int menuEmployeeManagement(){
 				break;
 			case 5:{
 				string maNV;
+				setColor(12);
 				cout<<"Nhap ma nhan vien can tim: ";
+				setColor(7);
 				cin>>maNV;
 				qlnv.timKiemNV(maNV);
 				this_thread::sleep_for(chrono::milliseconds(2000));
@@ -458,16 +471,22 @@ int menuEmployeeManagement(){
 			case 6:
 				this_thread::sleep_for(chrono::milliseconds(1000));
             	system("cls");
+				setColor(14);
 				cout<<"====================================================== DANH SACH NHAN VIEN =====================================================\n\n";
+				setColor(7);
 				qlnv.xuatds();
 				break;
 			case 7:
+			    setColor(12);
 				cout<<"Thoat chuong trinh."<<endl;
+				setColor(7);
 				this_thread::sleep_for(chrono::milliseconds(500));
             	system("cls");
 				break;
 			default:
+			    setColor(12);
 				cout<<"Lua chon khong hop le. Vui long chon lai."<<endl;
+				setColor(7);
 		}
 	}while(choice!=7);
 	return 0;

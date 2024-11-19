@@ -16,7 +16,7 @@ int ShowMainMenu(UserAccount user);
 void drawHeader() {
     setColor(12); // Màu đỏ cho tiêu đề
     cout << "  ╔══════════════════════════════════════════════════════╗" << endl;
-    cout << " ║                    ★ MENU QUẢN LÝ ★                  ║" << endl;
+    cout << "  ║                    ★ MENU QUẢN LÝ ★                 ║" << endl;
     cout << "  ╚══════════════════════════════════════════════════════╝" << endl;
 }
 
@@ -90,32 +90,44 @@ int ShowManageMenu(UserAccount user) {
             system("cls");
             switch (choice + 1) {
                 case 1:
+                    setColor(12);
                     cout << "Ban dang den voi chuc nang nhap hang" << endl;
+                    setColor(7);
                     this_thread::sleep_for(chrono::milliseconds(1000));
                     qlcn.nhapHang();
                     break;
                 case 2:
+                    setColor(12);
                     cout << "Ban dang den voi chuc nang xoa hang" << endl;
+                    setColor(7);
                     this_thread::sleep_for(chrono::milliseconds(1000));
                     qlcn.xoaHang();
                     break;
                 case 3:
+                    setColor(12);
                     cout << "Ban dang den voi chuc nang quan ly nhan vien" << endl;
+                    setColor(7);
                     this_thread::sleep_for(chrono::milliseconds(1000));
                     menuEmployeeManagement();
                     break;
                 case 4:
+                    setColor(12);
                     cout << "Ban dang den voi chuc nang giao dien nhan vien" << endl;
+                    setColor(7);
                     this_thread::sleep_for(chrono::milliseconds(1000));
                     ShowStaffMenu(user);
                     break;
                 case 5:
+                    setColor(12);
                     cout << "Ban dang den voi chuc nang giao dien nguoi dung" << endl;
+                    setColor(7);
                     this_thread::sleep_for(chrono::milliseconds(1000));
                     ShowMainMenu(user);
                     break;
                 case 6:
+                    setColor(12);
                     cout << "Dang xuat..." << endl;
+                    setColor(7);
                     this_thread::sleep_for(chrono::milliseconds(1000));
                     displayMenu(50);
                     return 6;
