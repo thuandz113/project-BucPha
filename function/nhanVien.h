@@ -174,10 +174,10 @@ int ShowStaffMenu(UserAccount user)
                 string option;
                 cout<<"Ban co muon chinh sua khach hang khong?"<<endl;
                 cout<<"Lua chon cua ban(Y/N):";
-                cinInt>>luaChon;
+                cin >>luaChon;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                
                 if(luaChon != 'y' && luaChon != 'Y') break;
-
-                cin.ignore();
                 UserAccount editUser("Null","Null",0,0,0,"Null","Null");
                 do
                 {
@@ -324,7 +324,7 @@ int ShowStaffMenu(UserAccount user)
             {
                 system("cls");
                 updateAccount(user);
-                displayMenu(120);        
+                displayMenu(50);        
             }
             case 5:
         	{
