@@ -345,12 +345,12 @@ void thanhToan(std::vector<int>& luaChonSanPham, std::vector<int>& soLuongMua, U
     // Tiêu đề hóa đơn
         setColor(7); // Màu vàng cho đường viền tiêu đề
     cout << "================================================================================\n";
-    setColor(11); // Màu xanh dương nhạt cho tiêu đề
+     // Màu xanh dương nhạt cho tiêu đề
     cout << "|                                   ";
     setColor(11);
     cout<<"HOA DON"                                    ;
     setColor(7);
-    cout<<"|\n";
+    cout<<"                                    |\n";
     setColor(7); // Màu vàng cho đường viền tiêu đề
     cout << "================================================================================\n";
     setColor(7); // Màu trắng trở lại cho nội dung bên dưới

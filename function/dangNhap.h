@@ -390,21 +390,47 @@ int ShowMainMenu(UserAccount user) {
                 cout << "========================================================================\n";
 
                 string line;
+                // while (getline(file, line)) {
+                //     istringstream iss(line);
+                //     string itemName, Date;
+                //     int price, quantity, total;
+
+                //     iss >> itemName >> price >> quantity >> total >> Date;
+
+                //     cout << "| " << left << setw(15) << itemName
+                //          << "| " << setw(10) << price
+                //          << "| " << setw(10) << quantity
+                //          << "| " << setw(15) << total
+                //          << "| " << Date << " |\n";
+                // }
+                // cout << "========================================================================\n";
                 while (getline(file, line)) {
-                    istringstream iss(line);
-                    string itemName, Date;
-                    int price, quantity, total;
+                istringstream iss(line);
+                string itemName, date, temp;
+                int price, quantity, total;
 
-                    iss >> itemName >> price >> quantity >> total >> Date;
+                // Đọc tên sản phẩm trước (có thể chứa nhiều từ)
+                getline(iss, itemName, ' ');
+                while (iss >> temp) { // Đọc tiếp nếu còn dữ liệu
+                    if (isdigit(temp[0])) { // Gặp số thì dừng, xử lý tiếp giá trị số
+                        iss.seekg(-(int)temp.length(), ios::cur); // Lùi lại con trỏ
+                        break;
+                    }
+                    itemName += " " + temp; // Ghép phần còn lại vào tên
+                }
 
-                    cout << "| " << left << setw(15) << itemName
-                         << "| " << setw(10) << price
-                         << "| " << setw(10) << quantity
-                         << "| " << setw(15) << total
-                         << "| " << Date << " |\n";
+                // Đọc các giá trị số và ngày tháng
+                iss >> price >> quantity >> total >> date;
+
+                // In thông tin ra màn hình
+                cout << "| " << left << setw(15) << itemName
+                    << "| " << setw(10) << price
+                    << "| " << setw(10) << quantity
+                    << "| " << setw(15) << total
+                    << "| " << date << " |\n";
                 }
                 cout << "========================================================================\n";
-                file.close();
+                            file.close();
                 setColor(7); // Trắng
                 break;
             }
