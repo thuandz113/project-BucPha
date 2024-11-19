@@ -25,27 +25,6 @@ using namespace std;
 int ShowMainMenu(UserAccount user);
 void displayMenu(int width);
 
-bool checkPass(const string &password) {
-    return password.size() >= 8;
-}
-bool checkLogin(ifstream& file, const string& userName, string& password, int& roles, int& credits, int& sex, string& number, string& address) {
-    string userTemp, passTemp;
-    while(file>>userTemp>>passTemp>>roles>>credits>>sex>>number>>address)
-    {
-        if (userName == replaceUnderscore(userTemp)) 
-        {
-            inputPass(password);
-            if (password == passTemp) {
-                cout << "\nDang nhap thanh cong\n";
-                return true;
-            } else {
-                cout << "\nPassword khong chinh xac, vui long nhap lai\n\n";
-                return false;
-            }
-        }
-    }
-    return false;
-}
 
 void login() {
     system("cls");
@@ -230,7 +209,6 @@ void registerAccount() {
 void displayMenu(int width) 
 {
     system("cls");
-
     string title = "CHAO MUNG DEN VOI SIEU THI UTC2";
     vector<string> options = {
         "Dang nhap",
@@ -283,7 +261,7 @@ void displayMenu(int width)
         case 2: 
             cout << "Cam on ban da su dung chuong trinh!" << endl;
             cout << "Hen gap lai ban <3" << endl;
-            return; // Thoát chương trình
+            exit(0); // Thoát chương trình
     }
 }
 //output function//
@@ -367,7 +345,8 @@ int ShowMainMenu(UserAccount user) {
                     setColor(14); // Màu vàng
                     cout << "Nhap so tien nap (lon hon 0 va nho hon 10 trieu): ";
                     setColor(7); // Màu trắng
-                    cin >> credits;
+                    cinInt >> credits;
+                    
                 } while (credits <= 0 || credits >= 10000000);
                 user.accountDeposit(credits);
                 setColor(10); // Xanh lá

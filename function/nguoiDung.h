@@ -388,8 +388,9 @@ void thanhToan(std::vector<int>& luaChonSanPham, std::vector<int>& soLuongMua, U
     setColor(7);
 
     char luaChon;
-    cout << "Ban co muon thanh toan khong? (y/n): ";
+    cout << "Ban co muon thanh toan khong? (Y(y)/Phim khac): ";
     cin >> luaChon;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     
     if (luaChon == 'y' || luaChon == 'Y') {
         if (user.getCredits() >= tongTien) {
@@ -426,9 +427,10 @@ void thanhToan(std::vector<int>& luaChonSanPham, std::vector<int>& soLuongMua, U
 
             // Hỏi người dùng có muốn nạp tiền đủ để thanh toán không
             char luaChonNap;
-            cout << "Ban co muon nap them " << soTienThieu << "$ de thanh toan khong? (y/n): ";
+            cout << "Ban co muon nap them " << soTienThieu << "$ de thanh toan khong? (Y(y)/Phim khac): ";
             cin >> luaChonNap;
-
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			
             if (luaChonNap == 'y' || luaChonNap == 'Y') {
                 double credits;
                 
@@ -595,9 +597,10 @@ void nhapSanPham(LoaiSanPham loai) {
     }
 
     if (!found) {
-        cout << "Khong co san pham nao trong kho. Ban co muon nhap san pham moi khong? (y/n): ";
+        cout << "Khong co san pham nao trong kho. Ban co muon nhap san pham moi khong? (Y(y)/Phim khac): ";
         char nhapMoi;
         cin >> nhapMoi;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         if (nhapMoi == 'y' || nhapMoi == 'Y') {
             nhapSanPhamMoi(loai);
         }
@@ -608,7 +611,7 @@ void nhapSanPham(LoaiSanPham loai) {
     while (true) {
         int luaChon;
         cout << "\nChon san pham muon nhap (nhap so tuong ung, hoac 0 de dung, hoac -1 de nhap san pham moi): ";
-        cin >> luaChon;
+        cinInt >> luaChon;
 
         if (luaChon == 0) {
             this_thread::sleep_for(chrono::milliseconds(500));
@@ -624,7 +627,7 @@ void nhapSanPham(LoaiSanPham loai) {
             int indexSanPham = danhSachHienThi[luaChon - 1];
             int soLuongNhap;
             cout << "Nhap so luong muon them: ";
-            cin >> soLuongNhap;
+            cinInt >> soLuongNhap;
             capNhatSanPham(indexSanPham, soLuongNhap);
         } else {
             cout << "Lua chon khong hop le.\n";
@@ -820,7 +823,7 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
         setColor(14); // Màu vàng cho yêu cầu chọn sản phẩm
         cout << "\nChon san pham muon mua (nhap so tuong ung, hoac 0 de dung mua): ";
         setColor(7);
-        cin >> luaChon;
+        cinInt >> luaChon;
 
         if (luaChon == 0) {
             break;
@@ -831,7 +834,7 @@ void muaSanPham(LoaiSanPham loai, UserAccount &user) {
             setColor(10); // Màu xanh lá cho yêu cầu nhập số lượng
             cout << "Nhap so luong muon mua: ";
             setColor(7);
-            cin >> soLuong;
+            cinInt >> soLuong;
 
             if (soLuong <= 0) {
                 setColor(12); // Màu đỏ cho thông báo sai số lượng

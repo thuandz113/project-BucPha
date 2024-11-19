@@ -24,7 +24,9 @@ public:
 				cout<<"\nBan vua nhap chu thay vi nhap so, hay nhap lai:";
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            } else {
+            } 
+			else {
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 break;
             }
         }
@@ -360,3 +362,4 @@ bool checkVietnamesePhoneNumber(const string& phoneNumber, int width) {
         return false;
     }
 }
+
