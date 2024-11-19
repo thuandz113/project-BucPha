@@ -1,12 +1,12 @@
 DoUong,Coca,10,0
 ThoiTrang,Nike,20,0
 ThucPham,Ga Ran,10000,53
-ThucPham,Ca,10000,-2
+ThucPham,Ca,10000,50
 DoUong,Pepsi,15,0
 DoUong,Tra Sua,25,0
 DoUong,Nuoc Cam,12,0
 DoUong,Ca Phe,30,0
-ThoiTrang,Adidas,18,11
+ThoiTrang,Adidas,18,-9
 ThoiTrang,Puma,22,12
 ThoiTrang,Gucci,35,20
 ThoiTrang,Lv,50,25
@@ -14,7 +14,7 @@ ThucPham,Pizza,8000,0
 ThucPham,Hamburger,9000,65
 ThucPham,Xoi Ga,5000,56
 ThucPham,Banh Mi,6000,62
-DoGiaDung,May Giat,3000,10
+DoGiaDung,May Giat,3000,8
 DoGiaDung,Tu Lanh,5000,25
 DoGiaDung,Quat Dien,1000,15
 DoGiaDung,May Say Toc,800,10
