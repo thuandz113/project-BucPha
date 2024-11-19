@@ -1310,75 +1310,75 @@ void docSanPhamTuFile(const string& tenFile) {
 
     file.close();
 }
-void quanLyKhoHang() {
-    this_thread::sleep_for(chrono::milliseconds(1000));
-    system("cls");  // Xóa màn hình lần đầu tiên khi vào menu
-    int choice = 0;
+// void quanLyKhoHang() {
+//     this_thread::sleep_for(chrono::milliseconds(1000));
+//     system("cls");  // Xóa màn hình lần đầu tiên khi vào menu
+//     int choice = 0;
 
-    do {
-        system("cls"); // Xóa màn hình mỗi khi vòng lặp chạy lại
+//     do {
+//         system("cls"); // Xóa màn hình mỗi khi vòng lặp chạy lại
 
-        // Vẽ tiêu đề và khung
-        drawHeader1();
-        cout << endl;  // Thêm khoảng trắng giữa tiêu đề và menu
+//         // Vẽ tiêu đề và khung
+//         drawHeader1();
+//         cout << endl;  // Thêm khoảng trắng giữa tiêu đề và menu
 
-        // Vẽ các mục trong menu
-        drawMenuOptions(choice);
+//         // Vẽ các mục trong menu
+//         drawMenuOptions(choice);
         
-        setColor(7);  // Đặt lại màu trắng mặc định
-        cout << " ╚══════════════════════════════════════════════════════╝" << endl;
+//         setColor(7);  // Đặt lại màu trắng mặc định
+//         cout << " ╚══════════════════════════════════════════════════════╝" << endl;
 
-        // Xử lý phím nhập vào
-        int key = _getch();
-        if (key == 224) { // Phím mũi tên
-            key = _getch();
-            if (key == 72) {
-                choice = (choice - 1 + 4) % 4;  // Điều chỉnh khi lên xuống
-            } else if (key == 80) {
-                choice = (choice + 1) % 4;
-            }
-        } else if (key == 13) {  // Enter
-            // Thực hiện chức năng tương ứng
-            system("cls");
-            switch (choice) {
-                case 0:
-                    setColor(12);
-                    cout << "Ban dang den voi chuc nang nhap hang" << endl;
-                    setColor(7);
-                    // Hàm nhập hàng (cập nhật số lượng sản phẩm)
-                    nhapHang();
-                    break;
-                case 1:
-                    setColor(12);
-                    cout << "Ban dang den voi chuc nang xoa hang" << endl;
-                    setColor(7);
-                    // Hàm xóa hàng
-                    xoaHang();
-                    break;
-                case 2:
-                    setColor(12);
-                    cout << "Ban dang den voi chuc nang cap nhat gia san pham" << endl;
-                    setColor(7);
-                    // Hàm cập nhật giá sản phẩm
-                    capNhatGiaHang();
-                    break;
-                case 3:
-                    setColor(12);
-                    cout << "Thoat kho hang..." << endl;
-                    this_thread::sleep_for(chrono::milliseconds(500));
-                    system("cls");
+//         // Xử lý phím nhập vào
+//         int key = _getch();
+//         if (key == 224) { // Phím mũi tên
+//             key = _getch();
+//             if (key == 72) {
+//                 choice = (choice - 1 + 4) % 4;  // Điều chỉnh khi lên xuống
+//             } else if (key == 80) {
+//                 choice = (choice + 1) % 4;
+//             }
+//         } else if (key == 13) {  // Enter
+//             // Thực hiện chức năng tương ứng
+//             system("cls");
+//             switch (choice) {
+//                 case 0:
+//                     setColor(12);
+//                     cout << "Ban dang den voi chuc nang nhap hang" << endl;
+//                     setColor(7);
+//                     // Hàm nhập hàng (cập nhật số lượng sản phẩm)
+//                     nhapHang();
+//                     break;
+//                 case 1:
+//                     setColor(12);
+//                     cout << "Ban dang den voi chuc nang xoa hang" << endl;
+//                     setColor(7);
+//                     // Hàm xóa hàng
+//                     xoaHang();
+//                     break;
+//                 case 2:
+//                     setColor(12);
+//                     cout << "Ban dang den voi chuc nang cap nhat gia san pham" << endl;
+//                     setColor(7);
+//                     // Hàm cập nhật giá sản phẩm
+//                     capNhatGiaHang();
+//                     break;
+//                 case 3:
+//                     setColor(12);
+//                     cout << "Thoat kho hang..." << endl;
+//                     this_thread::sleep_for(chrono::milliseconds(500));
+//                     system("cls");
                     
-                    setColor(7);
-                default:
-                    cout << "Lua chon khong hop le! Vui long chon lai." << endl;
-                    break;
-            }
-            this_thread::sleep_for(chrono::milliseconds(1000));
-            system("cls");
-        }
-    } while (true);
+//                     setColor(7);
+//                 default:
+//                     cout << "Lua chon khong hop le! Vui long chon lai." << endl;
+//                     break;
+//             }
+//             this_thread::sleep_for(chrono::milliseconds(1000));
+//             system("cls");
+//         }
+//     } while (true);
 
-}
+// }
 void drawHeader1(){
         cout << " ╔══════════════════════════════════════════════════════╗" << endl;
     cout << " ║                    ";

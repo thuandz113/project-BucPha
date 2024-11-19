@@ -14,7 +14,7 @@
 using namespace std;
 int ShowMainMenu(UserAccount user);
 void drawHeader() {
-
+    setColor(7);
     cout << " ╔══════════════════════════════════════════════════════╗" << endl;
     cout << " ║                    ";
     setColor(11);
@@ -25,76 +25,60 @@ void drawHeader() {
 }
 
 
-// Hàm vẽ khung menu
-
-void quanLyKhoHang() {
-    this_thread::sleep_for(chrono::milliseconds(1000));
-    system("cls");  // Xóa màn hình lần đầu tiên khi vào menu
+void quanLyKhoHang(UserAccount user) {
+    
+    this_thread::sleep_for(chrono::milliseconds(500));
+    system("cls");
     int choice = 0;
     QuanLyChucNang qlcn;
     do {
-        system("cls"); // Xóa màn hình mỗi khi vòng lặp chạy lại
-
-        // Vẽ tiêu đề và khung
+        system("cls");
         qlcn.drawHeader1();
-        cout << endl;  // Thêm khoảng trắng giữa tiêu đề và menu
-
-        // Vẽ các mục trong menu
+        cout << endl;
         qlcn.drawMenuOptions(choice);
-        
+
         setColor(7);  // Đặt lại màu trắng mặc định
         cout << " ╚══════════════════════════════════════════════════════╝" << endl;
 
-        // Xử lý phím nhập vào
         int key = _getch();
-        if (key == 224) { // Phím mũi tên
+        if (key == 224) {
             key = _getch();
             if (key == 72) {
-                choice = (choice - 1 + 4) % 4;  // Điều chỉnh khi lên xuống
+                choice = (choice - 1 + 4) % 4;
             } else if (key == 80) {
                 choice = (choice + 1) % 4;
             }
         } else if (key == 13) {  // Enter
-            // Thực hiện chức năng tương ứng
             system("cls");
             switch (choice) {
                 case 0:
                     setColor(12);
                     cout << "Ban dang den voi chuc nang nhap hang" << endl;
                     setColor(7);
-                    // Hàm nhập hàng (cập nhật số lượng sản phẩm)
                     qlcn.nhapHang();
                     break;
                 case 1:
                     setColor(12);
                     cout << "Ban dang den voi chuc nang xoa hang" << endl;
                     setColor(7);
-                    // Hàm xóa hàng
                     qlcn.xoaHang();
                     break;
                 case 2:
                     setColor(12);
                     cout << "Ban dang den voi chuc nang cap nhat gia san pham" << endl;
                     setColor(7);
-                    // Hàm cập nhật giá sản phẩm
                     qlcn.capNhatGiaHang();
                     break;
                 case 3:
                     setColor(12);
                     cout << "Thoat kho hang..." << endl;
                     this_thread::sleep_for(chrono::milliseconds(500));
-                    system("cls");
-                    
-                    setColor(7);
-                default:
-                    cout << "Lua chon khong hop le! Vui long chon lai." << endl;
-                    break;
+                    return;  // Thoát khỏi hàm quanLyKhoHang()
             }
-            this_thread::sleep_for(chrono::milliseconds(1000));
+            this_thread::sleep_for(chrono::milliseconds(500));
             system("cls");
         }
     } while (true);
-
 }
 // Hàm vẽ các mục trong menu
 void drawMenuOptions(int choice) {
@@ -146,38 +130,31 @@ void drawMenuOptions(int choice) {
     }
 }
 
-// Hàm hiển thị menu
+
 int ShowManageMenu(UserAccount user) {
     this_thread::sleep_for(chrono::milliseconds(500));
-    system("cls");  // Xóa màn hình lần đầu tiên khi vào menu
+    system("cls");
     QuanLyChucNang qlcn;
     int choice = 0;
 
     do {
-        system("cls"); // Xóa màn hình mỗi khi vòng lặp chạy lại
-
-        // Vẽ tiêu đề và khung
+        system("cls");
         drawHeader();
-        cout << endl;  // Thêm khoảng trắng giữa tiêu đề và menu
-
-
-        // Vẽ các mục trong menu
+        cout << endl;
         drawMenuOptions(choice);
-        
-        setColor(7);  // Đặt lại màu trắng mặc định
+
+        setColor(7);
         cout << " ╚══════════════════════════════════════════════════════╝" << endl;
 
-        // Xử lý phím nhập vào
         int key = _getch();
-        if (key == 224) { // Phím mũi tên
+        if (key == 224) {
             key = _getch();
             if (key == KEY_UP) {
-                choice = (choice - 1 + 6) % 6;  // Điều chỉnh khi lên xuống
+                choice = (choice - 1 + 6) % 6;
             } else if (key == KEY_DOWN) {
                 choice = (choice + 1) % 6;
             }
         } else if (key == KEY_ENTER) {
-            // Thực hiện chức năng tương ứng
             system("cls");
             switch (choice + 1) {
                 case 1:
@@ -185,7 +162,7 @@ int ShowManageMenu(UserAccount user) {
                     cout << "Ban dang den voi chuc nang quan ly kho hang" << endl;
                     setColor(7);
                     this_thread::sleep_for(chrono::milliseconds(500));
-                    qlcn.quanLyKhoHang();
+                    quanLyKhoHang(user);  // Gọi lại quản lý kho
                     break;
                 case 2:
                     setColor(12);
@@ -219,7 +196,6 @@ int ShowManageMenu(UserAccount user) {
                     cout << "Lua chon khong hop le! Vui long chon lai." << endl;
                     break;
             }
-            // Sau khi xử lý, quay lại menu
             this_thread::sleep_for(chrono::milliseconds(500));
             system("cls");
         }
