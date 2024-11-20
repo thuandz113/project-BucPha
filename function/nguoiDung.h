@@ -1321,7 +1321,7 @@ void liveSearchByName(const string& query) {
     std::cout << "Tu khoa: \"" << query << "\"\n";
     bool found = false;
 
-    // Tiêu đề với màu vàng (mã ANSI màu vàng: 33)
+
     std::cout << "[------------------------------------------------------------+\n";
     std::cout << "| " << std::setw(20) << std::left << "Ten san pham"
               << "| " << std::setw(12) << std::left << "Loai"
@@ -1353,8 +1353,7 @@ void showSearchUI() {
     cout << "+----------------------------------------------------------+\n";
     cout << "|                     Tim kiem san pham                    |\n";
     cout << "+----------------------------------------------------------+\n";
-    cout << "| Nhap ten san pham can tim (hoac go 'exit' hoac (-1) de   |\n";
-    cout << "| mua hang de thoat):                                      |\n";
+    cout << "| Nhap ten san pham can tim (hoac go 'exit' ):             |\n";
     cout << "+----------------------------------------------------------+\n";
 }
 void showSearchUIforManager() {
@@ -1376,18 +1375,10 @@ void xulytimkiem(UserAccount &user){
     docSanPhamTuFile("database/product.txt"); // Đọc danh sách sản phẩm từ file
 
     while (true) {
-        // Nếu không phải lần tìm kiếm đầu tiên, đợi và xóa màn hình
-        if (!firstSearch) {
-            this_thread::sleep_for(chrono::milliseconds(3500));
-            system("cls");  // Xóa màn hình mỗi khi tìm kiếm sau lần đầu tiên
-        } else {
-            firstSearch = false;  // Sau lần đầu tiên, set flag là false
-        }
-
         // Hiển thị giao diện tìm kiếm tùy theo vai trò của người dùng
         if (user.getRoles() == 0) { // Nếu là khách hàng
             showSearchUI();  // Giao diện tìm kiếm cho khách hàng
-            moveCursor(25, 6);  // Di chuyển con trỏ đến vị trí nhập
+            moveCursor(48, 5);  // Di chuyển con trỏ đến vị trí nhập
         } else if (user.getRoles() == 2) { // Nếu là quản lý
             showSearchUIforManager();  // Giao diện tìm kiếm cho quản lý
             moveCursor(48, 5);  // Di chuyển con trỏ đến vị trí nhập
@@ -1399,28 +1390,82 @@ void xulytimkiem(UserAccount &user){
         if (query == "exit") break;
 
         // Nếu người dùng nhập "-1", xử lý tùy theo vai trò
-        if (query == "-1") {
-            if (user.getRoles() == 0) {
-                std::cout << "Ban da chon qua quay san pham.\n";
-                chonQuayKhac(user);  
-                break;  // Thoát vòng tìm kiếm
-            } else if (user.getRoles() == 2) {
-                std::cout << "Ban da chon quan ly kho hang.\n";
-                break;  // Thoát vòng tìm kiếm, có thể chuyển sang màn hình quản lý kho
-            }
-        }
 
         // Tìm kiếm sản phẩm theo tên
         liveSearchByName(query);
         std::cout << "----------------------\n";
     }
 
-    // Dọn dẹp bộ nhớ sau khi tất cả các tìm kiếm đã hoàn tất
-    for (SanPham* sp : danhSachSanPham) {
-        delete sp;  // Giải phóng bộ nhớ của các đối tượng SanPham
-    }
-    danhSachSanPham.clear();  // Xóa danh sách sản phẩm
+    setColor(9); // Xanh dương nhạt
+    cout << "\nNhan phim bat ky de tiep tuc...\n";
+    setColor(7); // Trắng
+    system("pause");
+    
+    
 }
+void hienthidanhsachhethang(UserAccount &user) {
+    docSanPhamTuFile("database/product.txt"); // Đảm bảo hàm này đọc đúng dữ liệu vào danhSachSanPham
+    vector<int> danhSachHienThi;  // Lưu trữ các chỉ số sản phẩm được hiển thị
+    bool found = false;
+
+    // Hiển thị các sản phẩm hết hàng
+    cout << "==================================================================\n";
+
+    // In thông tin tiêu đề, chỉ chữ được tô màu
+    cout << "| ";
+    setColor(11); // Xanh dương nhạt
+    cout << "STT";
+    setColor(7); // Trở lại màu mặc định
+    cout << " | ";
+
+    setColor(11);
+    cout << "Ten san pham";
+    setColor(7);
+    cout << "                   | ";
+
+    setColor(11);
+    cout << "So luong";
+    setColor(7);
+    cout << " | ";
+
+    setColor(11);
+    cout << "Gia (VND)";
+    setColor(7);
+    cout << "    |\n";
+
+    // Đường viền dưới giữ màu mặc định
+    cout << "==================================================================\n";
+
+    // Duyệt qua tất cả các sản phẩm và hiển thị sản phẩm hết hàng
+    for (size_t i = 0; i < danhSachSanPham.size(); ++i) {
+        if (danhSachSanPham[i]->getSoLuong() == 0) {
+            
+            setColor(15); // Màu trắng cho danh sách sản phẩm
+            cout << "| " << setw(3) << left << danhSachHienThi.size() + 1 << " | ";
+            cout << setw(30) << left << danhSachSanPham[i]->getTen() << " | ";
+            cout << setw(8) << left << danhSachSanPham[i]->getSoLuong() << " | ";
+            cout << setw(12) << left << danhSachSanPham[i]->getGia() << " |\n";
+            setColor(7);
+            
+            danhSachHienThi.push_back(i);  // Thêm chỉ số sản phẩm vào danh sách hiển thị
+            found = true;
+        }
+    }
+
+    cout << "==================================================================\n";
+
+    if (!found) {
+        setColor(12); // Màu đỏ cho thông báo không có sản phẩm
+        cout << "Khong co san pham nao trong kho.\n";
+        setColor(7);
+    }
+    setColor(9); // Xanh dương nhạt
+    cout << "\nNhan phim bat ky de tiep tuc...\n";
+    setColor(7); // Trắng
+    system("pause");
+}
+
+
                
 
 
@@ -1428,7 +1473,7 @@ void drawHeader1(){
         cout << " ╔══════════════════════════════════════════════════════╗" << endl;
     cout << " ║                    ";
     setColor(11);
-    cout<<" QUẢN LÝ KHO Hàng";
+    cout<<" QUẢN LÝ KHO HÀNG";
     setColor(7);
     cout<<"                 ║" << endl;
     cout << " ╠══════════════════════════════════════════════════════╣" ;
@@ -1440,10 +1485,11 @@ void drawMenuOptions(int choice) {
         "Xoa hang",
         "Cap nhat gia san pham",
         "tim kiem san pham",
+        "Hiển thị các sản phẩm hết hạng",
         "Thoat"
     };
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 6; i++) {
         // Nếu đang ở mục chọn hiện tại, đổi màu
         if (i == choice) {
             cout << " ║";
@@ -1472,7 +1518,11 @@ void drawMenuOptions(int choice) {
                     setColor(7);
                     cout << "║";
                     break;
-            case 4: cout << "Thoat                                              ";
+            case 4: cout << "Hiện thị danh sách sản phẩm hết                    ";
+                    setColor(7);
+                    cout << "║";
+                    break;
+            case 5: cout << "Thoat                                              ";
                     setColor(7);
                     cout << "║";
                     break;

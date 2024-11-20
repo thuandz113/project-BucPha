@@ -468,7 +468,7 @@ int ShowMainMenu(UserAccount user) {
             }
         }
         setColor(9); // Xanh dương nhạt
-        cout << "Nhan phim bat ky de tiep tuc...\n";
+        cout << "\nNhan phim bat ky de tiep tuc...\n";
         setColor(7); // Trắng
         system("pause");
     }

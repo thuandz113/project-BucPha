@@ -44,9 +44,9 @@ void quanLyKhoHang(UserAccount user) {
         if (key == 224) {
             key = _getch();
             if (key == 72) {
-                choice = (choice - 1 + 5) % 5;
+                choice = (choice - 1 + 6) % 6;
             } else if (key == 80) {
-                choice = (choice + 1) % 5;
+                choice = (choice + 1) % 6;
             }
         } else if (key == 13) {  // Enter
             system("cls");
@@ -78,6 +78,14 @@ void quanLyKhoHang(UserAccount user) {
                     qlcn.xulytimkiem(user);
                     break;
                 case 4:
+                    setColor(12);
+                    cout << "Ban dang den voi chuc nang hien thi thong tin san phẩm hết hàng" << endl;
+                    setColor(7);
+                    this_thread::sleep_for(chrono::milliseconds(500));
+                    system("cls");
+                    qlcn.hienthidanhsachhethang(user);
+                    break;    
+                case 5:
                     setColor(12);
                     cout << "Thoat kho hang..." << endl;
                     this_thread::sleep_for(chrono::milliseconds(500));
@@ -158,9 +166,9 @@ int ShowManageMenu(UserAccount user) {
         if (key == 224) {
             key = _getch();
             if (key == KEY_UP) {
-                choice = (choice - 1 + 6) % 6;
+                choice = (choice - 1 + 5) % 5;
             } else if (key == KEY_DOWN) {
-                choice = (choice + 1) % 6;
+                choice = (choice + 1) % 5;
             }
         } else if (key == KEY_ENTER) {
             system("cls");
