@@ -1,6 +1,6 @@
 DoUong,Coca,10,0
 ThoiTrang,Nike,20,0
-ThucPham,Ga Ran,10000,53
+ThucPham,Ga Ran,10000,51
 ThucPham,Ca,10000,50
 DoUong,Pepsi,15,0
 DoUong,Tra Sua,25,0
