@@ -147,7 +147,7 @@ void registerAccount() {
         getline(fileCheck, line);
         while (fileCheck >> userTemp >> passTemp >> roles >> credits >> sex >> number >> address)
         {
-            if(userName == userTemp)
+            if(replaceSpace(userName) == userTemp)
             {
                 checkAccount = false;
             }

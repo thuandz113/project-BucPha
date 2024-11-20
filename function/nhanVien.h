@@ -102,7 +102,6 @@ bool searchAccount(const string& usernameToSearch) {
         cout << "Khong the mo file tai khoan!" << endl;
         return false;
     }
-
     string line;
     bool accountFound = false;
 
@@ -288,7 +287,6 @@ int ShowStaffMenu(UserAccount user)
                 setColor(12);
                 cout << "Nhap ten tai khoan khach hang muon xoa (bo trong de huy): ";
                 setColor(7);
-                cin.ignore();
                 getline(cin, userDelete);
                 if(userDelete == "") break;
                 if (deleteAccount(userDelete, user.getUsername())) {
@@ -309,10 +307,7 @@ int ShowStaffMenu(UserAccount user)
             {
                 showList();
                 string userName;
-                setColor(12);
-                cout << "Nhap ten tai khoan khach hang muon xem hoa don (bo trong de huy): ";
-                setColor(7);
-                cin.ignore();
+                cout << "Nhap ten tai khoan khach hang muon xem hoa don(bo trong de huy): ";
                 getline(cin, userName);
                 if(userName == "") break;
                 if(searchAccount(userName))
@@ -321,9 +316,7 @@ int ShowStaffMenu(UserAccount user)
                     ifstream file(fileName);
 
                     if (!file.is_open()) {
-                        setColor(12);
                         cout << "Khong co thong tin!" << endl;
-                        setColor(7);
                         break;
                     }
 
@@ -331,15 +324,11 @@ int ShowStaffMenu(UserAccount user)
                     file.seekg(0, ios::end); // Di chuyển con trỏ đến cuối file
                     if (file.tellg() == 0) 
                     {
-                        setColor(12);
                         cout << "Trang thong tin!" << endl;
-                        setColor(7);
                         file.close();
                         // Xóa file trống
                         if (remove(fileName.c_str()) != 0) {
-                            setColor(12);
                             cout << "Xoa that bai!" << endl;
-                            setColor(7);
                         }
                         break;
                     }
@@ -373,9 +362,7 @@ int ShowStaffMenu(UserAccount user)
                 }
                 else 
                 {
-                    setColor(12);
                     cout << "Khong tim thay tai khoan!" << endl;
-                    setColor(7);
                 }
                 break;
             }

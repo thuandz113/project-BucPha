@@ -441,7 +441,7 @@ void thanhToan(std::vector<int>& luaChonSanPham, std::vector<int>& soLuongMua, U
                 double giaSanPham = danhSachSanPham[index]->getGia();
                 int soLuong = soLuongMua[i];
                 double thanhTien = giaSanPham * soLuong;
-                fileHoaDon << danhSachSanPham[index]->getTen() << " " << giaSanPham << " " << soLuong << " " << thanhTien << " " << getCurrentDate() << endl;
+                fileHoaDon << replaceSpace(danhSachSanPham[index]->getTen()) << " " << giaSanPham << " " << soLuong << " " << thanhTien << " " << getCurrentDate() << endl;
             }
             fileHoaDon.close();
 

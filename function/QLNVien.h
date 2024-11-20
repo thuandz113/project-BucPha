@@ -6,6 +6,8 @@
 using namespace std;
 
 const int maxNV = 100;
+
+int menuEmployeeManagement();
 bool checkPasss(const string &password) {
     return password.size() >= 8;
 }
@@ -16,7 +18,7 @@ void registerEmployeeAccout(string &tenTaiKhoan){
         cout << "Khong the mo file tai khoan!" << endl;
         return;
     }
-
+	int width = 50;
     string userName, password;
 
     ifstream fileCheck("database/account.txt");
@@ -24,21 +26,19 @@ void registerEmployeeAccout(string &tenTaiKhoan){
         cout << "Khong the mo file tai khoan!" << endl;
         return;
     }
-    string userTemp, passTemp;
+    string userTemp, passTemp, passwordTwo;
         int sex, credits, roles;
         string number,address;
-    bool first = false;
+    
+    printBorder(width);
+    printInBox("DANG KY", width, false, 11); // Tiêu đề màu xanh dương nhạt
+    printBottomBorder(width);
+    
     while(1)
     {
         bool checkAccount = true;
-        cout << "Nhap ten tai khoan moi: ";
-        if(first == false)
-        {
-            cin.ignore();
-            first = true;
-        }
-        getline(cin, userName);
-        tenTaiKhoan = userName;
+		userName = cinInBox("Nhap tai khoan moi: ", width, true, 9);
+		tenTaiKhoan = userName;
         fileCheck.clear();
         fileCheck.seekg(0);
         string line;
@@ -52,38 +52,56 @@ void registerEmployeeAccout(string &tenTaiKhoan){
         }
         if(checkAccount == true) break;
         else {
-            cout<<"Ten tai khoan bi trung, vui long nhap lai."<<endl;
+        	printBorder(width);
+            printInBox("Ten tai khoan bi trung", width, false , 4);
+            printBottomBorder(width);
         }
     }
     fileCheck.close();
     while (true) {
-
-        inputPass(password);
-
-        if (checkPasss(password)) 
+        password = cinInBox("Nhap mat khau moi: ", width, true, 9);
+        while(checkPasswordStrength(password, width) == false)
         {
-            int sex;
-            string number, address;
-            cout<<"Vui long chon gioi tinh: 1-Nam, 2-Nu."<<endl;
-            do{
-                cout<<"Lua chon cua ban:";
-                cinInt>>sex;
-            }
-            while(sex != 1 && sex != 2);
-            cin.ignore();
-            cout<<"Vui long nhap so dien thoai cua ban:";
-            getline(cin, number);
-            cout<<"Vui long them dia chi cua ban:";
-            getline(cin, address);
-            file << replaceSpace(userName) << " " << password << " "<< 1 <<" "<< 0<<" "<< sex <<" "<< replaceSpace(number) << " "<< replaceSpace(address)<<endl;
-            cout << "Dang ky tai khoan thanh cong!" << endl;
-            break;
-        } else {
-            cout << "Mat khau khong du manh, vui long thu lai." << endl;
-        }
+        	password = cinInBox("Nhap mat khau moi: ", width, true, 9);
+		}
+		passwordTwo = cinInBox("Nhap lai mat khau moi: ", width, true, 9);
+		while(password != passwordTwo)
+		{
+        	printBorder(width);
+            printInBox("Ban nhap mat khau khong dung vui long tao lai.", width, false , 4);
+            printBottomBorder(width);
+            
+			password = cinInBox("Nhap mat khau moi: ", width, true, 9);
+			passwordTwo = cinInBox("Nhap lai mat khau moi: ", width, true, 9);		
+		}
+		
+        int sex;
+        string number, address;
+		sex = cinIntInBox("Gioi tinh(1: Nam, 2: Nu): ", width, true, 10);
+		while(sex != 1 && sex != 2)
+		{
+        	printBorder(width);
+            printInBox("Gioi tinh chu duoc chon 1: Nam, 2: Nu!", width, false , 4);
+            printBottomBorder(width);			
+			sex = cinIntInBox("Gioi tinh(1: Nam, 2: Nu): ", width, true, 10);
+		}
+		
+		number = cinInBox("Nhap so dien thoai: ", width, true, 9);
+		while(checkVietnamesePhoneNumber(number, width) == false)
+		{
+			number = cinInBox("Nhap so dien thoai: ", width, true, 9);
+		}
+		
+        address = cinInBox("Nhap dia chi: ", width, true, 9);
+        file << replaceSpace(userName) << " " << password << " "<< 1 <<" "<< 0<<" "<< sex <<" "<< replaceSpace(number) << " "<< replaceSpace(address)<<endl;
+
+    	printBorder(width);
+        printInBox("DANG KY THANH CONG <3", width, false , 10);
+        printBottomBorder(width);
+		this_thread::sleep_for(chrono::milliseconds(2000));
+        file.close();
+        break;
     }
-    
-    file.close();
 }
 
 class NhanVien {
@@ -152,6 +170,7 @@ class NhanVien {
         	char choice;
         	cout<<"ban co muon tao tai khoan cho nhan vien nay(y/n): ";
 			cin>>choice;
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
         	if(choice=='y'||choice=='Y')
 			{
         		registerEmployeeAccout(tenTaiKhoan);
@@ -473,8 +492,6 @@ int n; //sl nhan vien
 		}
     }
 };
-
-
 int menuEmployeeManagement(){
 	QLNV qlnv;
 	int choice;
