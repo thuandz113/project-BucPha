@@ -66,7 +66,7 @@ void login() {
 						printBottomBorder(width);
 						break;
 					}
-                    password = cinInBox("Nhap mat khau: ", width, true, 9);
+                    password = cinInBox1("Nhap mat khau: ", width, true, 9);
                     if (password == passTemp) {
                     		printBorder(width);
                             printInBox("DANG NHAP THANH CONG", width, false ,10);
@@ -495,17 +495,26 @@ int ShowMainMenu(UserAccount user) {
                 break;
             }
             case 4: {
-                setColor(14); // Vàng
-                cout << "Nhap Password moi: ";
-                setColor(7); // Trắng
                 string newPassword;
-                getline(cin, newPassword);
+                bool validPassword = false;
+
+                while (!validPassword) {
+                setColor(14); // Màu vàng
+                    cout << "Nhap Password moi: ";
+                    setColor(7); // Màu trắng
+                    getline(cin, newPassword);
+
+                    // Kiểm tra độ mạnh của mật khẩu
+                    validPassword = checkPasswordStrength1(newPassword);
+                }
+
+                // Cập nhật mật khẩu khi hợp lệ
                 user.setPassword(newPassword);
-                setColor(10); // Xanh lá
+                setColor(10); // Màu xanh lá
                 cout << "Password da duoc cap nhat.\n";
-                setColor(7); // Trắng
-                
-                updateAccount(user);
+                setColor(7); // Màu trắng
+
+                updateAccount(user); // Gọi hàm cập nhật tài khoản
                 break;
             }
             case 5: {

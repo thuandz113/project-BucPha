@@ -1,7 +1,7 @@
 Username/Password/Roles/Credits/Sex/Number/Address
 thuan_p 123123123 1 1000000 2 0915566 aasdasd
 peter 123123123 0 146246 2 123 2
-bao 123123123 0 99982 3 123 2
+bao 123123123Bao@ 0 99982 3 123 2
 admin_user adminpass 2 9999999 1 987654321 DaNang
 thuancute 123 0 1000000 1 0915566167 256
 bao123 123123123Bao@ 0 99980 1 0835442443 32_Vo_Thi_Sau

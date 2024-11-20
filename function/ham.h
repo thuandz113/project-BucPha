@@ -268,6 +268,49 @@ string cinInBox(string prompt, int width, bool highlight = false, int color = 7)
 	
     return input; // Trả về chuỗi nhập từ người dùng
 }
+string cinInBox1(string prompt, int width, bool highlight = false, int color = 7) {
+    string input;
+    int promptLength = prompt.length();
+
+    // Đảm bảo chiều rộng của khung ít nhất là đủ cho prompt và khoảng cách
+    width = max(promptLength + 4, width);
+
+    // In đường viền trên của khung
+    printBorder(width);
+
+    // In dòng hỏi (prompt)
+    cout << "\t\t\t\t\t\t\t\t" << u8"  "; // Viền trái
+    if (highlight)
+        setColor(14); // Màu vàng
+    else
+        setColor(color); // Màu mặc định
+    cout << prompt; // Hiển thị câu hỏi
+    setColor(7); // Reset về màu mặc định
+
+    // In dấu hai chấm và khoảng trống nhập liệu
+    cout << ": ";
+
+    // Nhập ký tự, hỗ trợ che bằng '*'
+    char ch;
+    while ((ch = _getch()) != '\r') { // Lặp đến khi nhấn Enter
+        if (ch == '\b') { // Xử lý Backspace
+            if (!input.empty()) {
+                cout << "\b \b"; // Xóa ký tự '*' trên màn hình
+                input.pop_back(); // Xóa ký tự khỏi chuỗi
+            }
+        } else {
+            input.push_back(ch); // Thêm ký tự vào chuỗi
+            cout << '*'; // Hiển thị dấu '*'
+        }
+    }
+    cout << endl; // Xuống dòng sau khi nhấn Enter
+
+    // In đường viền dưới của khung
+    printBottomBorder(width);
+
+    return input; // Trả về chuỗi đã nhập
+}
+
 
 
 void showWelcomeArt() {
@@ -349,6 +392,45 @@ bool checkPasswordStrength(const string& password, int width) {
             printBottomBorder(width);
         return false;
     }
+    return true;
+}
+bool checkPasswordStrength1(const string& password) {
+    if (password.length() < 8) {
+        cout << "Mat khau it nhat 8 ki tu!" << endl;
+        return false;
+    }
+
+    bool hasUpperCase = false;
+    bool hasLowerCase = false;
+    bool hasDigit = false;
+    bool hasSpecialChar = false;
+
+    for (char c : password) {
+        if (isupper(c)) hasUpperCase = true;
+        else if (islower(c)) hasLowerCase = true;
+        else if (isdigit(c)) hasDigit = true;
+        else if (ispunct(c)) hasSpecialChar = true;
+
+        if (hasUpperCase && hasLowerCase && hasDigit && hasSpecialChar) break;
+    }
+
+    if (!hasUpperCase) {
+        cout << "Mat khau co it nhat 1 chu hoa!" << endl;
+        return false;
+    }
+    if (!hasLowerCase) {
+        cout << "Mat khau co it nhat 1 chu thuong!" << endl;
+        return false;
+    }
+    if (!hasDigit) {
+        cout << "Mat khau co it nhat 1 so!" << endl;
+        return false;
+    }
+    if (!hasSpecialChar) {
+        cout << "Mat khau co it nhat 1 ky tu dac biet (!@#$...)" << endl;
+        return false;
+    }
+
     return true;
 }
 bool checkVietnamesePhoneNumber(const string& phoneNumber, int width) {
