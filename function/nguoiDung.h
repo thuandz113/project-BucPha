@@ -1399,19 +1399,11 @@ void xulytimkiem(UserAccount &user){
 
         if (query == "exit") break;
 
-        // Nếu người dùng nhập "-1", xử lý tùy theo vai trò
 
-        // Tìm kiếm sản phẩm theo tên
         liveSearchByName(query);
         std::cout << "----------------------\n";
     }
 
-    setColor(9); // Xanh dương nhạt
-    cout << "\nNhan phim bat ky de tiep tuc...\n";
-    setColor(7); // Trắng
-    system("pause");
-    
-    
 }
 void hienthidanhsachhethang(UserAccount &user) {
     docSanPhamTuFile("database/product.txt"); // Đảm bảo hàm này đọc đúng dữ liệu vào danhSachSanPham

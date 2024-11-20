@@ -409,6 +409,7 @@ int ShowMainMenu(UserAccount user) {
                 int credits;
                 system("cls");
                 naptien(credits);
+                
                 user.accountDeposit(credits);
                 cout<<endl<<endl;
                 break;
