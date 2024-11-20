@@ -1,4 +1,5 @@
 Username/Password/Roles/Credits/Sex/Number/Address
+<<<<<<< HEAD
 thuan_p 123123123 1 1000000 2 0915566 aasdasd
 peter 123123123 0 146246 2 123 2
 bao 123123123 0 99982 2 123 2
@@ -44,3 +45,6 @@ qweqweqwe 1 0 2 123123 2 asdasd
 12312312345asdD! 0 0 1 915566167 256_tran_quy_cap thuancucu
 12312312345asdD! 0 0 2 915566167 256_tran_quy_cap bao_dep_trai
 123123123Bao@ 0 0 1 835442443 123 bao123
+=======
+thuancute 123 0 1000000 1 0915566167 256
+>>>>>>> f5cdae58f6d78810c2406ae6e28f86773ba25091
