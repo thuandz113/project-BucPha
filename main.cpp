@@ -5,8 +5,7 @@
 
 int main()
 {
-    
-     showWelcomeArt();
+    showWelcomeArt();
     displayMenu(50);
     return 1;
 }

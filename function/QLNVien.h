@@ -149,7 +149,6 @@ class NhanVien {
             cout << "Nhap so gio lam them (neu co): ";
             cinInt >> soGioLamThem;
             luongTheoGio = getLuongByChucVu(chucVu);
-			cin.ignore();
         	char choice;
         	cout<<"ban co muon tao tai khoan cho nhan vien nay(y/n): ";
 			cin>>choice;
@@ -175,6 +174,7 @@ class NhanVien {
 
         // Ham hien thi thong tin nhan vien
         void xuat() {
+			setColor(7);
             cout << "| " << left << setw(5) << maNhanVien << " | "
             	 << left << setw(17) << tenTaiKhoan << " | "
                  << left << setw(17) << tenNhanVien << " | "
@@ -251,6 +251,7 @@ int n; //sl nhan vien
 		}
 		//Ham xoa nv
 		void xoaNV(string maNV){
+			xuatds();
 			ifstream infile("database/listEmployees.txt");
 			ofstream tempfile("database/t.txt");
 			NhanVien nv;
@@ -286,6 +287,7 @@ int n; //sl nhan vien
 		}
 		// Ham phan ca lam viec
 		void phanCalamviec(){
+			xuatds();
 			string maNV;
 			string caMoi;
 			cout<<"Nhap ma nhan vien can cap nhat ca: ";
@@ -322,6 +324,7 @@ int n; //sl nhan vien
 		}
 		// Ham cap nhat luong
 		void capnhatLuong(){
+			xuatds();
 			string maNV;
 			float luongMoi;
 			cout<<"Nhap ma nhan vien can cap nhat luong: ";
@@ -357,6 +360,7 @@ int n; //sl nhan vien
 		}
 		//Ham tim kiem nhan vien theo ma
 		void timKiemNV(string maNV){
+		setColor(7);
 		ifstream infile("database/listEmployees.txt");
 			NhanVien nv;
 			bool found=false;
@@ -367,9 +371,41 @@ int n; //sl nhan vien
 					if(infile.eof()) break;
 					if(nv.getMaNV()==maNV)
 					{
-				cout << "+-------+-------------------+-------------------+-----------------------------+-------------+-------+---------------+-----------+" << endl;
-                cout << "| MaNV  |     TenTK         |       TenNV       |            Chuc vu          | Ca lam viec | GioLV | Gio lam them  |   Luong   |" << endl;
-                cout << "+-------+-------------------+-------------------+-----------------------------+-------------+-------+---------------+-----------+" << endl;
+					cout << "+-------+-------------------+-------------------+-----------------------------+-------------+-------+---------------+-----------+" << endl;
+					cout << "| ";
+					setColor(11); // Tô màu xanh dương nhạt cho chữ "MaNV"
+					cout << "MaNV";
+					setColor(7); // Trở lại màu mặc định
+					cout << "  |     ";
+					setColor(11); // Tô màu cho "TenTK"
+					cout << "TenTK";
+					setColor(7);
+					cout << "         |       ";
+					setColor(11); // Tô màu cho "TenNV"
+					cout << "TenNV";
+					setColor(7);
+					cout << "       |            ";
+					setColor(11); // Tô màu cho "Chuc vu"
+					cout << "Chuc vu";
+					setColor(7);
+					cout << "          | ";
+					setColor(11); // Tô màu cho "Ca lam viec"
+					cout << "Ca lam viec";
+					setColor(7);
+					cout << " | ";
+					setColor(11); // Tô màu cho "GioLV"
+					cout << "GioLV";
+					setColor(7);
+					cout << " | ";
+					setColor(11); // Tô màu cho "Gio lam them"
+					cout << "Gio lam them";
+					setColor(7);
+					cout << "  |   ";
+					setColor(11); // Tô màu cho "Luong"
+					cout << "Luong";
+					setColor(7);
+					cout << "   |" << endl;
+					cout << "+-------+-------------------+-------------------+-----------------------------+-------------+-------+---------------+-----------+" << endl;
                         nv.xuat();
                         found=true;
                         break;
@@ -389,10 +425,41 @@ int n; //sl nhan vien
 			ifstream infile("database/listEmployees.txt");
 			NhanVien nv;
 			if(infile.is_open()){
-				setColor(11);
-				cout << "+-------+-------------------+-------------------+-----------------------------+-------------+-------+---------------+-----------+" << endl;
-                cout << "| MaNV  |     TenTK         |       TenNV       |            Chuc vu          | Ca lam viec | GioLV | Gio lam them  |   Luong   |" << endl;
-                cout << "+-------+-------------------+-------------------+-----------------------------+-------------+-------+---------------+-----------+" << endl;
+			cout << "+-------+-------------------+-------------------+-----------------------------+-------------+-------+---------------+-----------+" << endl;
+			cout << "| ";
+			setColor(11); // Tô màu xanh dương nhạt cho chữ "MaNV"
+			cout << "MaNV";
+			setColor(7); // Trở lại màu mặc định
+			cout << "  |     ";
+			setColor(11); // Tô màu cho "TenTK"
+			cout << "TenTK";
+			setColor(7);
+			cout << "         |       ";
+			setColor(11); // Tô màu cho "TenNV"
+			cout << "TenNV";
+			setColor(7);
+			cout << "       |            ";
+			setColor(11); // Tô màu cho "Chuc vu"
+			cout << "Chuc vu";
+			setColor(7);
+			cout << "          | ";
+			setColor(11); // Tô màu cho "Ca lam viec"
+			cout << "Ca lam viec";
+			setColor(7);
+			cout << " | ";
+			setColor(11); // Tô màu cho "GioLV"
+			cout << "GioLV";
+			setColor(7);
+			cout << " | ";
+			setColor(11); // Tô màu cho "Gio lam them"
+			cout << "Gio lam them";
+			setColor(7);
+			cout << "  |   ";
+			setColor(11); // Tô màu cho "Luong"
+			cout << "Luong";
+			setColor(7);
+			cout << "   |" << endl;
+			cout << "+-------+-------------------+-------------------+-----------------------------+-------------+-------+---------------+-----------+" << endl;
 				while(true){
 					nv.docFile(infile);
 					if(infile.eof()) break;
@@ -412,10 +479,9 @@ int menuEmployeeManagement(){
 	QLNV qlnv;
 	int choice;
 	do{
-		setColor(14);
+		setColor(11);
 		cout<<"           QUAN LY NHAN VIEN       \n";
 		setColor(7);
-		setColor(11);
 		cout<<"===================================\n";
 		cout<<"| 1. Them nhan vien               |\n";
 		cout<<"| 2. Xoa nhan vien                |\n";
