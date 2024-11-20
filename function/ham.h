@@ -4,7 +4,10 @@
 #include <ctime>
 #include <cctype>
 #include <regex>
+#include <conio.h>
 #include "doiTuong.h"
+
+
 string maskString(const string& str) 
 {
     string result;
@@ -362,5 +365,9 @@ bool checkVietnamesePhoneNumber(const string& phoneNumber, int width) {
         return false;
     }
 }
-
+string toLower(const string& str) {
+    string result = str;
+    transform(result.begin(), result.end(), result.begin(), ::tolower);
+    return result;
+}
 
