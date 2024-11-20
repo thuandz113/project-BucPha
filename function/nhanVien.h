@@ -170,8 +170,7 @@ void handleViewAndEditCustomer() {
 
     UserAccount editUser("Null", "Null", 0, 0, 0, "Null", "Null");
     do {
-        showList();
-        system("cls");
+        
         setColor(14);
         cout << "Nhap ten tai khoan ban muon chinh sua thong tin:";
         setColor(7);
@@ -203,12 +202,24 @@ void handleViewAndEditCustomer() {
                 setColor(12);
                 cout << "Nhap Gioi tinh (1: Nam, 2: Nu): ";
                 setColor(7);
-                cinInt >> newSex;
+
+                // Vòng lặp kiểm tra đầu vào
+                while (true) {
+                    cin >> newSex;
+
+                    if (newSex == 1 || newSex == 2) {
+                        break; // Thoát vòng lặp nếu giá trị hợp lệ
+                    } else {
+                        setColor(12);
+                        cout << "Chi duoc nhap 1 hoac 2! Vui long nhap lai: ";
+                        setColor(7);
+                    }
+                }
+
                 editUser.setSex(newSex);
                 setColor(12);
                 cout << "Gioi tinh da duoc cap nhat!" << endl;
                 setColor(7);
-                break;
             }
             case 2: {
                 string newAddress;

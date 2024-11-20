@@ -1,11 +1,10 @@
 DoUong,Coca,10,0
 ThoiTrang,Nike,20,0
-ThucPham,Ca,10000,30
 ThucPham,Ca,10000,50
 DoUong,Tra Sua,25,0
 DoUong,Nuoc Cam,12,0
 DoUong,Ca Phe,30,0
-ThoiTrang,Adidas,18,-9
+ThoiTrang,Adidas,18,9
 ThoiTrang,Puma,22,12
 ThoiTrang,Gucci,35,20
 ThoiTrang,Lv,50,25
@@ -25,6 +24,5 @@ DoDienTu,Tablet,7000,35
 DoDienTu,TaiNghe,1500,20
 ThucPham,ca cha,10,0
 ThucPham,kho ga,10,0
-ThucPham,10,1,1
 ThucPham,ga dong lanh,10,10
-ThucPham,ga tay,20,-5
+ThucPham,ga tay,20,3
