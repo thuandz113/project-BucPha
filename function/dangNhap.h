@@ -320,6 +320,7 @@ int ShowMainMenu(UserAccount user) {
     // Danh sách các lựa chọn trong menu
     vector<string> options = {
         "Chon quay san pham.",
+        "Tim kiem san pham",
         "Nap tien vao tai khoan.",
         "Lich su mua hang.",
         "Doi mat khau.",
@@ -334,11 +335,17 @@ int ShowMainMenu(UserAccount user) {
         int selected = navigateMenu(options, user);
 
         switch (selected) {
-            case 0:
+            case 0:{
                 system("cls");
                 qlcn.chonQuayKhac(user);
                 break;
-            case 1: {
+                }
+            case 1:{
+                system("cls");
+                qlcn.xulytimkiem(user);
+                break;
+                }
+            case 2: {
                 system("cls");
                 int credits;
                 do {
@@ -355,7 +362,7 @@ int ShowMainMenu(UserAccount user) {
                 break;
             }
             
-            case 2: {
+            case 3: {
                 system("cls");
                 string fileName = "database/history/" + user.getUsername() + ".txt";
                 ifstream file(fileName);
@@ -434,7 +441,7 @@ int ShowMainMenu(UserAccount user) {
                 setColor(7); // Trắng
                 break;
             }
-            case 3: {
+            case 4: {
                 setColor(14); // Vàng
                 cout << "Nhap Password moi: ";
                 setColor(7); // Trắng
@@ -448,13 +455,13 @@ int ShowMainMenu(UserAccount user) {
                 updateAccount(user);
                 break;
             }
-            case 4: {
+            case 5: {
                 system("cls");
                 updateAccount(user);
                 displayMenu(50);
                 return 0;
             }
-            case 5:{
+            case 6:{
                 system("cls");
                 ShowManageMenu(user);
                 break;

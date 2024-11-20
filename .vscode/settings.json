@@ -111,6 +111,8 @@
     "numbers": "cpp",
     "semaphore": "cpp",
     "stop_token": "cpp",
-    "unordered_set": "cpp"
+    "unordered_set": "cpp",
+    "bitset": "cpp",
+    "regex": "cpp"
   }
 }

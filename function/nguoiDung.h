@@ -10,6 +10,7 @@
 #include <iomanip>
 #include <algorithm>
 #include <iterator>
+#include <conio.h>
 
 #include "doiTuong.h"
 #include "ham.h"
@@ -1310,75 +1311,119 @@ void docSanPhamTuFile(const string& tenFile) {
 
     file.close();
 }
-// void quanLyKhoHang() {
-//     this_thread::sleep_for(chrono::milliseconds(1000));
-//     system("cls");  // Xóa màn hình lần đầu tiên khi vào menu
-//     int choice = 0;
+void liveSearchByName(const string& query) {
+    if (query.empty()) {
+        std::cout << "Tu khoa tim kiem khong duoc de trong.\n";
+        return;
+    }
 
-//     do {
-//         system("cls"); // Xóa màn hình mỗi khi vòng lặp chạy lại
+    std::cout << "\n====== Tim kiem san pham ======\n";
+    std::cout << "Tu khoa: \"" << query << "\"\n";
+    bool found = false;
 
-//         // Vẽ tiêu đề và khung
-//         drawHeader1();
-//         cout << endl;  // Thêm khoảng trắng giữa tiêu đề và menu
+    // Tiêu đề với màu vàng (mã ANSI màu vàng: 33)
+    std::cout << "[------------------------------------------------------------+\n";
+    std::cout << "| " << std::setw(20) << std::left << "Ten san pham"
+              << "| " << std::setw(12) << std::left << "Loai"
+              << "| " << std::setw(10) << std::left << "Gia"
+              << "| " << std::setw(10) << std::left << "So luong" << " |\n";
+    std::cout << "+------------------------------------------------------------+\n"; // Reset màu
 
-//         // Vẽ các mục trong menu
-//         drawMenuOptions(choice);
-        
-//         setColor(7);  // Đặt lại màu trắng mặc định
-//         cout << " ╚══════════════════════════════════════════════════════╝" << endl;
+    // Giả sử danhSachSanPham là danh sách các sản phẩm
+    for (SanPham* sp : danhSachSanPham) {
+        // So khớp từ khóa với tên sản phẩm (không phân biệt hoa thường)
+        if (sp->getTen().find(query) != std::string::npos) {
+            std::cout << "| " << std::setw(20) << std::left << sp->getTen()
+                      << "| " << std::setw(12) << std::left << sp->getLoai()
+                      << "| " << std::setw(10) << std::left << sp->getGia()
+                      << "| " << std::setw(10) << std::left << sp->getSoLuong() << " |\n";
+            found = true;
+        }
+    }
 
-//         // Xử lý phím nhập vào
-//         int key = _getch();
-//         if (key == 224) { // Phím mũi tên
-//             key = _getch();
-//             if (key == 72) {
-//                 choice = (choice - 1 + 4) % 4;  // Điều chỉnh khi lên xuống
-//             } else if (key == 80) {
-//                 choice = (choice + 1) % 4;
-//             }
-//         } else if (key == 13) {  // Enter
-//             // Thực hiện chức năng tương ứng
-//             system("cls");
-//             switch (choice) {
-//                 case 0:
-//                     setColor(12);
-//                     cout << "Ban dang den voi chuc nang nhap hang" << endl;
-//                     setColor(7);
-//                     // Hàm nhập hàng (cập nhật số lượng sản phẩm)
-//                     nhapHang();
-//                     break;
-//                 case 1:
-//                     setColor(12);
-//                     cout << "Ban dang den voi chuc nang xoa hang" << endl;
-//                     setColor(7);
-//                     // Hàm xóa hàng
-//                     xoaHang();
-//                     break;
-//                 case 2:
-//                     setColor(12);
-//                     cout << "Ban dang den voi chuc nang cap nhat gia san pham" << endl;
-//                     setColor(7);
-//                     // Hàm cập nhật giá sản phẩm
-//                     capNhatGiaHang();
-//                     break;
-//                 case 3:
-//                     setColor(12);
-//                     cout << "Thoat kho hang..." << endl;
-//                     this_thread::sleep_for(chrono::milliseconds(500));
-//                     system("cls");
-                    
-//                     setColor(7);
-//                 default:
-//                     cout << "Lua chon khong hop le! Vui long chon lai." << endl;
-//                     break;
-//             }
-//             this_thread::sleep_for(chrono::milliseconds(1000));
-//             system("cls");
-//         }
-//     } while (true);
+    if (!found) {
+        std::cout << "| Khong tim thay san pham nao.                               |\n";
+    }
 
-// }
+    // Dòng kết thúc với màu vàng
+    std::cout << "+------------------------------------------------------------+\n";
+    }
+void showSearchUI() {
+    cout << "\n";
+    cout << "+----------------------------------------------------------+\n";
+    cout << "|                     Tim kiem san pham                    |\n";
+    cout << "+----------------------------------------------------------+\n";
+    cout << "| Nhap ten san pham can tim (hoac go 'exit' hoac (-1) de   |\n";
+    cout << "| mua hang de thoat):                                      |\n";
+    cout << "+----------------------------------------------------------+\n";
+}
+void showSearchUIforManager() {
+    cout << "\n";
+    cout << "+----------------------------------------------------------+\n";
+    cout << "|                     Tim kiem san pham                    |\n";
+    cout << "+----------------------------------------------------------+\n";
+    cout << "| Nhap ten san pham can tim (hoac go 'exit' ):             |\n";
+    cout << "+----------------------------------------------------------+\n";
+}
+void moveCursor(int x, int y) {
+    cout << "\033[" << y << ";" << x << "H";
+}
+void xulytimkiem(UserAccount &user){
+    std::string query;
+    bool firstSearch = true; // Biến để kiểm tra lần tìm kiếm đầu tiên
+
+    // Đọc danh sách sản phẩm từ file ngay khi bắt đầu tìm kiếm
+    docSanPhamTuFile("database/product.txt"); // Đọc danh sách sản phẩm từ file
+
+    while (true) {
+        // Nếu không phải lần tìm kiếm đầu tiên, đợi và xóa màn hình
+        if (!firstSearch) {
+            this_thread::sleep_for(chrono::milliseconds(3500));
+            system("cls");  // Xóa màn hình mỗi khi tìm kiếm sau lần đầu tiên
+        } else {
+            firstSearch = false;  // Sau lần đầu tiên, set flag là false
+        }
+
+        // Hiển thị giao diện tìm kiếm tùy theo vai trò của người dùng
+        if (user.getRoles() == 0) { // Nếu là khách hàng
+            showSearchUI();  // Giao diện tìm kiếm cho khách hàng
+            moveCursor(25, 6);  // Di chuyển con trỏ đến vị trí nhập
+        } else if (user.getRoles() == 2) { // Nếu là quản lý
+            showSearchUIforManager();  // Giao diện tìm kiếm cho quản lý
+            moveCursor(48, 5);  // Di chuyển con trỏ đến vị trí nhập
+        }
+
+        // Nhập từ khóa tìm kiếm
+        getline(cin, query);
+
+        if (query == "exit") break;
+
+        // Nếu người dùng nhập "-1", xử lý tùy theo vai trò
+        if (query == "-1") {
+            if (user.getRoles() == 0) {
+                std::cout << "Ban da chon qua quay san pham.\n";
+                chonQuayKhac(user);  
+                break;  // Thoát vòng tìm kiếm
+            } else if (user.getRoles() == 2) {
+                std::cout << "Ban da chon quan ly kho hang.\n";
+                break;  // Thoát vòng tìm kiếm, có thể chuyển sang màn hình quản lý kho
+            }
+        }
+
+        // Tìm kiếm sản phẩm theo tên
+        liveSearchByName(query);
+        std::cout << "----------------------\n";
+    }
+
+    // Dọn dẹp bộ nhớ sau khi tất cả các tìm kiếm đã hoàn tất
+    for (SanPham* sp : danhSachSanPham) {
+        delete sp;  // Giải phóng bộ nhớ của các đối tượng SanPham
+    }
+    danhSachSanPham.clear();  // Xóa danh sách sản phẩm
+}
+               
+
+
 void drawHeader1(){
         cout << " ╔══════════════════════════════════════════════════════╗" << endl;
     cout << " ║                    ";
@@ -1394,10 +1439,11 @@ void drawMenuOptions(int choice) {
         "Nhap hang",
         "Xoa hang",
         "Cap nhat gia san pham",
+        "tim kiem san pham",
         "Thoat"
     };
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
         // Nếu đang ở mục chọn hiện tại, đổi màu
         if (i == choice) {
             cout << " ║";
@@ -1422,7 +1468,11 @@ void drawMenuOptions(int choice) {
                     setColor(7);
                     cout << "║";
                     break;
-            case 3: cout << "Thoat                                              ";
+            case 3: cout << "Tim kiem san pham                                  ";
+                    setColor(7);
+                    cout << "║";
+                    break;
+            case 4: cout << "Thoat                                              ";
                     setColor(7);
                     cout << "║";
                     break;
