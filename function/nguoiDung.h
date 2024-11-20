@@ -1327,26 +1327,25 @@ void liveSearchByName(const string& query) {
         return;
     }
 
-    std::cout << "\n====== Tim kiem san pham ======\n";
-    std::cout << "Tu khoa: \"" << query << "\"\n";
+    std::cout << "\n";
     bool found = false;
 
 
-    std::cout << "[------------------------------------------------------------+\n";
-    std::cout << "| " << std::setw(20) << std::left << "Ten san pham"
-              << "| " << std::setw(12) << std::left << "Loai"
-              << "| " << std::setw(10) << std::left << "Gia"
-              << "| " << std::setw(10) << std::left << "So luong" << " |\n";
-    std::cout << "+------------------------------------------------------------+\n"; // Reset màu
+    std::cout << "╔════════════════════════════════════════════════════════════╗\n";
+    std::cout << "║ " << std::setw(20) << std::left << "Ten san pham"
+              << "║ " << std::setw(12) << std::left << "Loai"
+              << "║ " << std::setw(10) << std::left << "Gia"
+              << "║ " << std::setw(10) << std::left << "So luong" << " ║\n";
+    std::cout << "╠════════════════════════════════════════════════════════════╣\n"; // Reset màu
 
     // Giả sử danhSachSanPham là danh sách các sản phẩm
     for (SanPham* sp : danhSachSanPham) {
         // So khớp từ khóa với tên sản phẩm (không phân biệt hoa thường)
         if (sp->getTen().find(query) != std::string::npos) {
-            std::cout << "| " << std::setw(20) << std::left << sp->getTen()
-                      << "| " << std::setw(12) << std::left << sp->getLoai()
-                      << "| " << std::setw(10) << std::left << sp->getGia()
-                      << "| " << std::setw(10) << std::left << sp->getSoLuong() << " |\n";
+            std::cout << "║ " << std::setw(20) << std::left << sp->getTen()
+                      << "║ " << std::setw(12) << std::left << sp->getLoai()
+                      << "║ " << std::setw(10) << std::left << sp->getGia()
+                      << "║ " << std::setw(10) << std::left << sp->getSoLuong() << " ║\n";
             found = true;
         }
     }
@@ -1356,15 +1355,21 @@ void liveSearchByName(const string& query) {
     }
 
     // Dòng kết thúc với màu vàng
-    std::cout << "+------------------------------------------------------------+\n";
+    std::cout << "╚════════════════════════════════════════════════════════════╝\n";
     }
 void showSearchUI() {
+    setColor(11);
+    cout << " _______  _____  __  __       _  __ _____  ______  __  __ \n";
+    cout << "|__   __||_   _||  \\/  |     | |/ /|_   _||  ____||  \\/  |\n";
+    cout << "   | |     | |  | \\  / |     | ' /   | |  | |__   | \\  / |\n";
+    cout << "   | |     | |  | |\\/| |     |  <    | |  |  __|  | |\\/| |\n";
+    cout << "   | |    _| |_ | |  | |     | . \\  _| |_ | |____ | |  | |\n";
+    cout << "   |_|   |_____||_|  |_|     |_|\\_\\|_____||______||_|  |_|\n";
+    setColor(7);
     cout << "\n";
-    cout << "+----------------------------------------------------------+\n";
-    cout << "|                     Tim kiem san pham                    |\n";
-    cout << "+----------------------------------------------------------+\n";
-    cout << "| Nhap ten san pham can tim (hoac go 'exit' ):             |\n";
-    cout << "+----------------------------------------------------------+\n";
+    cout << "╔══════════════════════════════════════════════════════════╗\n";
+    cout << "║ Nhap ten san pham can tim (hoac go 'exit' ):             ║\n";
+    cout << "╚══════════════════════════════════════════════════════════╝\n";
 }
 void showSearchUIforManager() {
     cout << "\n";
@@ -1388,10 +1393,10 @@ void xulytimkiem(UserAccount &user){
         // Hiển thị giao diện tìm kiếm tùy theo vai trò của người dùng
         if (user.getRoles() == 0) { // Nếu là khách hàng
             showSearchUI();  // Giao diện tìm kiếm cho khách hàng
-            moveCursor(48, 5);  // Di chuyển con trỏ đến vị trí nhập
+            moveCursor(48, 9);  // Di chuyển con trỏ đến vị trí nhập
         } else if (user.getRoles() == 2) { // Nếu là quản lý
-            showSearchUIforManager();  // Giao diện tìm kiếm cho quản lý
-            moveCursor(48, 5);  // Di chuyển con trỏ đến vị trí nhập
+            showSearchUI();  // Giao diện tìm kiếm cho quản lý
+            moveCursor(48, 9);  // Di chuyển con trỏ đến vị trí nhập
         }
 
         // Nhập từ khóa tìm kiếm
@@ -1401,7 +1406,6 @@ void xulytimkiem(UserAccount &user){
 
 
         liveSearchByName(query);
-        std::cout << "----------------------\n";
         setColor(9); // Xanh dương nhạt
         cout << "\nNhan phim bat ky de tiep tuc...\n";
         setColor(7); // Trắng
@@ -1416,42 +1420,42 @@ void hienthidanhsachhethang(UserAccount &user) {
     bool found = false;
 
     // Hiển thị các sản phẩm hết hàng
-    cout << "==================================================================\n";
+    cout << "╔════════════════════════════════════════════════════════════════╗\n";
 
     // In thông tin tiêu đề, chỉ chữ được tô màu
-    cout << "| ";
+    cout << "║ ";
     setColor(11); // Xanh dương nhạt
     cout << "STT";
     setColor(7); // Trở lại màu mặc định
-    cout << " | ";
+    cout << " ║ ";
 
     setColor(11);
     cout << "Ten san pham";
     setColor(7);
-    cout << "                   | ";
+    cout << "                   ║ ";
 
     setColor(11);
     cout << "So luong";
     setColor(7);
-    cout << " | ";
+    cout << " ║ ";
 
     setColor(11);
     cout << "Gia (VND)";
     setColor(7);
-    cout << "    |\n";
+    cout << "    ║\n";
 
     // Đường viền dưới giữ màu mặc định
-    cout << "==================================================================\n";
+    cout << "╠════════════════════════════════════════════════════════════════╣\n";
 
     // Duyệt qua tất cả các sản phẩm và hiển thị sản phẩm hết hàng
     for (size_t i = 0; i < danhSachSanPham.size(); ++i) {
         if (danhSachSanPham[i]->getSoLuong() == 0) {
             
             setColor(15); // Màu trắng cho danh sách sản phẩm
-            cout << "| " << setw(3) << left << danhSachHienThi.size() + 1 << " | ";
-            cout << setw(30) << left << danhSachSanPham[i]->getTen() << " | ";
-            cout << setw(8) << left << danhSachSanPham[i]->getSoLuong() << " | ";
-            cout << setw(12) << left << danhSachSanPham[i]->getGia() << " |\n";
+            cout << "║ " << setw(3) << left << danhSachHienThi.size() + 1 << " ║ ";
+            cout << setw(30) << left << danhSachSanPham[i]->getTen() << " ║ ";
+            cout << setw(8) << left << danhSachSanPham[i]->getSoLuong() << " ║ ";
+            cout << setw(12) << left << danhSachSanPham[i]->getGia() << " ║\n";
             setColor(7);
             
             danhSachHienThi.push_back(i);  // Thêm chỉ số sản phẩm vào danh sách hiển thị
@@ -1459,7 +1463,7 @@ void hienthidanhsachhethang(UserAccount &user) {
         }
     }
 
-    cout << "==================================================================\n";
+    cout << "╚════════════════════════════════════════════════════════════════╝\n";
 
     if (!found) {
         setColor(12); // Màu đỏ cho thông báo không có sản phẩm
