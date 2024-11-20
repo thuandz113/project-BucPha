@@ -1402,6 +1402,11 @@ void xulytimkiem(UserAccount &user){
 
         liveSearchByName(query);
         std::cout << "----------------------\n";
+        setColor(9); // Xanh dương nhạt
+        cout << "\nNhan phim bat ky de tiep tuc...\n";
+        setColor(7); // Trắng
+        system("pause");
+        system("cls");
     }
 
 }

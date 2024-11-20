@@ -334,7 +334,7 @@ int naptien(int &credits) {
         gotoxy(x + 12, y + 5); // Vị trí nhập liệu
         cout << "          "; // Xóa giá trị cũ
         gotoxy(x + 12, y + 5); // Đặt lại con trỏ
-        cin >> credits;
+        cinInt >> credits;
 
         if (cin.fail()) {
             cin.clear();
