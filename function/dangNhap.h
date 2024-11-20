@@ -312,6 +312,62 @@ int navigateMenu(const vector<string>& options, UserAccount user) {
         }
     }
 }
+int naptien(int &credits) {
+    int x = 0, y = 0; // Góc trên bên trái
+
+    // Tạo khung bao
+    setColor(11); // Màu xanh dương nhạt
+    gotoxy(x, y); cout << "╔════════════════════════════════════════════╗";
+    for (int i = 1; i <= 7; ++i) { // Đủ dòng để chứa nội dung
+        gotoxy(x, y + i); cout << "║                                            ║";
+    }
+    gotoxy(x, y + 8); cout << "╚════════════════════════════════════════════╝";
+    setColor(7); // Trở lại màu mặc định
+
+    // Hiển thị hướng dẫn và con trỏ nhập liệu
+    gotoxy(x + 2, y + 1); cout << "Nhap so tien nap:";
+    gotoxy(x + 2, y + 3); cout << "(Lon hon 0 va nho hon 10 trieu)";
+    gotoxy(x + 2, y + 5); cout << "So tien: ";
+
+    // Nhập liệu
+    do {
+        gotoxy(x + 12, y + 5); // Vị trí nhập liệu
+        cout << "          "; // Xóa giá trị cũ
+        gotoxy(x + 12, y + 5); // Đặt lại con trỏ
+        cin >> credits;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            setColor(12); // Màu đỏ
+            gotoxy(x + 2, y + 6); cout << "Nhap khong hop le! Vui long nhap lai.";
+            setColor(7);
+            continue;
+        }
+
+        if (credits <= 0 || credits >= 10000000) {
+            setColor(12);
+            gotoxy(x + 2, y + 6); cout << "So tien khong hop le! Vui long nhap lai.";
+            setColor(7);
+        } else {
+            gotoxy(x + 2, y + 6); cout << "                                          ";
+        }
+    } while (credits <= 0 || credits >= 10000000);
+
+    // Hiển thị thông báo nạp tiền thành công bên trong khung
+    gotoxy(x + 2, y + 6); 
+    setColor(10); // Màu xanh lá
+    cout << "Dang nap tien...";
+    for (int i = 0; i < 3; ++i) {
+        cout << ".";
+        this_thread::sleep_for(chrono::milliseconds(500));
+    }
+    gotoxy(x + 2, y + 6); 
+    cout << "Nap thanh cong: " << credits << " VND.            ";
+    setColor(7);
+    return credits;
+
+}
 
 int ShowMainMenu(UserAccount user) {
     QuanLyChucNang qlcn;
@@ -346,19 +402,11 @@ int ShowMainMenu(UserAccount user) {
                 break;
                 }
             case 2: {
-                system("cls");
                 int credits;
-                do {
-                    setColor(14); // Màu vàng
-                    cout << "Nhap so tien nap (lon hon 0 va nho hon 10 trieu): ";
-                    setColor(7); // Màu trắng
-                    cinInt >> credits;
-                    
-                } while (credits <= 0 || credits >= 10000000);
+                system("cls");
+                naptien(credits);
                 user.accountDeposit(credits);
-                setColor(10); // Xanh lá
-                cout << "Nap thanh cong: " << credits << "$.\n";
-                setColor(7); // Trắng
+                cout<<endl<<endl;
                 break;
             }
             
