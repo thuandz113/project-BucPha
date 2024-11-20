@@ -24,7 +24,7 @@ public:
             cin >> value;
             if (cin.fail()) 
 			{
-				cout<<"\nBan vua nhap chu thay vi nhap so, hay nhap lai:";
+				cout<<"\nBan vua nhap chu thay vi nhap so, hay nhap lai:";  
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
             } 

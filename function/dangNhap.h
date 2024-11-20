@@ -42,7 +42,7 @@ void login() {
     int width = 50;
     //vẽ
     printBorder(width);
-    printInBox("Dang Nhap", width, false, 11); // Tiêu đề màu xanh dương nhạt
+    printInBox("DANG NHAP", width, false, 11); // Tiêu đề màu xanh dương nhạt
     printBottomBorder(width);
     while(isLoggedIn == false)
 	{
