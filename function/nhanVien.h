@@ -171,6 +171,7 @@ void handleViewAndEditCustomer() {
 
     UserAccount editUser("Null", "Null", 0, 0, 0, "Null", "Null");
     do {
+        showList();
         system("cls");
         setColor(14);
         cout << "Nhap ten tai khoan ban muon chinh sua thong tin:";
