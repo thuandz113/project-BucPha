@@ -14,11 +14,10 @@
 using namespace std;
 int ShowMainMenu(UserAccount user);
 void drawHeader() {
-    setColor(14);
+    setColor(11);
     cout << "   ____    _    _              _   _        _    __     __\n";
     cout << "  / __ \\  | |  | |     /\\     | \\ | |      | |   \\ \\   / /\n";
     cout << " | |  | | | |  | |    /  \\    |  \\| |      | |    \\ \\_/ / \n";
-    setColor(9);
     cout << " | |  | | | |  | |   / /\\ \\   | . ` |      | |     \\   /  \n";
     cout << " | |__| | | |__| |  / ____ \\  | |\\  |      | |____  | |   \n";
     cout << "  \\___\\_\\  \\____/  /_/    \\_\\ |_| \\_|      |______| |_|   \n";

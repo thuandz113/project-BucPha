@@ -256,8 +256,14 @@ int ShowStaffMenu(UserAccount user)
         system("cls");
         int choice;
         setColor(11);
-        cout << "                      MENU NHAN VIEN\n";
+        cout<<" _   _  _    _            _   _      __      __ _____  ______  _   _ \n";
+		cout<<"| \\ | || |  | |    /\\    | \\ | |     \\ \\    / /|_   _||  ____|| \\ | |\n";
+		cout<<"|  \\| || |__| |   /  \\   |  \\| |      \\ \\  / /   | |  | |__   |  \\| |\n";
+		cout<<"| . ` ||  __  |  / /\\ \\  | . ` |       \\ \\/ /    | |  |  __|  | . ` |\n";
+		cout<<"| |\\  || |  | | / ____ \\ | |\\  |        \\  /    _| |_ | |____ | |\\  |\n";
+		cout<<"|_| \\_||_|  |_|/_/    \\_\\|_| \\_|         \\/    |_____||______||_| \\_|\n";
         setColor(7);
+        cout<<"\n";
         cout << "╔══════════════════════════════════════════════════════╗" << endl;
         cout << "║ 1. Xem danh sach va chinh sua thong tin khach hang   ║" << endl;
         cout << "║ 2. Xoa tai khoan khach hang                          ║" << endl;

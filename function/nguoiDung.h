@@ -507,51 +507,51 @@ void nhapHang() {
         system("cls");
 
         // Hiển thị menu với màu sắc
-        cout << "=============================\n";
+        cout << "╔═══════════════════════════╗\n";
         for (int i = 1; i <= 6; ++i) {
             // Nếu đang ở mục chọn hiện tại, đổi màu
             if (i == luaChonLoai) {
 
-                cout << "|";
+                cout << "║";
                 setColor(14);
                 cout <<" * ";
             } else {
                 setColor(7); // Màu trắng cho các lựa chọn khác
-                cout << "|   ";
+                cout << "║   ";
             }
 
             // In tên lựa chọn
             switch (i) {
                 case 1: cout << "Thuc pham               ";
                         setColor(7);
-                        cout<<"|";
+                        cout<<"║";
                         break;
                 case 2: cout << "Do uong                 ";
                         setColor(7);
-                        cout<<"|";
+                        cout<<"║";
                         break;
                 case 3: cout << "Thoi trang              ";
                         setColor(7);
-                        cout<<"|";
+                        cout<<"║";
                         break;
                 case 4: cout << "Do gia dung             ";
                         setColor(7);
-                        cout<<"|";
+                        cout<<"║";
                         break;
                 case 5: cout << "Do dien tu              ";
                         setColor(7);
-                        cout<<"|";
+                        cout<<"║";
                         break;
                 case 6: cout << "Thoat                   ";
                         setColor(7);
-                        cout<<"|";
+                        cout<<"║";
                         break;
             }
 
             cout << endl;
         }
         setColor(7);
-        cout << "=============================\n";
+        cout << "╚═══════════════════════════╝\n";
         cout << "Chon loai san pham muon nhap (Sử dụng mũi tên lên/xuống để di chuyển và Enter để chọn):";
 
         // Đọc phím người dùng
@@ -744,51 +744,51 @@ void xoaHang(){
         system("cls");
 
         // Hiển thị menu với màu sắc
-        cout << "=============================\n";
+        cout << "╔═══════════════════════════╗\n";
         for (int i = 1; i <= 6; ++i) {
             // Nếu đang ở mục chọn hiện tại, đổi màu
             if (i == luaChonLoai) {
 
-                cout << "|";
+                cout << "║";
                 setColor(14);
                 cout <<" * ";
             } else {
                 setColor(7); // Màu trắng cho các lựa chọn khác
-                cout << "|   ";
+                cout << "║   ";
             }
 
             // In tên lựa chọn
             switch (i) {
                 case 1: cout << "Thuc pham               ";
                         setColor(7);
-                        cout<<"|";
+                        cout<<"║";
                         break;
                 case 2: cout << "Do uong                 ";
                         setColor(7);
-                        cout<<"|";
+                        cout<<"║";
                         break;
                 case 3: cout << "Thoi trang              ";
                         setColor(7);
-                        cout<<"|";
+                        cout<<"║";
                         break;
                 case 4: cout << "Do gia dung             ";
                         setColor(7);
-                        cout<<"|";
+                        cout<<"║";
                         break;
                 case 5: cout << "Do dien tu              ";
                         setColor(7);
-                        cout<<"|";
+                        cout<<"║";
                         break;
                 case 6: cout << "Thoat                   ";
                         setColor(7);
-                        cout<<"|";
+                        cout<<"║";
                         break;
             }
 
             cout << endl;
         }
         setColor(7);
-        cout << "=============================\n";
+        cout << "╚═══════════════════════════╝\n";
         cout << "Chon loai san pham muon mua (Sử dụng mũi tên lên/xuống để di chuyển và Enter để chọn):";
 
         // Đọc phím người dùng
@@ -1471,14 +1471,17 @@ void hienthidanhsachhethang(UserAccount &user) {
                
 
 
-void drawHeader1(){
-        cout << " ╔══════════════════════════════════════════════════════╗" << endl;
-    cout << " ║                    ";
+void drawHeader1(){                 
     setColor(11);
-    cout<<" QUẢN LÝ KHO HÀNG";
+    cout<<" _  __ _    _   ____        _    _            _   _   _____ \n";
+    cout<<"| |/ /| |  | | / __ \\      | |  | |    /\\    | \\ | | / ____|\n";
+    cout<<"| ' / | |__| || |  | |     | |__| |   /  \\   |  \\| || |  __ \n";
+    cout<<"|  <  |  __  || |  | |     |  __  |  / /\\ \\  | . ` || | |_ |\n";
+    cout<<"| . \\ | |  | || |__| |     | |  | | / ____ \\ | |\\  || |__| |\n";
+    cout<<"|_|\\_\\|_|  |_| \\____/      |_|  |_|/_/    \\_\\|_| \\_| \\_____|\n";
     setColor(7);
-    cout<<"                 ║" << endl;
-    cout << " ╠══════════════════════════════════════════════════════╣" ;
+    cout<<"\n";
+    cout << " ╔══════════════════════════════════════════════════════╗" ;
 }
 void drawMenuOptions(int choice) {
     setColor(7); // Màu trắng cho tất cả mục

@@ -69,7 +69,7 @@ void login() {
                     password = cinInBox("Nhap mat khau: ", width, true, 9);
                     if (password == passTemp) {
                     		printBorder(width);
-                            printInBox("Dang nhap thanh cong", width, false ,10);
+                            printInBox("DANG NHAP THANH CONG", width, false ,10);
                             printBottomBorder(width);
                         isLoggedIn = true;
                         passwordCorrect = true;
@@ -134,7 +134,7 @@ void registerAccount() {
         string number,address;
     
     printBorder(width);
-    printInBox("Dang Ky", width, false, 11); // Tiêu đề màu xanh dương nhạt
+    printInBox("DANG KY", width, false, 11); // Tiêu đề màu xanh dương nhạt
     printBottomBorder(width);
     
     while(1)
@@ -198,7 +198,7 @@ void registerAccount() {
         file << replaceSpace(userName) << " " << password << " "<< 0 <<" "<< 0<<" "<< sex <<" "<< replaceSpace(number) << " "<< replaceSpace(address)<<endl;
 
     	printBorder(width);
-        printInBox("Dang ky thanh cong <3", width, false , 10);
+        printInBox("DANG KY THANH CONG <3", width, false , 10);
         printBottomBorder(width);
 		this_thread::sleep_for(chrono::milliseconds(2000));
         file.close();
