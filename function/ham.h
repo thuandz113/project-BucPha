@@ -85,8 +85,8 @@ bool updateAccount(UserAccount user) {
                     << user.getRoles() << " " 
                     << user.getCredits() << " " 
                     << user.getSex() << " " 
-                    << user.getNumber() << " " 
-                    << user.getAddress() << endl;
+                    << replaceSpace(user.getNumber()) << " " 
+                    << replaceSpace(user.getAddress()) << endl;
             found = true;
         } else {
             fileOut << replaceSpace(userTemp) << " " << passTemp << " " 

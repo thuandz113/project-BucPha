@@ -25,4 +25,4 @@ DoDienTu,TaiNghe,1500,20
 ThucPham,ca cha,10,0
 ThucPham,kho ga,10,0
 ThucPham,ga dong lanh,10,10
-ThucPham,ga tay,20,3
+ThucPham,ga tay,20,1

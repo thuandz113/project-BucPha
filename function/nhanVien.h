@@ -226,8 +226,14 @@ void handleViewAndEditCustomer() {
                 setColor(12);
                 cout << "Nhap Dia chi moi: ";
                 setColor(7);
-                cin.ignore();
                 getline(cin, newAddress);
+                    while (newAddress.empty()) {
+                    setColor(12);
+                cout << "Dia chi khong duoc de trong. Vui long nhap lai." << endl;
+                cout << "Nhap Dia chi moi: ";
+                setColor(7);
+                getline(cin, newAddress);
+                 }
                 editUser.setAddress(newAddress);
                 setColor(12);
                 cout << "Dia chi da duoc cap nhat!" << endl;
@@ -239,8 +245,14 @@ void handleViewAndEditCustomer() {
                 setColor(12);
                 cout << "Nhap so dien thoai moi: ";
                 setColor(7);
-                cin.ignore();
                 getline(cin, newNum);
+                while (newNum.empty()) {
+                    setColor(12);
+                    cout << "So dien thoai khong duoc de trong. Vui long nhap lai." << endl;
+                                    cout << "Nhap so dien thoai moi: ";
+                setColor(7);
+                getline(cin, newNum);
+                }
                 editUser.setNumber(newNum);
                 setColor(12);
                 cout << "So dien thoai da duoc cap nhat!" << endl;
